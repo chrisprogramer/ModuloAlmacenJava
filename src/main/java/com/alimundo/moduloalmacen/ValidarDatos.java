@@ -5,7 +5,6 @@
 package com.alimundo.moduloalmacen;
 
 import java.util.Enumeration;
-import static java.util.Objects.isNull;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 
