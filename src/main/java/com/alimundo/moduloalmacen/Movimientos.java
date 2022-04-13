@@ -408,9 +408,7 @@ public class Movimientos extends javax.swing.JDialog{
                                                     null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                                             try {
                                                 reportesalmacen.ReporteNotaEntrega(Integer.parseInt(entradas.labelnid.getText()), Integer.parseInt(entradas.labelnid.getText()));
-                                            } catch (JRException ex) {
-                                                Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
-                                            } catch (IOException ex) {
+                                            } catch (JRException | IOException ex) {
                                                 Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
                                             }
                                         } catch (SQLException ex) {
