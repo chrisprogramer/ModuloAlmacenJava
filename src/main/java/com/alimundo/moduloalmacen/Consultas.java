@@ -273,6 +273,11 @@ public class Consultas extends javax.swing.JDialog {
 
         botongastos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         botongastos.setText("Reporte de Gastos");
+        botongastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botongastosActionPerformed(evt);
+            }
+        });
         getContentPane().add(botongastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 160, 180, 40));
 
         textfieldbuscar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -514,6 +519,7 @@ public class Consultas extends javax.swing.JDialog {
                 this.botonbuscar.setEnabled(true);
                 this.botonxmaterial.setEnabled(false);
                 this.botonaceptar.setEnabled(false);
+                this.botongastos.setEnabled(false);
                 modelomovimientos.setRowCount(0);
                 modelobusqueda.setRowCount(0);
                 new CargarComponentes().llenarchoice(choicecategorias, "SELECT nom_categoria FROM Categorias");
@@ -527,6 +533,7 @@ public class Consultas extends javax.swing.JDialog {
                 this.tablebuscarmaterial.setEnabled(true);
                 this.botonaceptar.setEnabled(false);
                 this.botonbuscar.setEnabled(false);
+                this.botongastos.setEnabled(false);
                 modelobusqueda.setRowCount(0);
                 this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;
@@ -640,7 +647,6 @@ public class Consultas extends javax.swing.JDialog {
                         while (rs.next()) {
                             bandera = true;
                             this.botonaceptar.setEnabled(true);
-                            this.botongastos.setEnabled(true);
                             modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
                         }
                         if (!bandera) {
@@ -656,6 +662,7 @@ public class Consultas extends javax.swing.JDialog {
                 
             case ("Salida de Materiales"):
                 if ("Por Categoria".equals(seleccionrpt)){
+                    this.botongastos.setEnabled(false);
                     try {
                         modelomovimientos.setRowCount(0);
                         PreparedStatement ps = null;
@@ -691,6 +698,7 @@ public class Consultas extends javax.swing.JDialog {
                         while (rs.next()) {
                             bandera = true;
                             this.botonaceptar.setEnabled(true);
+                            this.botongastos.setEnabled(true);
                             modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
                         }
                         if (!bandera) {
@@ -771,6 +779,21 @@ public class Consultas extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_botonxmaterialActionPerformed
+
+    private void botongastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botongastosActionPerformed
+        
+        fechadesde = dateformat.format(this.datedesde.getDate());
+        fechahasta = dateformat.format(this.datehasta.getDate());
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        try {
+            reportesalmacen.ReporteGastosdeSalidaxFecha(fechadesde, fechahasta);
+        } catch (JRException | IOException ex) {
+                Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+                Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botongastosActionPerformed
 
     /**
      * @param args the command line arguments
