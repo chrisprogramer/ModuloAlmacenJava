@@ -101,6 +101,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         labelingresamaterial = new javax.swing.JLabel();
         labelayuda = new javax.swing.JLabel();
         labelreportes1 = new javax.swing.JLabel();
+        labelreportes2 = new javax.swing.JLabel();
         labellogo = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
         fondo = new javax.swing.JLabel();
@@ -184,7 +185,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         labelmovimiento2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelmovimiento2.setText("de Almacén");
         labelmovimiento2.setToolTipText("");
-        panelmainmenu.add(labelmovimiento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
+        panelmainmenu.add(labelmovimiento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 95, -1, -1));
 
         labelingresamaterial.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelingresamaterial.setText("Materiales");
@@ -198,7 +199,11 @@ public class PrincipalForm extends javax.swing.JFrame {
         labelreportes1.setText("Consultas");
         panelmainmenu.add(labelreportes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
 
-        getContentPane().add(panelmainmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 110));
+        labelreportes2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        labelreportes2.setText("y Reportes");
+        panelmainmenu.add(labelreportes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 95, -1, 20));
+
+        getContentPane().add(panelmainmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 120));
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO ALIMUNDO PEQUE.png"))); // NOI18N
         getContentPane().add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 790, 420, 100));
@@ -302,6 +307,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelnbd;
     private javax.swing.JLabel labelnomempresa;
     private javax.swing.JLabel labelreportes1;
+    private javax.swing.JLabel labelreportes2;
     private javax.swing.JLabel labelsalir;
     private javax.swing.JPanel panelmainmenu;
     private javax.swing.JPanel panelopciones;
