@@ -9,7 +9,6 @@ import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
 
 public class Parametros {

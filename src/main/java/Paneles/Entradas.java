@@ -110,6 +110,7 @@ public class Entradas extends javax.swing.JPanel {
         date = new com.toedter.calendar.JDateChooser();
         jComboBoxdpto = new javax.swing.JComboBox<>();
         labeldepartamento = new javax.swing.JLabel();
+        botoncargareq = new javax.swing.JButton();
         labelfondo = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,7 +124,7 @@ public class Entradas extends javax.swing.JPanel {
         });
         jScrollPane.setViewportView(tableentradas);
 
-        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 142, 1170, 440));
+        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1170, 290));
 
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         labeltitulo.setText("Entradas al Almacén");
@@ -135,14 +136,14 @@ public class Entradas extends javax.swing.JPanel {
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelfecha.setOpaque(true);
-        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 46, -1, -1));
+        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 46, -1, -1));
 
         labelid.setBackground(new java.awt.Color(0, 153, 204));
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelid.setText("ID Entrada");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelid.setOpaque(true);
-        add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 46, -1, -1));
+        add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 20, -1, -1));
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
         labelnid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -151,15 +152,15 @@ public class Entradas extends javax.swing.JPanel {
         labelnid.setEnabled(false);
         labelnid.setFocusable(false);
         labelnid.setOpaque(true);
-        add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 50, 40));
+        add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 44, 50, 40));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         date.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         date.setOpaque(false);
-        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 70, 210, 30));
+        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 70, 210, 30));
 
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 260, 30));
+        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 260, 30));
 
         labeldepartamento.setBackground(new java.awt.Color(0, 153, 204));
         labeldepartamento.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -167,10 +168,16 @@ public class Entradas extends javax.swing.JPanel {
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labeldepartamento.setOpaque(true);
-        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 46, -1, -1));
+        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 46, -1, -1));
+
+        botoncargareq.setBackground(new java.awt.Color(255, 255, 255));
+        botoncargareq.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        botoncargareq.setText("Cargar Requisición");
+        botoncargareq.setBorder(null);
+        add(botoncargareq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 40));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 634));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 420));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableentradasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableentradasKeyPressed
@@ -186,6 +193,7 @@ public class Entradas extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botoncargareq;
     public com.toedter.calendar.JDateChooser date;
     public javax.swing.JComboBox<String> jComboBoxdpto;
     private javax.swing.JScrollPane jScrollPane;

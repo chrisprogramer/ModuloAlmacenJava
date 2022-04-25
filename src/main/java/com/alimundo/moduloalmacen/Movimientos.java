@@ -51,26 +51,11 @@ public class Movimientos extends javax.swing.JDialog{
     
         initComponents();
         setTitle("MOVIMIENTOS DE ALMACÉN");
-        setSize(1532, 881);
+        setSize(1230, 589);
         setResizable(false);
         setLayout(null);
         setLocationRelativeTo(null);
         modelobusqueda.setColumnIdentifiers(new Object[]{"",""});
-        
-        if (tablebuscarmaterial.getColumnModel().getColumnCount() > 0) {
-
-            tablebuscarmaterial.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>Codigo</h3></html>");
-            tablebuscarmaterial.getColumnModel().getColumn(0).setPreferredWidth(250);
-            tablebuscarmaterial.getColumnModel().getColumn(0).setMaxWidth(250);
-            tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(false);
-
-            tablebuscarmaterial.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>");
-            tablebuscarmaterial.getColumnModel().getColumn(1).setPreferredWidth(900);
-            tablebuscarmaterial.getColumnModel().getColumn(1).setMaxWidth(900);
-            tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
-        } 
-        tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
-        this.textfieldbuscar.requestFocus();
         this.setModal(true);
     }
   
@@ -80,9 +65,6 @@ public class Movimientos extends javax.swing.JDialog{
 
         panelopciones = new javax.swing.JPanel();
         labelaceptar = new javax.swing.JLabel();
-        textfieldbuscar = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablebuscarmaterial = new javax.swing.JTable();
         labelcerrar = new javax.swing.JLabel();
         botonaceptar = new javax.swing.JButton();
         TabbedPaneMovimientos = new javax.swing.JTabbedPane();
@@ -93,7 +75,8 @@ public class Movimientos extends javax.swing.JDialog{
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1751, 881));
+        setMaximumSize(new java.awt.Dimension(1230, 589));
+        setMinimumSize(new java.awt.Dimension(1230, 589));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
         getContentPane().setLayout(null);
@@ -106,31 +89,7 @@ public class Movimientos extends javax.swing.JDialog{
         labelaceptar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelaceptar.setText("Aceptar");
         getContentPane().add(labelaceptar);
-        labelaceptar.setBounds(1666, 800, 60, 16);
-
-        textfieldbuscar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        textfieldbuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        textfieldbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                textfieldbuscarKeyReleased(evt);
-            }
-        });
-        getContentPane().add(textfieldbuscar);
-        textfieldbuscar.setBounds(60, 80, 450, 30);
-
-        tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        tablebuscarmaterial.setModel(modelobusqueda);
-        tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablebuscarmaterial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablebuscarmaterialMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablebuscarmaterial);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 120, 452, 402);
+        labelaceptar.setBounds(1140, 570, 60, 16);
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -139,7 +98,7 @@ public class Movimientos extends javax.swing.JDialog{
             }
         });
         getContentPane().add(labelcerrar);
-        labelcerrar.setBounds(1700, 10, 32, 40);
+        labelcerrar.setBounds(1180, 10, 32, 40);
 
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/verificar.png"))); // NOI18N
         botonaceptar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -150,7 +109,7 @@ public class Movimientos extends javax.swing.JDialog{
             }
         });
         getContentPane().add(botonaceptar);
-        botonaceptar.setBounds(1650, 720, 80, 80);
+        botonaceptar.setBounds(1130, 490, 80, 80);
 
         TabbedPaneMovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TabbedPaneMovimientos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -161,19 +120,19 @@ public class Movimientos extends javax.swing.JDialog{
         TabbedPaneMovimientos.addTab("Transferencias de Almacen", transferenciaalmacen);
 
         getContentPane().add(TabbedPaneMovimientos);
-        TabbedPaneMovimientos.setBounds(550, 80, 1190, 620);
+        TabbedPaneMovimientos.setBounds(35, 40, 1190, 450);
 
         labeltitulo.setBackground(new java.awt.Color(0, 153, 204));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         labeltitulo.setText("Movimientos de Almacén");
         labeltitulo.setOpaque(true);
         getContentPane().add(labeltitulo);
-        labeltitulo.setBounds(880, 30, 280, 26);
+        labeltitulo.setBounds(480, 10, 280, 26);
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelfondo);
-        labelfondo.setBounds(30, 0, 1720, 880);
+        labelfondo.setBounds(30, 0, 1200, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,61 +142,6 @@ public class Movimientos extends javax.swing.JDialog{
         this.dispose();
         this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_labelcerrarMouseClicked
-
-    private void textfieldbuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textfieldbuscarKeyReleased
-        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        String valor = this.textfieldbuscar.getText();
-        try{
-            modelobusqueda.setRowCount(0);
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultamaterial ?");
-            ps.setString(1, valor);
-            rs = ps.executeQuery();
-            while (rs.next()){
-                modelobusqueda.addRow(new Object[]{rs.getString(1),rs.getString(2)});
-            }ps.close();
-        }catch (SQLException ex){
-            error = ex.getMessage();
-            JOptionPane.showMessageDialog(null,error,"ERROR",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
-        }
-        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_textfieldbuscarKeyReleased
-
-    private void tablebuscarmaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablebuscarmaterialMouseClicked
-        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        if (evt.getClickCount()==2){
-            modelo = (DefaultTableModel) tablebuscarmaterial.getModel();
-            modeloentrada = (DefaultTableModel) entradas.tableentradas.getModel();
-            modelosalida = (DefaultTableModel) salidas1.tablesalidas.getModel(); 
-            modelotransferencia = (DefaultTableModel) transferenciaalmacen.tablatransferencia.getModel();
-            seleccion = String.valueOf(modelo.getValueAt(tablebuscarmaterial.getSelectedRow(), 0));
-            try{
-                PreparedStatement ps = null;
-                ResultSet rs = null;
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosmaterial ?");
-                ps.setString(1, seleccion);
-                rs = ps.executeQuery();
-                while (rs.next()){
-                    tabbedfocus = this.TabbedPaneMovimientos.getSelectedIndex();
-                    switch (tabbedfocus){
-                        case 0: modeloentrada.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)});
-                                break;
-                        case 1: modelosalida.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)});
-                                break;
-                        case 2: modelotransferencia.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(4),rs.getString(5)});
-                                break;
-                    }
-                }
-                ps.close();
-            }catch (SQLException ex){
-                error = ex.getMessage();
-                JOptionPane.showMessageDialog(null,error,"ERROR",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
-            }
-            entradas.tableentradas.getSelectionModel().setSelectionInterval(1, 1);
-        }
-        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_tablebuscarmaterialMouseClicked
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
@@ -728,15 +632,12 @@ public class Movimientos extends javax.swing.JDialog{
     public javax.swing.JTabbedPane TabbedPaneMovimientos;
     private javax.swing.JButton botonaceptar;
     private Paneles.Entradas entradas;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelaceptar;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labeltitulo;
     private javax.swing.JPanel panelopciones;
     private Paneles.Salidas salidas1;
-    private javax.swing.JTable tablebuscarmaterial;
-    private javax.swing.JTextField textfieldbuscar;
     private Paneles.TransferenciaAlmacen transferenciaalmacen;
     // End of variables declaration//GEN-END:variables
 }

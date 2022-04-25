@@ -91,8 +91,12 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         tablatransferencia = new javax.swing.JTable();
         labelfecha = new javax.swing.JLabel();
         date = new com.toedter.calendar.JDateChooser();
+        botoncargatrans = new javax.swing.JButton();
         labelfondo = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1189, 419));
+        setMinimumSize(new java.awt.Dimension(1189, 419));
+        setPreferredSize(new java.awt.Dimension(1189, 419));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
@@ -106,14 +110,14 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         labelnid.setEnabled(false);
         labelnid.setFocusable(false);
         labelnid.setOpaque(true);
-        add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 50, 40));
+        add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 44, 50, 40));
 
         labelid.setBackground(new java.awt.Color(0, 153, 204));
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelid.setText("ID Transferencia");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelid.setOpaque(true);
-        add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 46, -1, -1));
+        add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 20, -1, -1));
 
         tablatransferencia.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablatransferencia.setModel(modelotransferencia);
@@ -124,7 +128,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         });
         jScrollPane.setViewportView(tablatransferencia);
 
-        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1170, 440));
+        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1170, 290));
 
         labelfecha.setBackground(new java.awt.Color(0, 153, 204));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -132,15 +136,21 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelfecha.setOpaque(true);
-        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 40, -1, -1));
+        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, -1));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         date.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         date.setOpaque(false);
-        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 60, 210, 30));
+        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 210, 30));
+
+        botoncargatrans.setBackground(new java.awt.Color(255, 255, 255));
+        botoncargatrans.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        botoncargatrans.setText("Cargar Transferencia");
+        botoncargatrans.setBorder(null);
+        add(botoncargatrans, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, 40));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 634));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 420));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablatransferenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablatransferenciaKeyPressed
@@ -156,6 +166,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botoncargatrans;
     public com.toedter.calendar.JDateChooser date;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel labelfecha;
