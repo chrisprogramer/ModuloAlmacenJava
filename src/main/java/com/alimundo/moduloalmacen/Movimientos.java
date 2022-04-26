@@ -205,8 +205,9 @@ public class Movimientos extends javax.swing.JDialog{
                                 try {
                                     PreparedStatement ps = null;
                                     ResultSet rs = null;
-                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevaentrada ?");
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevaentrada ?,?");
                                     ps.setString(1, fechaentrada);
+                                    ps.setString(2, (String) entradas.jComboBoxdpto.getSelectedItem());
                                     rs = ps.executeQuery();
                                     if (rs.next()) {
                                         try {
@@ -348,8 +349,9 @@ public class Movimientos extends javax.swing.JDialog{
                                 try {
                                     PreparedStatement ps = null;
                                     ResultSet rs = null;
-                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevasalida ?");
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevasalida ?,?");
                                     ps.setString(1, fechasalida);
+                                    ps.setString(2, (String) salidas1.jComboBoxdpto.getSelectedItem());
                                     rs = ps.executeQuery();
                                     if (rs.next()) {
                                         try {

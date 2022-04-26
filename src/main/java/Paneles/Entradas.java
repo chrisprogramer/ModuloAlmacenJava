@@ -8,8 +8,10 @@ package Paneles;
 import com.alimundo.moduloalmacen.CargarComponentes;
 import com.alimundo.moduloalmacen.Conexion;
 import com.alimundo.moduloalmacen.Parametros;
+import com.alimundo.moduloalmacen.Requisiciones;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -174,6 +176,11 @@ public class Entradas extends javax.swing.JPanel {
         botoncargareq.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         botoncargareq.setText("Cargar Requisición");
         botoncargareq.setBorder(null);
+        botoncargareq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncargareqActionPerformed(evt);
+            }
+        });
         add(botoncargareq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 40));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
@@ -190,6 +197,12 @@ public class Entradas extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_tableentradasKeyPressed
+
+    private void botoncargareqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncargareqActionPerformed
+        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
+        new Requisiciones().setVisible(true);
+        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botoncargareqActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

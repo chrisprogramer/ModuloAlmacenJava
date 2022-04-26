@@ -25,6 +25,7 @@ public class Consultas extends javax.swing.JDialog {
     Conexion con = new Conexion();
     String seleccion;
     String seleccionrpt;
+    String selecciondpto;
     ReportesDB reportesalmacen = new ReportesDB();
     ValidarDatos validardatos = new ValidarDatos();
     String error;
@@ -75,6 +76,7 @@ public class Consultas extends javax.swing.JDialog {
         editor.setEnabled(false);
         this.choicetiporpt.setEnabled(false);
         this.choicecategorias.setEnabled(false);
+        this.choicedepartamentos.setEnabled(false);
         this.textfieldbuscar.setEnabled(false);
         this.botonaceptar.setEnabled(false);
         this.botonbuscar.setEnabled(false);
@@ -82,6 +84,7 @@ public class Consultas extends javax.swing.JDialog {
         this.botongastos.setEnabled(false);
         selecciontiporpt = this.choicetiporpt.getSelectedItem();
         new CargarComponentes().llenarchoice(choicetiporpt, "SELECT nom_opcreporte FROM OpcionRpt");
+        new CargarComponentes().llenarchoice(choicedepartamentos, "SELECT nom_departamento FROM Departamentos");
         modelobusqueda.setColumnIdentifiers(new Object[]{"", "", "", "", ""});
         modelomovimientos.setColumnIdentifiers(new Object[]{"", "", "", "", "", ""});
 
@@ -158,6 +161,7 @@ public class Consultas extends javax.swing.JDialog {
         radiobotonsalidas = new javax.swing.JRadioButton();
         choicetiporpt = new java.awt.Choice();
         choicecategorias = new java.awt.Choice();
+        choicedepartamentos = new java.awt.Choice();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablemovimientos = new javax.swing.JTable();
         botonbuscar = new javax.swing.JButton();
@@ -175,6 +179,7 @@ public class Consultas extends javax.swing.JDialog {
         labeldesde = new javax.swing.JLabel();
         labelhasta = new javax.swing.JLabel();
         labelcategorias = new javax.swing.JLabel();
+        labeldptos = new javax.swing.JLabel();
         labelborde1 = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
         labelfondo = new javax.swing.JLabel();
@@ -244,14 +249,17 @@ public class Consultas extends javax.swing.JDialog {
         getContentPane().add(choicetiporpt, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, 260, 30));
 
         choicecategorias.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(choicecategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 260, 30));
+        getContentPane().add(choicecategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 160, 260, 30));
+
+        choicedepartamentos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        getContentPane().add(choicedepartamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 200, 260, 30));
 
         tablemovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablemovimientos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablemovimientos.setModel(modelomovimientos);
         jScrollPane2.setViewportView(tablemovimientos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 790, 350));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 790, 310));
 
         botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/verificado.png"))); // NOI18N
         botonbuscar.setOpaque(false);
@@ -297,7 +305,7 @@ public class Consultas extends javax.swing.JDialog {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 630, 300));
 
         datedesde.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(datedesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, 210, 30));
+        getContentPane().add(datedesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 130, 210, 30));
 
         datehasta.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         getContentPane().add(datehasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 130, 210, 30));
@@ -327,22 +335,29 @@ public class Consultas extends javax.swing.JDialog {
         labeldesde.setBackground(new java.awt.Color(0, 153, 204));
         labeldesde.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labeldesde.setLabelFor(datedesde);
-        labeldesde.setText("Desde");
+        labeldesde.setText("Desde:");
         labeldesde.setOpaque(true);
-        getContentPane().add(labeldesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, -1, -1));
+        getContentPane().add(labeldesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 131, -1, -1));
 
         labelhasta.setBackground(new java.awt.Color(0, 153, 204));
         labelhasta.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
-        labelhasta.setText("Hasta");
+        labelhasta.setText("Hasta:");
         labelhasta.setOpaque(true);
-        getContentPane().add(labelhasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 130, -1, -1));
+        getContentPane().add(labelhasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 131, -1, -1));
 
         labelcategorias.setBackground(new java.awt.Color(0, 153, 204));
         labelcategorias.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelcategorias.setLabelFor(choicecategorias);
-        labelcategorias.setText("Categorias");
+        labelcategorias.setText("Categorias:");
         labelcategorias.setOpaque(true);
-        getContentPane().add(labelcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, -1, -1));
+        getContentPane().add(labelcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 164, -1, -1));
+
+        labeldptos.setBackground(new java.awt.Color(0, 153, 204));
+        labeldptos.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
+        labeldptos.setLabelFor(choicecategorias);
+        labeldptos.setText("Departamentos:");
+        labeldptos.setOpaque(true);
+        getContentPane().add(labeldptos, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 205, -1, -1));
 
         labelborde1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelborde1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 810, 520));
@@ -369,8 +384,9 @@ public class Consultas extends javax.swing.JDialog {
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         modelomovimientos.setRowCount(0);
         this.choicetiporpt.setEnabled(false);
-        this.botonaceptar.setEnabled(true);
         this.choicecategorias.setEnabled(false);
+        this.choicedepartamentos.setEnabled(false);
+        this.botonaceptar.setEnabled(true);
         modelobusqueda.setRowCount(0);
         this.textfieldbuscar.setText("");
         this.textfieldbuscar.setEnabled(false);
@@ -465,6 +481,18 @@ public class Consultas extends javax.swing.JDialog {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        break;
+                    case ("Por Departamento"):
+                        selecciondpto = (String) this.choicedepartamentos.getSelectedItem();
+                        try {
+                            reportesalmacen.ReporteEntradaMaterialxDepartamento(selecciondpto,fechadesde, fechahasta);
+                        } catch (JRException | IOException ex) {
+                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        break;
                 }
                 this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;
@@ -501,7 +529,18 @@ public class Consultas extends javax.swing.JDialog {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                        break; 
+                        break;
+                     case ("Por Departamento"):
+                        selecciondpto = (String) this.choicedepartamentos.getSelectedItem();
+                        try {
+                            reportesalmacen.ReporteSalidaMaterialxDepartamento(selecciondpto,fechadesde, fechahasta);
+                        } catch (JRException | IOException ex) {
+                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        break;    
                 }
                 this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
@@ -513,6 +552,7 @@ public class Consultas extends javax.swing.JDialog {
         switch (selecciontiporpt) {
             case "Por Categoria":
                 this.choicecategorias.setEnabled(true);
+                this.choicedepartamentos.setEnabled(false);
                 this.textfieldbuscar.setText("");
                 this.textfieldbuscar.setEnabled(false);
                 this.tablebuscarmaterial.setEnabled(false);
@@ -529,6 +569,7 @@ public class Consultas extends javax.swing.JDialog {
                 this.textfieldbuscar.requestFocus();
                 modelomovimientos.setRowCount(0);
                 this.choicecategorias.setEnabled(false);
+                this.choicedepartamentos.setEnabled(false);
                 this.textfieldbuscar.setEnabled(true);
                 this.tablebuscarmaterial.setEnabled(true);
                 this.botonaceptar.setEnabled(false);
@@ -537,7 +578,19 @@ public class Consultas extends javax.swing.JDialog {
                 modelobusqueda.setRowCount(0);
                 this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;
-            case "Por Fecha" :
+            case "Por Fecha":
+                this.choicecategorias.setEnabled(false);
+                this.textfieldbuscar.setText("");
+                this.textfieldbuscar.setEnabled(false);
+                this.tablebuscarmaterial.setEnabled(false);
+                this.botonbuscar.setEnabled(true);
+                this.botonaceptar.setEnabled(false);
+                modelomovimientos.setRowCount(0);
+                modelobusqueda.setRowCount(0);
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                break;
+            case "Por Departamento":
+                this.choicedepartamentos.setEnabled(true);
                 this.choicecategorias.setEnabled(false);
                 this.textfieldbuscar.setText("");
                 this.textfieldbuscar.setEnabled(false);
@@ -591,6 +644,7 @@ public class Consultas extends javax.swing.JDialog {
         this.tablebuscarmaterial.setEnabled(true);
         this.choicetiporpt.setEnabled(false);
         this.choicecategorias.setEnabled(false);
+        this.choicedepartamentos.setEnabled(false);
         this.botonaceptar.setEnabled(false);
         this.botonbuscar.setEnabled(false);
         this.botonxmaterial.setEnabled(false);
@@ -606,110 +660,160 @@ public class Consultas extends javax.swing.JDialog {
         fechahasta = dateformat.format(this.datehasta.getDate());
         seleccion = this.choicecategorias.getSelectedItem();
         seleccionrpt = this.choicetiporpt.getSelectedItem();
+        selecciondpto = this.choicedepartamentos.getSelectedItem();
         seleccionradio = validardatos.getSelectedButtonText(grupobotonreportes);
 
         switch (seleccionradio) {
 
             case ("Entradas de Materiales"):
-                if ("Por Categoria".equals(seleccionrpt)){
-                    try {
-                        modelomovimientos.setRowCount(0);
-                        PreparedStatement ps = null;
-                        ResultSet rs = null;
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxcategoriasentradas ?,?,?");
-                        ps.setString(1, seleccion);
-                        ps.setString(2, fechadesde);
-                        ps.setString(3, fechahasta);
-                        rs = ps.executeQuery();
-                        while (rs.next()) {
-                            bandera = true;
-                            this.botonaceptar.setEnabled(true);
-                            modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                switch(seleccionrpt) {
+                    case("Por Categoria"):
+                        try {
+                            modelomovimientos.setRowCount(0);
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxcategoriasentradas ?,?,?");
+                            ps.setString(1, seleccion);
+                            ps.setString(2, fechadesde);
+                            ps.setString(3, fechahasta);
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                bandera = true;
+                                this.botonaceptar.setEnabled(true);
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                            }
+                            if (!bandera) {
+                                this.botonaceptar.setEnabled(false);
+                            }
+                            ps.close();
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
-                        if (!bandera) {
-                            this.botonaceptar.setEnabled(false);
+                        break;
+                    case("Por Fecha"):
+                        try{
+                            modelomovimientos.setRowCount(0);
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxfechaentradas ?,?");
+                            ps.setString(1, fechadesde);
+                            ps.setString(2, fechahasta);
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                bandera = true;
+                                this.botonaceptar.setEnabled(true);
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                            }
+                            if (!bandera) {
+                                this.botonaceptar.setEnabled(false);
+                            }
+                            ps.close();
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
-                        ps.close();
-                    } catch (SQLException ex) {
-                        error = ex.getMessage();
-                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                    }
-                    break;
-                }else{
-                    try{
-                        modelomovimientos.setRowCount(0);
-                        PreparedStatement ps = null;
-                        ResultSet rs = null;
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxfechaentradas ?,?");
-                        ps.setString(1, fechadesde);
-                        ps.setString(2, fechahasta);
-                        rs = ps.executeQuery();
-                        while (rs.next()) {
-                            bandera = true;
-                            this.botonaceptar.setEnabled(true);
-                            modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                        break;
+                    case("Por Departamento"):
+                        try {
+                            modelomovimientos.setRowCount(0);
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxdepartamentoentradas ?,?.?");
+                            ps.setString(1, selecciondpto);
+                            ps.setString(2, fechadesde);
+                            ps.setString(3, fechahasta);
+                            rs = ps.executeQuery();
+                            while(rs.next()){
+                                bandera = true;
+                                this.botonaceptar.setEnabled(true);
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                            }
+                            if (!bandera) {
+                                this.botonaceptar.setEnabled(false);
+                            }
+                            ps.close();
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
-                        if (!bandera) {
-                            this.botonaceptar.setEnabled(false);
-                        }
-                        ps.close();
-                    } catch (SQLException ex) {
-                        error = ex.getMessage();
-                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                    }
-                    break;
-                }    
-                
+                        break;
+                }
             case ("Salida de Materiales"):
-                if ("Por Categoria".equals(seleccionrpt)){
-                    this.botongastos.setEnabled(false);
-                    try {
-                        modelomovimientos.setRowCount(0);
-                        PreparedStatement ps = null;
-                        ResultSet rs = null;
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxcategoriassalidas ?,?,?");
-                        ps.setString(1, seleccion);
-                        ps.setString(2, fechadesde);
-                        ps.setString(3, fechahasta);
-                        rs = ps.executeQuery();
-                        while (rs.next()) {
-                            bandera = true;
-                            this.botonaceptar.setEnabled(true);
-                            modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                switch(seleccionrpt){
+                    case("Por Categoria"):
+                        this.botongastos.setEnabled(false);
+                        try {
+                            modelomovimientos.setRowCount(0);
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxcategoriassalidas ?,?,?");
+                            ps.setString(1, seleccion);
+                            ps.setString(2, fechadesde);
+                            ps.setString(3, fechahasta);
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                bandera = true;
+                                this.botonaceptar.setEnabled(true);
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                            }
+                            if (!bandera) {
+                                this.botonaceptar.setEnabled(false);
+                            }
+                            ps.close();
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
-                        if (!bandera) {
-                            this.botonaceptar.setEnabled(false);
+                        break;
+                    case("Por Fecha"):
+                        try {
+                            modelomovimientos.setRowCount(0);
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxfechasalidas ?,?");
+                            ps.setString(1, fechadesde);
+                            ps.setString(2, fechahasta);
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                bandera = true;
+                                this.botonaceptar.setEnabled(true);
+                                this.botongastos.setEnabled(true);
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                            }
+                            if (!bandera) {
+                                this.botonaceptar.setEnabled(false);
+                            }
+                            ps.close();
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
-                        ps.close();
-                    } catch (SQLException ex) {
-                        error = ex.getMessage();
-                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                    }
-                    break;
-                }else{
-                    try {
-                        modelomovimientos.setRowCount(0);
-                        PreparedStatement ps = null;
-                        ResultSet rs = null;
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxfechasalidas ?,?");
-                        ps.setString(1, fechadesde);
-                        ps.setString(2, fechahasta);
-                        rs = ps.executeQuery();
-                        while (rs.next()) {
-                            bandera = true;
-                            this.botonaceptar.setEnabled(true);
-                            this.botongastos.setEnabled(true);
-                            modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                        break;
+                    case("Por Departamento"):
+                         try {
+                            modelomovimientos.setRowCount(0);
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxdepartamentosssalidas ?,?,?");
+                            ps.setString(1, selecciondpto);
+                            ps.setString(2, fechadesde);
+                            ps.setString(3, fechahasta);
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                bandera = true;
+                                this.botonaceptar.setEnabled(true);
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                            }
+                            if (!bandera) {
+                                this.botonaceptar.setEnabled(false);
+                            }
+                            ps.close();
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
-                        if (!bandera) {
-                            this.botonaceptar.setEnabled(false);
-                        }
-                        ps.close();
-                    } catch (SQLException ex) {
-                        error = ex.getMessage();
-                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                    }
-                    break;
+                        break;
                 }    
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -837,6 +941,7 @@ public class Consultas extends javax.swing.JDialog {
     private javax.swing.JButton botongastos;
     private javax.swing.JButton botonxmaterial;
     private java.awt.Choice choicecategorias;
+    private java.awt.Choice choicedepartamentos;
     private java.awt.Choice choicetiporpt;
     private com.toedter.calendar.JDateChooser datedesde;
     private com.toedter.calendar.JDateChooser datehasta;
@@ -850,6 +955,7 @@ public class Consultas extends javax.swing.JDialog {
     private javax.swing.JLabel labelcategorias;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labeldesde;
+    private javax.swing.JLabel labeldptos;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labelhasta;
     private javax.swing.JLabel labeltitulo;

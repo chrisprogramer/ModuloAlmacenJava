@@ -316,6 +316,46 @@ public class ReportesDB {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
+    public void ReporteEntradaMaterialxDepartamento(String nom_departamento,String fdesde, String fhasta ) throws SQLException, JRException, IOException{
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("nom_departamento",nom_departamento);
+        parametro.put("fdesde", fdesde);
+        parametro.put("fhasta", fhasta);
+        String nombrearch = "Entrada por Departamento";
+        String rutacompleta;
+        try { 
+            JasperPrint jasperPrintWindow;
+            jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                    + nombrearch + ".jasper",parametro, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch);
+            rutacompleta = ruta + nombrearch + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
+        public void ReporteSalidaMaterialxDepartamento(String nom_departamento,String fdesde, String fhasta ) throws SQLException, JRException, IOException{
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("nom_departamento",nom_departamento);
+        parametro.put("fdesde", fdesde);
+        parametro.put("fhasta", fhasta);
+        String nombrearch = "Salida por Departamento";
+        String rutacompleta;
+        try { 
+            JasperPrint jasperPrintWindow;
+            jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                    + nombrearch + ".jasper",parametro, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch);
+            rutacompleta = ruta + nombrearch + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
     public void ReporteNotaTransferencia(int idnota) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
         Map<String, Object> parametro = new HashMap();
