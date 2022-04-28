@@ -151,7 +151,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         add(botoncargatrans, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, 40));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 420));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 440));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablatransferenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablatransferenciaKeyPressed

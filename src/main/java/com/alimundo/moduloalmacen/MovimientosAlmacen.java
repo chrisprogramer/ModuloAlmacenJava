@@ -8,6 +8,7 @@ import Reportes.ReportesDB;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.text.SimpleDateFormat;
+import javafx.scene.text.Font;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,7 +45,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
     
         initComponents();
         setTitle("MOVIMIENTOS DE ALMACÉN");
-        setSize(1230, 589);
+        setSize(1240, 589);
         setResizable(false);
         setLayout(null);
         setLocationRelativeTo(null);
@@ -61,56 +62,35 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labeltitulo = new javax.swing.JLabel();
-        labelcerrar = new javax.swing.JLabel();
         TabbedPaneMovimientos = new javax.swing.JTabbedPane();
+        entradaMaterial = new Paneles.EntradaMaterial();
         salidas = new Paneles.Salidas();
         transferenciaAlmacen = new Paneles.TransferenciaAlmacen();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(1230, 589));
         setMinimumSize(new java.awt.Dimension(1230, 589));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
-        getContentPane().setLayout(null);
-
-        labeltitulo.setBackground(new java.awt.Color(0, 153, 204));
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("Movimientos de Almacén");
-        labeltitulo.setOpaque(true);
-        getContentPane().add(labeltitulo);
-        labeltitulo.setBounds(450, 20, 280, 26);
-
-        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
-        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelcerrarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(labelcerrar);
-        labelcerrar.setBounds(1190, 10, 32, 32);
+        setName("dialog()"); // NOI18N
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TabbedPaneMovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TabbedPaneMovimientos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        TabbedPaneMovimientos.addTab("Entradas", entradaMaterial);
         TabbedPaneMovimientos.addTab("Salidas", salidas);
         TabbedPaneMovimientos.addTab("Transferencias de Material", transferenciaAlmacen);
 
-        getContentPane().add(TabbedPaneMovimientos);
-        TabbedPaneMovimientos.setBounds(20, 50, 1200, 453);
+        getContentPane().add(TabbedPaneMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1200, -1));
         TabbedPaneMovimientos.getAccessibleContext().setAccessibleName("");
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(labelfondo);
-        labelfondo.setBounds(0, 0, 1230, 590);
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void labelcerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelcerrarMouseClicked
-        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        this.dispose();
-        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_labelcerrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -149,9 +129,8 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabbedPaneMovimientos;
-    private javax.swing.JLabel labelcerrar;
+    private Paneles.EntradaMaterial entradaMaterial;
     private javax.swing.JLabel labelfondo;
-    private javax.swing.JLabel labeltitulo;
     private Paneles.Salidas salidas;
     private Paneles.TransferenciaAlmacen transferenciaAlmacen;
     // End of variables declaration//GEN-END:variables
