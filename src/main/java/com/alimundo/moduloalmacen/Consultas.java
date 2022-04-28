@@ -257,6 +257,7 @@ public class Consultas extends javax.swing.JDialog {
         tablemovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablemovimientos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablemovimientos.setModel(modelomovimientos);
+        tablemovimientos.setShowGrid(true);
         jScrollPane2.setViewportView(tablemovimientos);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 790, 310));
@@ -300,6 +301,7 @@ public class Consultas extends javax.swing.JDialog {
         tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         tablebuscarmaterial.setModel(modelobusqueda);
         tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablebuscarmaterial.setShowGrid(true);
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 630, 300));

@@ -13,6 +13,9 @@ import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -23,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
  * @author AdminSrv
  */
 public class Entradas extends javax.swing.JPanel {
-
     DefaultTableModel modeloentrada = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int filas, int columnas){
@@ -32,7 +34,8 @@ public class Entradas extends javax.swing.JPanel {
             }else return true;
         } 
     };
-    
+    Requisiciones requisicion = new Requisiciones();
+    DefaultTableModel modelorequisicion = new DefaultTableModel();
     Conexion con = new Conexion();
     String error;
     Date fechahoy;
@@ -119,6 +122,7 @@ public class Entradas extends javax.swing.JPanel {
 
         tableentradas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tableentradas.setModel(modeloentrada);
+        tableentradas.setShowGrid(true);
         tableentradas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tableentradasKeyPressed(evt);
@@ -200,7 +204,7 @@ public class Entradas extends javax.swing.JPanel {
 
     private void botoncargareqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncargareqActionPerformed
         this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        new Requisiciones().setVisible(true);
+        requisicion.setVisible(true);
         this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botoncargareqActionPerformed
 

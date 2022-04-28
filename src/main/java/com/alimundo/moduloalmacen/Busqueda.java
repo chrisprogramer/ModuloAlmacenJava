@@ -92,6 +92,7 @@ public class Busqueda extends javax.swing.JDialog {
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         tablebuscarmaterial.setModel(modelobusqueda);
+        tablebuscarmaterial.setShowGrid(true);
         tablebuscarmaterial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablebuscarmaterialMouseClicked(evt);

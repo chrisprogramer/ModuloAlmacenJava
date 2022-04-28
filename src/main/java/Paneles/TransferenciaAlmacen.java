@@ -121,6 +121,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
 
         tablatransferencia.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablatransferencia.setModel(modelotransferencia);
+        tablatransferencia.setShowGrid(true);
         tablatransferencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tablatransferenciaKeyPressed(evt);

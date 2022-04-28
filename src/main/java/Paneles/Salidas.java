@@ -167,6 +167,7 @@ public class Salidas extends javax.swing.JPanel {
 
         tablesalidas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablesalidas.setModel(modelosalida);
+        tablesalidas.setShowGrid(true);
         tablesalidas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tablesalidasKeyPressed(evt);

@@ -55,7 +55,7 @@ public class Movimientos extends javax.swing.JDialog{
         setResizable(false);
         setLayout(null);
         setLocationRelativeTo(null);
-        modelobusqueda.setColumnIdentifiers(new Object[]{"",""});
+       //modelobusqueda.setColumnIdentifiers(new Object[]{"",""});
         this.setModal(true);
     }
   
@@ -75,7 +75,6 @@ public class Movimientos extends javax.swing.JDialog{
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1230, 589));
         setMinimumSize(new java.awt.Dimension(1230, 589));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);

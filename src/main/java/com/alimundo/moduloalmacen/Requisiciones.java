@@ -6,8 +6,10 @@ package com.alimundo.moduloalmacen;
 
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,11 +17,15 @@ import javax.swing.table.DefaultTableModel;
  * @author AdminSrv
  */
 public class Requisiciones extends javax.swing.JDialog {
-
-        DefaultTableModel modelorequisicion = new DefaultTableModel(){
+    
+    String error;
+    Conexion con = new Conexion();
+    int seleccionidreq;
+    Movimientos movimientos = new Movimientos();
+    DefaultTableModel modelorequisicion = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int filas, int columnas){
-            if (columnas <= 3){
+            if (columnas <= 2){
                 return false;
             }else return true;
         } 
@@ -27,7 +33,6 @@ public class Requisiciones extends javax.swing.JDialog {
     public Requisiciones() {
         initComponents();
         modelorequisicion.setColumnIdentifiers(new Object[]{"","",""});
-
         if (tablerequisiciones.getColumnModel().getColumnCount() > 0) {
             tablerequisiciones.getColumnModel().getColumn(0).setHeaderValue("<html><h4 style=font-family:Verdana;>Id Requisicion</h4></html>");
             tablerequisiciones.getColumnModel().getColumn(0).setPreferredWidth(160);
@@ -43,11 +48,23 @@ public class Requisiciones extends javax.swing.JDialog {
             tablerequisiciones.getColumnModel().getColumn(2).setResizable(false);
         }
         tablerequisiciones.getTableHeader().setReorderingAllowed(false);
-        tablerequisiciones.getTableHeader().setAlignmentX(CENTER_ALIGNMENT);
-        tablerequisiciones.getTableHeader().setAlignmentY(CENTER_ALIGNMENT);
         setLocationRelativeTo(null);
         this.setModal(true);
-    }    
+
+        try{
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosrequisicion");
+            rs = ps.executeQuery();
+            while(rs.next()){
+                 modelorequisicion.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3)});
+            }
+        }catch(SQLException ex){
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+       
+    }       
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -61,7 +78,6 @@ public class Requisiciones extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(480, 340));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,6 +96,12 @@ public class Requisiciones extends javax.swing.JDialog {
 
         tablerequisiciones.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablerequisiciones.setModel(modelorequisicion);
+        tablerequisiciones.setShowGrid(true);
+        tablerequisiciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablerequisicionesMouseClicked(evt);
+            }
+        });
         tablerequisiciones.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tablerequisicionesKeyPressed(evt);
@@ -103,6 +125,7 @@ public class Requisiciones extends javax.swing.JDialog {
     }//GEN-LAST:event_labelcerrarMouseClicked
 
     private void tablerequisicionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablerequisicionesKeyPressed
+        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
         if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
             if (tablerequisiciones.getSelectedRowCount() > 0) {
                 modelorequisicion.removeRow(tablerequisiciones.getSelectedRow());
@@ -111,7 +134,30 @@ public class Requisiciones extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null,"<html><h3 style=font-family:Verdana;>Debe Seleccionar un Registro</h3></html>",null,JOptionPane.PLAIN_MESSAGE,new Parametros().iconadvertencia);
             }
         }
+        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_tablerequisicionesKeyPressed
+
+    private void tablerequisicionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablerequisicionesMouseClicked
+       this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+       if (evt.getClickCount() == 2) {
+            seleccionidreq = tablerequisiciones.getSelectedRow();
+            try{
+                PreparedStatement ps = null;
+                ResultSet rs = null;
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadetallerequisicion ?");
+                ps.setInt(1, (int) modelorequisicion.getValueAt(seleccionidreq, 0));
+                rs = ps.executeQuery();
+                while(rs.next()){
+                   // movimientos.modeloentrada.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),rs.getInt(6)});
+                }
+            }catch(SQLException ex){
+                error = ex.getMessage();
+                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+            } 
+       }
+       this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+       
+    }//GEN-LAST:event_tablerequisicionesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -130,13 +176,13 @@ public class Requisiciones extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Requisiones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requisiciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Requisiones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requisiciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Requisiones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requisiciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Requisiones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requisiciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
