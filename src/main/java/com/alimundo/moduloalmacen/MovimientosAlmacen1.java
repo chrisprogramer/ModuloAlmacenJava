@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 
 
-public class Movimientos extends javax.swing.JDialog{
+public class MovimientosAlmacen1 extends javax.swing.JDialog{
 
     DefaultTableModel modelo;
     String error;
@@ -44,7 +44,7 @@ public class Movimientos extends javax.swing.JDialog{
         } 
     };
 
-    public Movimientos() {
+    public MovimientosAlmacen1() {
             
         UIManager.put("OptionPane.background", Color.WHITE);
         UIManager.put("Panel.background", Color.WHITE);
@@ -615,20 +615,21 @@ public class Movimientos extends javax.swing.JDialog{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Movimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovimientosAlmacen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Movimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovimientosAlmacen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Movimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovimientosAlmacen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Movimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MovimientosAlmacen1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Movimientos().setVisible(true);
+                new MovimientosAlmacen1().setVisible(true);
             }
         });
     }

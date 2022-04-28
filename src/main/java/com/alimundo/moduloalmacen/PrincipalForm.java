@@ -231,7 +231,7 @@ public class PrincipalForm extends javax.swing.JFrame {
 
     private void botonmovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonmovimientosActionPerformed
         this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        new Movimientos().setVisible(true);
+        new MovimientosAlmacen().setVisible(true);
         this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonmovimientosActionPerformed
 
