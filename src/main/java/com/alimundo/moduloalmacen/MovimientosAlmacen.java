@@ -69,12 +69,15 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1230, 589));
+        setMinimumSize(new java.awt.Dimension(1230, 589));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
-        setUndecorated(true);
         getContentPane().setLayout(null);
 
+        labeltitulo.setBackground(new java.awt.Color(0, 153, 204));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         labeltitulo.setText("Movimientos de Almacén");
+        labeltitulo.setOpaque(true);
         getContentPane().add(labeltitulo);
         labeltitulo.setBounds(450, 20, 280, 26);
 
@@ -93,7 +96,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
         TabbedPaneMovimientos.addTab("Transferencias de Material", transferenciaAlmacen);
 
         getContentPane().add(TabbedPaneMovimientos);
-        TabbedPaneMovimientos.setBounds(20, 100, 1200, 453);
+        TabbedPaneMovimientos.setBounds(20, 50, 1200, 453);
         TabbedPaneMovimientos.getAccessibleContext().setAccessibleName("");
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
