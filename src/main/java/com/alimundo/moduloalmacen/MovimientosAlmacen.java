@@ -70,11 +70,13 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setUndecorated(true);
+        getContentPane().setLayout(null);
 
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         labeltitulo.setText("Movimientos de Almacén");
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+        getContentPane().add(labeltitulo);
+        labeltitulo.setBounds(450, 20, 280, 26);
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -82,18 +84,21 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
                 labelcerrarMouseClicked(evt);
             }
         });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, -1, -1));
+        getContentPane().add(labelcerrar);
+        labelcerrar.setBounds(1190, 10, 32, 32);
 
         TabbedPaneMovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TabbedPaneMovimientos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         TabbedPaneMovimientos.addTab("Salidas", salidas);
         TabbedPaneMovimientos.addTab("Transferencias de Material", transferenciaAlmacen);
 
-        getContentPane().add(TabbedPaneMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1200, -1));
+        getContentPane().add(TabbedPaneMovimientos);
+        TabbedPaneMovimientos.setBounds(20, 100, 1200, 453);
         TabbedPaneMovimientos.getAccessibleContext().setAccessibleName("");
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 590));
+        getContentPane().add(labelfondo);
+        labelfondo.setBounds(0, 0, 1230, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
