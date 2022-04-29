@@ -74,7 +74,6 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
         setMinimumSize(new java.awt.Dimension(1230, 589));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setName("dialog()"); // NOI18N
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TabbedPaneMovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

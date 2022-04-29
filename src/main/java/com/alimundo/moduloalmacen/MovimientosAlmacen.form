@@ -14,7 +14,6 @@
       <Value id="APPLICATION_MODAL"/>
     </Property>
     <Property name="name" type="java.lang.String" value="dialog()" noResource="true"/>
-    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
