@@ -62,6 +62,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
         transferenciaAlmacen = new Paneles.TransferenciaAlmacen();
         botonaceptar = new javax.swing.JButton();
         labelcerrar = new javax.swing.JLabel();
+        panelopciones = new javax.swing.JPanel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -84,7 +85,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/completed.png"))); // NOI18N
         botonaceptar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         botonaceptar.setOpaque(false);
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1118, 486, 80, 80));
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1118, 480, 80, 80));
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,6 +94,11 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
             }
         });
         getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, -1, -1));
+
+        panelopciones.setBackground(new java.awt.Color(0, 102, 153));
+        panelopciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 570));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -148,6 +154,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
     private Paneles.EntradaMaterial entradaMaterial;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;
+    private javax.swing.JPanel panelopciones;
     private Paneles.Salidas salidas;
     private Paneles.TransferenciaAlmacen transferenciaAlmacen;
     // End of variables declaration//GEN-END:variables

@@ -111,8 +111,9 @@ public class Salidas extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("Salidas de Almacén");
-        add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 240, -1));
+        labeltitulo.setText("SALIDAS DEL ALMACÉN");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 280, -1));
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
         labelnid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -123,19 +124,17 @@ public class Salidas extends javax.swing.JPanel {
         labelnid.setOpaque(true);
         add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1104, 44, 50, 40));
 
-        labelid.setBackground(new java.awt.Color(0, 153, 204));
+        labelid.setBackground(new java.awt.Color(255, 255, 255));
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelid.setText("ID Salida");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        labelid.setOpaque(true);
         add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 20, -1, -1));
 
-        labeldepartamento.setBackground(new java.awt.Color(0, 153, 204));
+        labeldepartamento.setBackground(new java.awt.Color(255, 255, 255));
         labeldepartamento.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labeldepartamento.setText("Recibe");
+        labeldepartamento.setText("Recibe:");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labeldepartamento.setOpaque(true);
         add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 46, -1, -1));
 
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -146,12 +145,11 @@ public class Salidas extends javax.swing.JPanel {
         });
         add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 260, 30));
 
-        labelfecha.setBackground(new java.awt.Color(0, 153, 204));
+        labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelfecha.setText("Fecha de Salida");
+        labelfecha.setText("Fecha de Salida:");
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelfecha.setOpaque(true);
         add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 46, -1, -1));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -178,7 +176,7 @@ public class Salidas extends javax.swing.JPanel {
         add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1170, 290));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -6, 1220, 440));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -6, 1220, 430));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablesalidasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablesalidasKeyPressed

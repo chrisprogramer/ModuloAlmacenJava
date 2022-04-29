@@ -136,19 +136,17 @@ public class Entradas extends javax.swing.JPanel {
         labeltitulo.setText("Entradas al Almacén");
         add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 244, -1));
 
-        labelfecha.setBackground(new java.awt.Color(0, 153, 204));
+        labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelfecha.setText("Fecha de Entrada");
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelfecha.setOpaque(true);
         add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 46, -1, -1));
 
-        labelid.setBackground(new java.awt.Color(0, 153, 204));
+        labelid.setBackground(new java.awt.Color(255, 255, 255));
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelid.setText("ID Entrada");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        labelid.setOpaque(true);
         add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 20, -1, -1));
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
@@ -168,12 +166,11 @@ public class Entradas extends javax.swing.JPanel {
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 260, 30));
 
-        labeldepartamento.setBackground(new java.awt.Color(0, 153, 204));
+        labeldepartamento.setBackground(new java.awt.Color(255, 255, 255));
         labeldepartamento.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeldepartamento.setText("Entrega");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labeldepartamento.setOpaque(true);
         add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 46, -1, -1));
 
         botoncargareq.setBackground(new java.awt.Color(255, 255, 255));

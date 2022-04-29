@@ -189,11 +189,11 @@ public class Consultas extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labeltitulo.setBackground(new java.awt.Color(0, 153, 204));
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         labeltitulo.setLabelFor(this);
         labeltitulo.setText("CONSULTAS");
-        labeltitulo.setOpaque(true);
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
 
         grupobotonreportes.add(radiobotonconsolidado);
@@ -252,7 +252,7 @@ public class Consultas extends javax.swing.JDialog {
         getContentPane().add(choicecategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 160, 260, 30));
 
         choicedepartamentos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(choicedepartamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 200, 260, 30));
+        getContentPane().add(choicedepartamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 160, 260, 30));
 
         tablemovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablemovimientos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -269,7 +269,7 @@ public class Consultas extends javax.swing.JDialog {
                 botonbuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 160, -1, -1));
+        getContentPane().add(botonbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 200, -1, -1));
 
         botonxmaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/verificado.png"))); // NOI18N
         botonxmaterial.setOpaque(false);
@@ -287,7 +287,7 @@ public class Consultas extends javax.swing.JDialog {
                 botongastosActionPerformed(evt);
             }
         });
-        getContentPane().add(botongastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 160, 180, 40));
+        getContentPane().add(botongastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 200, 180, 40));
 
         textfieldbuscar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfieldbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -334,32 +334,28 @@ public class Consultas extends javax.swing.JDialog {
         labelborde2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelborde2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 470, 60));
 
-        labeldesde.setBackground(new java.awt.Color(0, 153, 204));
+        labeldesde.setBackground(new java.awt.Color(255, 255, 255));
         labeldesde.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labeldesde.setLabelFor(datedesde);
         labeldesde.setText("Desde:");
-        labeldesde.setOpaque(true);
         getContentPane().add(labeldesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 131, -1, -1));
 
-        labelhasta.setBackground(new java.awt.Color(0, 153, 204));
+        labelhasta.setBackground(new java.awt.Color(255, 255, 255));
         labelhasta.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelhasta.setText("Hasta:");
-        labelhasta.setOpaque(true);
         getContentPane().add(labelhasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 131, -1, -1));
 
-        labelcategorias.setBackground(new java.awt.Color(0, 153, 204));
+        labelcategorias.setBackground(new java.awt.Color(255, 255, 255));
         labelcategorias.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelcategorias.setLabelFor(choicecategorias);
         labelcategorias.setText("Categorias:");
-        labelcategorias.setOpaque(true);
         getContentPane().add(labelcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 164, -1, -1));
 
-        labeldptos.setBackground(new java.awt.Color(0, 153, 204));
+        labeldptos.setBackground(new java.awt.Color(255, 255, 255));
         labeldptos.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labeldptos.setLabelFor(choicecategorias);
         labeldptos.setText("Departamentos:");
-        labeldptos.setOpaque(true);
-        getContentPane().add(labeldptos, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 205, -1, -1));
+        getContentPane().add(labeldptos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 164, -1, -1));
 
         labelborde1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelborde1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 810, 520));

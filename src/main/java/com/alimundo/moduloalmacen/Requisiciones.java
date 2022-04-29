@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,12 +17,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author AdminSrv
  */
-public class Requisiciones extends javax.swing.JDialog {
+public class Requisiciones extends javax.swing.JDialog{
     
     String error;
     Conexion con = new Conexion();
     int seleccionidreq;
-    Movimientos movimientos = new Movimientos();
+    DetalleEntradas arrayent; 
+    ArrayList<DetalleEntradas> entradadet;
+    MovimientosAlmacen movimientosalmacen = new MovimientosAlmacen();
     DefaultTableModel modelorequisicion = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int filas, int columnas){
@@ -51,7 +54,7 @@ public class Requisiciones extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         this.setModal(true);
 
-       /* try{
+        try{
             PreparedStatement ps = null;
             ResultSet rs = null;
             ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosrequisicion");
@@ -62,8 +65,7 @@ public class Requisiciones extends javax.swing.JDialog {
         }catch(SQLException ex){
             error = ex.getMessage();
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-        }*/
-       
+        }
     }       
 
     @SuppressWarnings("unchecked")
@@ -74,17 +76,19 @@ public class Requisiciones extends javax.swing.JDialog {
         labelcerrar = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         tablerequisiciones = new javax.swing.JTable();
+        panelopciones = new javax.swing.JPanel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
-        setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        setModalityType(null);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("Requisiciones");
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 160, -1));
+        labeltitulo.setText("REQUISICIONES");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 200, -1));
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,6 +114,11 @@ public class Requisiciones extends javax.swing.JDialog {
         jScrollPane.setViewportView(tablerequisiciones);
 
         getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 500, 290));
+
+        panelopciones.setBackground(new java.awt.Color(0, 102, 153));
+        panelopciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 340));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -139,7 +148,18 @@ public class Requisiciones extends javax.swing.JDialog {
 
     private void tablerequisicionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablerequisicionesMouseClicked
        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-       if (evt.getClickCount() == 2) {
+       entradadet = new ArrayList<>();
+       String codmaterial;
+       String nommaterial;
+       String categoria;
+       String medida;
+       String almacen;
+       int cant;
+       double precio;
+       String descripcion;
+       String nfactura;
+
+       if (evt.getClickCount() == 1) {
             seleccionidreq = tablerequisiciones.getSelectedRow();
             try{
                 PreparedStatement ps = null;
@@ -148,7 +168,17 @@ public class Requisiciones extends javax.swing.JDialog {
                 ps.setInt(1, (int) modelorequisicion.getValueAt(seleccionidreq, 0));
                 rs = ps.executeQuery();
                 while(rs.next()){
-                   // movimientos.modeloentrada.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),rs.getInt(6)});
+                    arrayent = new DetalleEntradas();
+                    arrayent.setcodmaterial(rs.getString(1));
+                    arrayent.setnommaterial(rs.getString(2));
+                    arrayent.setcategoria(rs.getString(3));
+                    arrayent.setmedida(rs.getString(4));
+                    arrayent.setalmacen(rs.getString(5));
+                    arrayent.setcant(rs.getInt(6));
+                    entradadet.add(arrayent);
+                   entradadet.toString();
+                    //movimientosalmacen.modeloentrada.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),rs.getInt(6)});
+                   this.dispose();
                 }
             }catch(SQLException ex){
                 error = ex.getMessage();
@@ -198,6 +228,7 @@ public class Requisiciones extends javax.swing.JDialog {
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labeltitulo;
+    private javax.swing.JPanel panelopciones;
     public javax.swing.JTable tablerequisiciones;
     // End of variables declaration//GEN-END:variables
 }

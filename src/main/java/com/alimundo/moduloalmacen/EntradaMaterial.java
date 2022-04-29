@@ -42,6 +42,7 @@ public class EntradaMaterial extends javax.swing.JDialog {
     private void initComponents() {
 
         labeltitulo = new javax.swing.JLabel();
+        labeltitulo1 = new javax.swing.JLabel();
         labelcerrar = new javax.swing.JLabel();
         labelcodigo = new javax.swing.JLabel();
         textfieldcodigo = new javax.swing.JTextField();
@@ -76,12 +77,19 @@ public class EntradaMaterial extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        labeltitulo.setBackground(new java.awt.Color(0, 153, 204));
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
-        labeltitulo.setText("ENTRADA Y MODIFICACIÓN DE MATERIAL ");
-        labeltitulo.setOpaque(true);
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
+        labeltitulo.setText("DE MATERIAL ");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         getContentPane().add(labeltitulo);
-        labeltitulo.setBounds(60, 10, 390, 40);
+        labeltitulo.setBounds(170, 30, 170, 30);
+
+        labeltitulo1.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo1.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
+        labeltitulo1.setText("ENTRADA Y MODIFICACIÓN");
+        labeltitulo1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(labeltitulo1);
+        labeltitulo1.setBounds(90, 10, 320, 28);
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -417,6 +425,7 @@ public class EntradaMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labelmodificar;
     private javax.swing.JLabel labelnommat;
     private javax.swing.JLabel labeltitulo;
+    private javax.swing.JLabel labeltitulo1;
     private javax.swing.JPanel panelopciones;
     public javax.swing.JTextField texfieldnombre;
     public javax.swing.JTextField textfieldcantidad;

@@ -100,8 +100,9 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("Transferencia de Almacén");
-        add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 300, -1));
+        labeltitulo.setText("TRANSFERENCIAS DE MATERIALES");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 400, -1));
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
         labelnid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -131,12 +132,11 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
 
         add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1170, 290));
 
-        labelfecha.setBackground(new java.awt.Color(0, 153, 204));
+        labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelfecha.setText("Fecha de Transferencia");
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelfecha.setOpaque(true);
         add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, -1));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -151,7 +151,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         add(botoncargatrans, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, 40));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 440));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 420));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablatransferenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablatransferenciaKeyPressed

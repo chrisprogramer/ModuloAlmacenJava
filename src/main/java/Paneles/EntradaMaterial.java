@@ -38,7 +38,7 @@ public class EntradaMaterial extends javax.swing.JPanel {
     
     public EntradaMaterial() {
         initComponents();
-         modeloentrada.setColumnIdentifiers(new Object[]{"","","","","","","","",""});
+        modeloentrada.setColumnIdentifiers(new Object[]{"","","","","","","","",""});
 
         if (tableentradas.getColumnModel().getColumnCount() > 0) {
 
@@ -101,6 +101,9 @@ public class EntradaMaterial extends javax.swing.JPanel {
         labelnid = new javax.swing.JLabel();
         labelid = new javax.swing.JLabel();
         labeldepartamento = new javax.swing.JLabel();
+        labeltextbotonreq = new javax.swing.JLabel();
+        labeltextbotonreq1 = new javax.swing.JLabel();
+        labeltextbotonreq2 = new javax.swing.JLabel();
         jComboBoxdpto = new javax.swing.JComboBox<>();
         labelfecha = new javax.swing.JLabel();
         date = new com.toedter.calendar.JDateChooser();
@@ -115,8 +118,9 @@ public class EntradaMaterial extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("Entradas al Almacén");
-        add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 240, -1));
+        labeltitulo.setText("ENTRADAS AL ALMACÉN");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 290, -1));
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
         labelnid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -127,30 +131,42 @@ public class EntradaMaterial extends javax.swing.JPanel {
         labelnid.setOpaque(true);
         add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1104, 44, 50, 40));
 
-        labelid.setBackground(new java.awt.Color(0, 153, 204));
+        labelid.setBackground(new java.awt.Color(255, 255, 255));
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelid.setText("ID Entrada");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        labelid.setOpaque(true);
         add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1086, 20, -1, -1));
 
-        labeldepartamento.setBackground(new java.awt.Color(0, 153, 204));
+        labeldepartamento.setBackground(new java.awt.Color(255, 255, 255));
         labeldepartamento.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labeldepartamento.setText("Entrega");
+        labeldepartamento.setText("Entrega:");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labeldepartamento.setOpaque(true);
         add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 46, -1, -1));
+
+        labeltextbotonreq.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labeltextbotonreq.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltextbotonreq.setText("(F2)");
+        add(labeltextbotonreq, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 40, 30));
+
+        labeltextbotonreq1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labeltextbotonreq1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltextbotonreq1.setText("Cargar");
+        add(labeltextbotonreq1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 30, 70, 30));
+
+        labeltextbotonreq2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labeltextbotonreq2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltextbotonreq2.setText("Requisición");
+        add(labeltextbotonreq2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, 30));
 
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 260, 30));
 
-        labelfecha.setBackground(new java.awt.Color(0, 153, 204));
+        labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelfecha.setText("Fecha de Entrada");
+        labelfecha.setText("Fecha de Entrada:");
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelfecha.setOpaque(true);
         add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 46, -1, -1));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -160,14 +176,13 @@ public class EntradaMaterial extends javax.swing.JPanel {
 
         botoncargareq.setBackground(new java.awt.Color(255, 255, 255));
         botoncargareq.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        botoncargareq.setText("Cargar Requisición");
         botoncargareq.setBorder(null);
         botoncargareq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botoncargareqActionPerformed(evt);
             }
         });
-        add(botoncargareq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 40));
+        add(botoncargareq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 70));
 
         tableentradas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tableentradas.setModel(modeloentrada);
@@ -182,7 +197,7 @@ public class EntradaMaterial extends javax.swing.JPanel {
         add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1170, 290));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 440));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 420));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableentradasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableentradasKeyPressed
@@ -215,6 +230,9 @@ public class EntradaMaterial extends javax.swing.JPanel {
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labelid;
     public javax.swing.JLabel labelnid;
+    private javax.swing.JLabel labeltextbotonreq;
+    private javax.swing.JLabel labeltextbotonreq1;
+    private javax.swing.JLabel labeltextbotonreq2;
     private javax.swing.JLabel labeltitulo;
     public javax.swing.JTable tableentradas;
     // End of variables declaration//GEN-END:variables
