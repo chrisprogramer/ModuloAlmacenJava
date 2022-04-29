@@ -51,7 +51,7 @@ public class Requisiciones extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         this.setModal(true);
 
-        try{
+       /* try{
             PreparedStatement ps = null;
             ResultSet rs = null;
             ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosrequisicion");
@@ -62,7 +62,7 @@ public class Requisiciones extends javax.swing.JDialog {
         }catch(SQLException ex){
             error = ex.getMessage();
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-        }
+        }*/
        
     }       
 
@@ -156,7 +156,6 @@ public class Requisiciones extends javax.swing.JDialog {
             } 
        }
        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
-       
     }//GEN-LAST:event_tablerequisicionesMouseClicked
 
     /**

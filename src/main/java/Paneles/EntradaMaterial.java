@@ -7,7 +7,9 @@ package Paneles;
 import com.alimundo.moduloalmacen.CargarComponentes;
 import com.alimundo.moduloalmacen.Conexion;
 import com.alimundo.moduloalmacen.Parametros;
+import com.alimundo.moduloalmacen.Requisiciones;
 import com.toedter.calendar.JTextFieldDateEditor;
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -184,6 +186,7 @@ public class EntradaMaterial extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableentradasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableentradasKeyPressed
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
             if (tableentradas.getSelectedRowCount() > 0) {
                 modeloentrada.removeRow(tableentradas.getSelectedRow());
@@ -192,10 +195,13 @@ public class EntradaMaterial extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,"<html><h3 style=font-family:Verdana;>Debe Seleccionar un Registro</h3></html>",null,JOptionPane.PLAIN_MESSAGE,new Parametros().iconadvertencia);
             }
         }
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_tableentradasKeyPressed
 
     private void botoncargareqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncargareqActionPerformed
-        
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        new Requisiciones().setVisible(true);
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botoncargareqActionPerformed
 
 
