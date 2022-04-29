@@ -8,7 +8,6 @@ import Reportes.ReportesDB;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.text.SimpleDateFormat;
-import javafx.scene.text.Font;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,17 +39,12 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
     
     public MovimientosAlmacen() {
         initComponents();
-        UIManager.put("OptionPane.background", Color.WHITE);
-        UIManager.put("Panel.background", Color.WHITE);
-    
-        initComponents();
         setTitle("MOVIMIENTOS DE ALMACÉN");
-        setSize(1240, 589);
         setResizable(false);
         setLayout(null);
         setLocationRelativeTo(null);
-        modelobusqueda.setColumnIdentifiers(new Object[]{"",""});
         this.setModal(true);
+        modelobusqueda.setColumnIdentifiers(new Object[]{"",""});
     }
 
     /**
@@ -66,14 +60,16 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
         entradaMaterial = new Paneles.EntradaMaterial();
         salidas = new Paneles.Salidas();
         transferenciaAlmacen = new Paneles.TransferenciaAlmacen();
+        botonaceptar = new javax.swing.JButton();
+        labelcerrar = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(1230, 589));
-        setMinimumSize(new java.awt.Dimension(1230, 589));
+        setMaximumSize(new java.awt.Dimension(1230, 570));
+        setMinimumSize(new java.awt.Dimension(1230, 570));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setName("dialog()"); // NOI18N
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TabbedPaneMovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -82,14 +78,34 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
         TabbedPaneMovimientos.addTab("Salidas", salidas);
         TabbedPaneMovimientos.addTab("Transferencias de Material", transferenciaAlmacen);
 
-        getContentPane().add(TabbedPaneMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1200, -1));
+        getContentPane().add(TabbedPaneMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 30, 1200, -1));
         TabbedPaneMovimientos.getAccessibleContext().setAccessibleName("");
 
+        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/completed.png"))); // NOI18N
+        botonaceptar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        botonaceptar.setOpaque(false);
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1118, 486, 80, 80));
+
+        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
+        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelcerrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, -1, -1));
+
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 590));
+        labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 1229, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void labelcerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelcerrarMouseClicked
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        this.dispose();
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_labelcerrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -128,7 +144,9 @@ public class MovimientosAlmacen extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabbedPaneMovimientos;
+    private javax.swing.JButton botonaceptar;
     private Paneles.EntradaMaterial entradaMaterial;
+    private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;
     private Paneles.Salidas salidas;
     private Paneles.TransferenciaAlmacen transferenciaAlmacen;

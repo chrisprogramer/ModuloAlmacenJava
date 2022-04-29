@@ -141,11 +141,6 @@ public class EntradaMaterial extends javax.swing.JPanel {
         add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 46, -1, -1));
 
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jComboBoxdpto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxdptoActionPerformed(evt);
-            }
-        });
         add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 260, 30));
 
         labelfecha.setBackground(new java.awt.Color(0, 153, 204));
@@ -165,6 +160,11 @@ public class EntradaMaterial extends javax.swing.JPanel {
         botoncargareq.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         botoncargareq.setText("Cargar Requisición");
         botoncargareq.setBorder(null);
+        botoncargareq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncargareqActionPerformed(evt);
+            }
+        });
         add(botoncargareq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 40));
 
         tableentradas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -194,9 +194,9 @@ public class EntradaMaterial extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tableentradasKeyPressed
 
-    private void jComboBoxdptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxdptoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxdptoActionPerformed
+    private void botoncargareqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncargareqActionPerformed
+        
+    }//GEN-LAST:event_botoncargareqActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
