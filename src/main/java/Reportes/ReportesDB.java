@@ -128,7 +128,7 @@ public class ReportesDB {
 
         try {
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
-                     + nombrearch + ".jasper", parametro, con);
+                   + nombrearch + ".jasper", parametro, con);
             this.ExportarPDF(jasperPrintWindow, nombrearch, numnota);
             rutacompleta = ruta + nombrearch + " " + numnota + ".pdf";
             this.AbrirPDF(rutacompleta);

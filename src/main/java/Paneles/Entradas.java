@@ -8,7 +8,7 @@ package Paneles;
 import com.alimundo.moduloalmacen.CargarComponentes;
 import com.alimundo.moduloalmacen.Conexion;
 import com.alimundo.moduloalmacen.Parametros;
-import com.alimundo.moduloalmacen.Requisiciones;
+import com.alimundo.moduloalmacen.RequisicionesEntradas;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -34,7 +34,7 @@ public class Entradas extends javax.swing.JPanel {
             }else return true;
         } 
     };
-    Requisiciones requisicion = new Requisiciones();
+    RequisicionesEntradas requisicion = new RequisicionesEntradas();
     DefaultTableModel modelorequisicion = new DefaultTableModel();
     Conexion con = new Conexion();
     String error;
@@ -120,7 +120,7 @@ public class Entradas extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tableentradas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tableentradas.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         tableentradas.setModel(modeloentrada);
         tableentradas.setShowGrid(true);
         tableentradas.addKeyListener(new java.awt.event.KeyAdapter() {

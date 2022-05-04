@@ -194,7 +194,6 @@ public class Movimientos extends javax.swing.JDialog{
         int opc = JOptionPane.showOptionDialog(null,"<html><h3 style=font-family:Verdana New;>¿Esta Seguro que Desea Guardar el movimiento?</h3></html>",
             null,JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
         if (opc == 0){
-            //if (tabbedfocus == 0){
             switch (tabbedfocus){    
                 case 0: if (numregent > 0) {
                             for (int i = 0; i < numregent; i++) {
@@ -281,7 +280,7 @@ public class Movimientos extends javax.swing.JDialog{
                                             }
                                             for (int i = 0; i < entrada.size(); i++) {
                                                 try {
-                                                    ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotaentrega ?,?,?,?,?,?,?");
+                                                    ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotaentrada ?,?,?,?,?,?,?");
                                                     ps.setString(1, entrada.get(i).getcodmaterial());
                                                     ps.setString(2, entrada.get(i).getcategoria());
                                                     ps.setString(3, entrada.get(i).getmedida());

@@ -29,9 +29,9 @@ public class PrincipalForm extends javax.swing.JFrame {
     String error;
     Menus BarMenu = new Menus();
     JMenuBar mainmenu;
-    
+    public static int codreqent;
+       
     public PrincipalForm() {
-        
         //this.BarMenu = new Menus();
         UIManager.put("Button.font", new Font("Verdana",Font.BOLD,14));
         UIManager.put("Button.background", Color.WHITE);
@@ -59,6 +59,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         /*mainmenu = BarMenu.CreaMenuPrincipal();
         mainmenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setJMenuBar(mainmenu);*/
+        
         
         try{
             PreparedStatement ps = null;
@@ -237,7 +238,7 @@ public class PrincipalForm extends javax.swing.JFrame {
 
     private void botonentradamaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonentradamaterialActionPerformed
         this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        new EntradaMaterial().setVisible(true);
+        new NuevoMaterial().setVisible(true);
         this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonentradamaterialActionPerformed
 

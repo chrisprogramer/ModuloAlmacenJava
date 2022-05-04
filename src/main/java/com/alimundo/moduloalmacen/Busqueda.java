@@ -20,7 +20,7 @@ public class Busqueda extends javax.swing.JDialog {
 
     public static String nombre;
     Conexion con = new Conexion();
-    EntradaMaterial entradamaterial = new EntradaMaterial();
+    NuevoMaterial entradamaterial = new NuevoMaterial();
     String error;
     String seleccion;
     DefaultTableModel modelo;
