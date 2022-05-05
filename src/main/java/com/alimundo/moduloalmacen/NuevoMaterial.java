@@ -23,7 +23,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
 
     public NuevoMaterial() {
         initComponents();
-        setSize(509, 471);
         setResizable(false);
         setLocationRelativeTo(null);
         new CargarComponentes().llenarchoice(choicecategorias, "EXEC spu_retornacategorias");
@@ -41,8 +40,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labeltitulo = new javax.swing.JLabel();
-        labeltitulo1 = new javax.swing.JLabel();
         labelcerrar = new javax.swing.JLabel();
         labelcodigo = new javax.swing.JLabel();
         textfieldcodigo = new javax.swing.JTextField();
@@ -70,26 +67,14 @@ public class NuevoMaterial extends javax.swing.JDialog {
         botonmodificar = new javax.swing.JButton();
         labelmodificar = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
+        labeltitulo = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(509, 440));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
         getContentPane().setLayout(null);
-
-        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("DE MATERIAL ");
-        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(labeltitulo);
-        labeltitulo.setBounds(170, 30, 170, 30);
-
-        labeltitulo1.setBackground(new java.awt.Color(255, 255, 255));
-        labeltitulo1.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo1.setText("ENTRADA Y MODIFICACIÓN");
-        labeltitulo1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(labeltitulo1);
-        labeltitulo1.setBounds(90, 10, 320, 28);
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,57 +207,66 @@ public class NuevoMaterial extends javax.swing.JDialog {
         getContentPane().add(jSeparator3);
         jSeparator3.setBounds(170, 350, 300, 10);
 
-        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/verificar.png"))); // NOI18N
+        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/add_paper_plus_insert_append_incorporate_icon_141955.png"))); // NOI18N
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonaceptarActionPerformed(evt);
             }
         });
         getContentPane().add(botonaceptar);
-        botonaceptar.setBounds(390, 360, 80, 80);
+        botonaceptar.setBounds(420, 360, 60, 60);
 
-        botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/buscar.png"))); // NOI18N
+        botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/search_look_for_seek_magnifying_glass_lens_icon_141967.png"))); // NOI18N
         botonbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonbuscarActionPerformed(evt);
             }
         });
         getContentPane().add(botonbuscar);
-        botonbuscar.setBounds(310, 360, 80, 80);
+        botonbuscar.setBounds(360, 360, 60, 60);
 
         labelbuscar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelbuscar.setText("Buscar");
         getContentPane().add(labelbuscar);
-        labelbuscar.setBounds(324, 440, 50, 16);
+        labelbuscar.setBounds(365, 420, 50, 16);
 
         labelaceptar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelaceptar.setText("Aceptar");
         getContentPane().add(labelaceptar);
-        labelaceptar.setBounds(402, 440, 60, 16);
+        labelaceptar.setBounds(423, 420, 60, 16);
 
-        botonmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/edit.png"))); // NOI18N
+        botonmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/edit_pencil_paper_modify_write_icon_141958.png"))); // NOI18N
         botonmodificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonmodificarActionPerformed(evt);
             }
         });
         getContentPane().add(botonmodificar);
-        botonmodificar.setBounds(230, 360, 80, 80);
+        botonmodificar.setBounds(300, 360, 60, 60);
 
         labelmodificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelmodificar.setText("Modificar");
         getContentPane().add(labelmodificar);
-        labelmodificar.setBounds(240, 440, 70, 16);
+        labelmodificar.setBounds(298, 420, 70, 16);
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panelopciones);
-        panelopciones.setBounds(0, 0, 30, 470);
+        panelopciones.setBounds(0, 40, 30, 400);
+
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltitulo.setText("MATERIALES");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo.setOpaque(true);
+        getContentPane().add(labeltitulo);
+        labeltitulo.setBounds(0, 0, 510, 40);
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelfondo);
-        labelfondo.setBounds(0, 0, 510, 470);
+        labelfondo.setBounds(0, 0, 510, 440);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
@@ -425,7 +419,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labelmodificar;
     private javax.swing.JLabel labelnommat;
     private javax.swing.JLabel labeltitulo;
-    private javax.swing.JLabel labeltitulo1;
     private javax.swing.JPanel panelopciones;
     public javax.swing.JTextField texfieldnombre;
     public javax.swing.JTextField textfieldcantidad;

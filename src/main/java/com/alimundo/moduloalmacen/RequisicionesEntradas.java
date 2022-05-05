@@ -6,12 +6,10 @@ package com.alimundo.moduloalmacen;
 
 import Paneles.EntradaMaterial;
 import java.awt.Cursor;
-import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -73,22 +71,20 @@ public class RequisicionesEntradas extends javax.swing.JDialog{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labeltitulo = new javax.swing.JLabel();
         labelcerrar = new javax.swing.JLabel();
+        labeltitulo = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         tablerequisiciones = new javax.swing.JTable();
         panelopciones = new javax.swing.JPanel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(519, 340));
+        setMinimumSize(new java.awt.Dimension(519, 340));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(519, 340));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("REQUISICIONES");
-        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 200, -1));
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,7 +92,15 @@ public class RequisicionesEntradas extends javax.swing.JDialog{
                 labelcerrarMouseClicked(evt);
             }
         });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 4, -1, -1));
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 4, -1, -1));
+
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltitulo.setText("REQUISICIONES DE ENTRADA");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo.setOpaque(true);
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 40));
 
         tablerequisiciones.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         tablerequisiciones.setModel(modelorequisicion);
@@ -108,12 +112,12 @@ public class RequisicionesEntradas extends javax.swing.JDialog{
         });
         jScrollPane.setViewportView(tablerequisiciones);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 500, 290));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 280));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 340));
+        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 300));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());

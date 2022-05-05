@@ -37,7 +37,6 @@ public class Busqueda extends javax.swing.JDialog {
 
     public Busqueda() {
         initComponents();
-        setSize(474, 516);
         setResizable(false);
         setLocationRelativeTo(null);
         modelobusqueda.setColumnIdentifiers(new Object[]{"", ""});
@@ -67,10 +66,11 @@ public class Busqueda extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelcerrar = new javax.swing.JLabel();
+        labeltitulo = new javax.swing.JLabel();
         textfieldbuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablebuscarmaterial = new javax.swing.JTable();
-        labelcerrar = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
         labelfondo = new javax.swing.JLabel();
 
@@ -80,6 +80,22 @@ public class Busqueda extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
+        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelcerrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(436, 1, -1, 40));
+
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltitulo.setText("BUSCAR MATERIAL");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo.setOpaque(true);
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 472, 40));
+
         textfieldbuscar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfieldbuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         textfieldbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -87,7 +103,7 @@ public class Busqueda extends javax.swing.JDialog {
                 textfieldbuscarKeyReleased(evt);
             }
         });
-        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 450, 30));
+        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 47, 450, 30));
 
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -100,23 +116,15 @@ public class Busqueda extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 400));
-
-        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
-        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelcerrarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, 40));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 200));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 520));
+        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 250));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 474, 516));
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 474, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -222,6 +230,7 @@ public class Busqueda extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;
+    private javax.swing.JLabel labeltitulo;
     private javax.swing.JPanel panelopciones;
     private javax.swing.JTable tablebuscarmaterial;
     private javax.swing.JTextField textfieldbuscar;

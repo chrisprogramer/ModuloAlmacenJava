@@ -5,10 +5,8 @@
 package Paneles;
 
 import com.alimundo.moduloalmacen.Conexion;
-import com.alimundo.moduloalmacen.FormatoTablas;
 import com.alimundo.moduloalmacen.Parametros;
 import com.alimundo.moduloalmacen.RequisicionesEntradas;
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
@@ -134,7 +132,7 @@ public class EntradaMaterial extends javax.swing.JPanel {
         botoncargareq.setBackground(new java.awt.Color(0, 0, 0));
         botoncargareq.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         botoncargareq.setForeground(new java.awt.Color(255, 255, 255));
-        botoncargareq.setText("Cargar Requisición (F2)");
+        botoncargareq.setText("Cargar Requisición");
         botoncargareq.setBorder(null);
         botoncargareq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

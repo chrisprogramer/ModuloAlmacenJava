@@ -23,7 +23,7 @@ public class DetalleSalidas {
        this.idsalida = idsalida;
     }
     
-    public int getidentrada() {
+    public int getidsalida() {
         return idsalida;
     }
     

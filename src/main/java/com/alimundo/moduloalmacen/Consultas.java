@@ -154,6 +154,7 @@ public class Consultas extends javax.swing.JDialog {
 
         grupobotonreportes = new javax.swing.ButtonGroup();
         etchedBorder1 = (javax.swing.border.EtchedBorder)javax.swing.BorderFactory.createEtchedBorder();
+        labelcerrar = new javax.swing.JLabel();
         labeltitulo = new javax.swing.JLabel();
         radiobotonconsolidado = new javax.swing.JRadioButton();
         radiobotonexistencia = new javax.swing.JRadioButton();
@@ -173,7 +174,6 @@ public class Consultas extends javax.swing.JDialog {
         datedesde = new com.toedter.calendar.JDateChooser();
         datehasta = new com.toedter.calendar.JDateChooser();
         botonaceptar = new javax.swing.JButton();
-        labelcerrar = new javax.swing.JLabel();
         labelborde = new javax.swing.JLabel();
         labelborde2 = new javax.swing.JLabel();
         labeldesde = new javax.swing.JLabel();
@@ -189,12 +189,21 @@ public class Consultas extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
+        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelcerrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1473, 4, -1, -1));
+
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setLabelFor(this);
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labeltitulo.setText("CONSULTAS");
-        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo.setOpaque(true);
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1510, 40));
 
         grupobotonreportes.add(radiobotonconsolidado);
         radiobotonconsolidado.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -262,25 +271,27 @@ public class Consultas extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 790, 310));
 
-        botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/verificado.png"))); // NOI18N
+        botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
         botonbuscar.setOpaque(false);
         botonbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonbuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 200, -1, -1));
+        getContentPane().add(botonbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 189, 60, 60));
 
-        botonxmaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/verificado.png"))); // NOI18N
+        botonxmaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
         botonxmaterial.setOpaque(false);
         botonxmaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonxmaterialActionPerformed(evt);
             }
         });
-        getContentPane().add(botonxmaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, -1, -1));
+        getContentPane().add(botonxmaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 60, 60));
 
+        botongastos.setBackground(new java.awt.Color(0, 0, 0));
         botongastos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        botongastos.setForeground(new java.awt.Color(255, 255, 255));
         botongastos.setText("Reporte de Gastos");
         botongastos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,21 +323,13 @@ public class Consultas extends javax.swing.JDialog {
         datehasta.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         getContentPane().add(datehasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 130, 210, 30));
 
-        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/comprobado.png"))); // NOI18N
+        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/print_printer_icon_141965.png"))); // NOI18N
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonaceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 575, 80, 80));
-
-        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
-        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelcerrarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 10, -1, -1));
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 575, 60, 60));
 
         labelborde.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelborde, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 570, 60));
@@ -363,7 +366,7 @@ public class Consultas extends javax.swing.JDialog {
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 660));
+        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 620));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());

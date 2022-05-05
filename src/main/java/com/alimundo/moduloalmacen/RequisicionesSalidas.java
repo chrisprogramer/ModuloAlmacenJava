@@ -69,8 +69,8 @@ public class RequisicionesSalidas extends javax.swing.JDialog{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labeltitulo = new javax.swing.JLabel();
         labelcerrar = new javax.swing.JLabel();
+        labeltitulo = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         tablerequisiciones = new javax.swing.JTable();
         panelopciones = new javax.swing.JPanel();
@@ -81,11 +81,6 @@ public class RequisicionesSalidas extends javax.swing.JDialog{
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("REQUISICIONES");
-        labeltitulo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 200, -1));
-
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
         labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -93,6 +88,14 @@ public class RequisicionesSalidas extends javax.swing.JDialog{
             }
         });
         getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 4, -1, -1));
+
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltitulo.setText("REQUISICIONES DE SALIDAS");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo.setOpaque(true);
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 40));
 
         tablerequisiciones.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         tablerequisiciones.setModel(modelorequisicion);
@@ -104,7 +107,7 @@ public class RequisicionesSalidas extends javax.swing.JDialog{
         });
         jScrollPane.setViewportView(tablerequisiciones);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 500, 290));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 500, 280));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -136,6 +139,7 @@ public class RequisicionesSalidas extends javax.swing.JDialog{
             String dpto;
             String fecha;
             seleccionrow = tablerequisiciones.getSelectedRow();
+            PrincipalForm.codreqent = (int) modelorequisicion.getValueAt(seleccionrow, 0);
             try {
                 PreparedStatement ps = null;
                 ResultSet rs = null;
@@ -151,14 +155,13 @@ public class RequisicionesSalidas extends javax.swing.JDialog{
                     cant = rs.getInt(6);
                     movimientos.salidas.modelosalida.addRow(new Object[]{codigo, nommat, categoria, medida,almacen,String.valueOf(cant)});
                 }
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornafechadpto ?");
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornafechadptorequisiciones ?");
                 ps.setInt(1, (int) modelorequisicion.getValueAt(seleccionrow, 0));
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     dpto = rs.getString(1);
                     fecha = rs.getString(2);
                     movimientos.salidas.modelodptofecha.addRow(new Object[]{dpto, fecha});
-                    movimientos.botonaceptar.setEnabled(true);
                 }
             } catch (SQLException ex) {
                 error = ex.getMessage();

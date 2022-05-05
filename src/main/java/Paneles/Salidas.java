@@ -134,7 +134,7 @@ public class Salidas extends javax.swing.JPanel {
         botoncargareq.setBackground(new java.awt.Color(0, 0, 0));
         botoncargareq.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         botoncargareq.setForeground(new java.awt.Color(255, 255, 255));
-        botoncargareq.setText("Cargar Requisición (F2)");
+        botoncargareq.setText("Cargar Requisición");
         botoncargareq.setBorder(null);
         botoncargareq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

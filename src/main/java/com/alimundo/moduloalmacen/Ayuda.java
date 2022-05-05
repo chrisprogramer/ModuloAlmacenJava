@@ -33,6 +33,8 @@ public class Ayuda extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelcerrar = new javax.swing.JLabel();
+        labeltitulo1 = new javax.swing.JLabel();
         labeltitulo = new javax.swing.JLabel();
         labelversion = new javax.swing.JLabel();
         labelversionsql = new javax.swing.JLabel();
@@ -45,7 +47,6 @@ public class Ayuda extends javax.swing.JDialog {
         labeldesarrolloprogramador = new javax.swing.JLabel();
         labeldesarrollobd = new javax.swing.JLabel();
         labeltelegram = new javax.swing.JLabel();
-        labelcerrar = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,18 +54,34 @@ public class Ayuda extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
+        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelcerrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 4, -1, -1));
+
+        labeltitulo1.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo1.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltitulo1.setText("INFORMACIÓN");
+        labeltitulo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo1.setOpaque(true);
+        getContentPane().add(labeltitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 40));
+
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labeltitulo.setText("Módulo de Almacén ALIMUNDO C.A.");
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 340, 30));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 340, 30));
 
         labelversion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         labelversion.setText("Versión:");
-        getContentPane().add(labelversion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(labelversion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         labelversionsql.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelversionsql.setForeground(new java.awt.Color(0, 102, 204));
         labelversionsql.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        getContentPane().add(labelversionsql, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 70, 20));
+        getContentPane().add(labelversionsql, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 70, 20));
 
         labelcopyright.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         labelcopyright.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/copyright.png"))); // NOI18N
@@ -101,14 +118,6 @@ public class Ayuda extends javax.swing.JDialog {
         labeltelegram.setFont(new java.awt.Font("Verdana", 2, 14)); // NOI18N
         labeltelegram.setText("Telegram: @ChristianZerpa");
         getContentPane().add(labeltelegram, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
-
-        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
-        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelcerrarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -171,6 +180,7 @@ public class Ayuda extends javax.swing.JDialog {
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labeltelegram;
     private javax.swing.JLabel labeltitulo;
+    private javax.swing.JLabel labeltitulo1;
     private javax.swing.JLabel labelversion;
     private javax.swing.JLabel labelversionsql;
     // End of variables declaration//GEN-END:variables
