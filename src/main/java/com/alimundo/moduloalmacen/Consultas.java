@@ -442,7 +442,7 @@ public class Consultas extends javax.swing.JDialog {
                 try {
                 reportesalmacen.ReporteConsolidadoAlmacen();
             } catch (JRException | IOException ex) {
-                Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -456,7 +456,7 @@ public class Consultas extends javax.swing.JDialog {
                         try {
                             reportesalmacen.ReporteEntradaMaterialxCategoria(seleccion, fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -467,7 +467,7 @@ public class Consultas extends javax.swing.JDialog {
                         try {
                             reportesalmacen.ReporteEntradaMaterialxMaterial(seleccion, fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -477,7 +477,7 @@ public class Consultas extends javax.swing.JDialog {
                         try {
                             reportesalmacen.ReporteEntradaMaterialxFecha(fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -488,7 +488,7 @@ public class Consultas extends javax.swing.JDialog {
                         try {
                             reportesalmacen.ReporteEntradaMaterialxDepartamento(selecciondpto,fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -504,7 +504,7 @@ public class Consultas extends javax.swing.JDialog {
                         try {
                             reportesalmacen.ReporteSalidaMaterialxCategoria(seleccion, fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -515,7 +515,7 @@ public class Consultas extends javax.swing.JDialog {
                         try {
                             reportesalmacen.ReporteSalidaMaterialxMaterial(seleccion, fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -525,7 +525,7 @@ public class Consultas extends javax.swing.JDialog {
                          try {
                             reportesalmacen.ReporteSalidaMaterialxFecha(fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -536,7 +536,7 @@ public class Consultas extends javax.swing.JDialog {
                         try {
                             reportesalmacen.ReporteSalidaMaterialxDepartamento(selecciondpto,fechadesde, fechahasta);
                         } catch (JRException | IOException ex) {
-                            Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
                             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -893,7 +893,7 @@ public class Consultas extends javax.swing.JDialog {
         try {
             reportesalmacen.ReporteGastosdeSalidaxFecha(fechadesde, fechahasta);
         } catch (JRException | IOException ex) {
-                Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
                 Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
        }

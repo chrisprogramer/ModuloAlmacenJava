@@ -283,7 +283,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                 try {
                                                     reportesalmacen.ReporteNotaEntrega(Integer.parseInt(entradaMaterial.labelnid.getText()), Integer.parseInt(entradaMaterial.labelnid.getText()));
                                                 } catch (JRException | IOException ex) {
-                                                    Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                                                    Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                                                 }
                                     } catch (SQLException ex) {
                                         error = ex.getMessage();
@@ -414,7 +414,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                 try {
                                                     reportesalmacen.ReporteNotaSalida(Integer.parseInt(salidas.labelnid.getText()), Integer.parseInt(salidas.labelnid.getText()));
                                                 } catch (JRException | IOException ex) {
-                                                    Logger.getLogger(Movimientos.class.getName()).log(Level.SEVERE, null, ex);
+                                                    Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                                                 }
                                     } catch (SQLException ex) {
                                         error = ex.getMessage();
