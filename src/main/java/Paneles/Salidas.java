@@ -160,7 +160,7 @@ public class Salidas extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 400, 70));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -6, 1220, 430));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -6, 1210, 430));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablesalidasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablesalidasKeyPressed

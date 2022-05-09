@@ -26,6 +26,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     
     String error;
     String seleccion;
+    String fechaprestamo;
     Conexion con = new Conexion();
     ReportesDB reportesalmacen = new ReportesDB();
     String fechaformat = "dd/MM/yyyy";
@@ -34,6 +35,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     int cantreg;
     DefaultTableModel modeloentrada = new DefaultTableModel();
     DefaultTableModel modelosalida = new DefaultTableModel();
+    DefaultTableModel modeloprestamo = new DefaultTableModel();
     DefaultTableModel modelodptofechaentrada = new DefaultTableModel();
     DefaultTableModel modelodptofechasalida = new DefaultTableModel();
     
@@ -56,14 +58,17 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         entradaMaterial = new Paneles.EntradaMaterial();
         salidas = new Paneles.Salidas();
         transferenciaAlmacen = new Paneles.TransferenciaAlmacen();
+        PrestamoMaterial = new Paneles.PrestamoMaterial();
         panelopciones = new javax.swing.JPanel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1230, 549));
+        setMaximumSize(new java.awt.Dimension(1242, 549));
+        setMinimumSize(new java.awt.Dimension(1242, 549));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setName("dialog()"); // NOI18N
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1242, 549));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -72,7 +77,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                 labelcerrarMouseClicked(evt);
             }
         });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1194, 4, -1, -1));
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 4, -1, -1));
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -80,7 +85,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         labeltitulo.setText("MOVIMIENTOS DE ALMACÉN");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 40));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1242, 40));
 
         botonaceptar.setBackground(new java.awt.Color(255, 255, 255));
         botonaceptar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -102,8 +107,9 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         TabbedPaneMovimientos.addTab("Entradas", entradaMaterial);
         TabbedPaneMovimientos.addTab("Salidas", salidas);
         TabbedPaneMovimientos.addTab("Transferencias de Material", transferenciaAlmacen);
+        TabbedPaneMovimientos.addTab("Prestamo de Material", PrestamoMaterial);
 
-        getContentPane().add(TabbedPaneMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 1200, -1));
+        getContentPane().add(TabbedPaneMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 1200, -1));
         TabbedPaneMovimientos.getAccessibleContext().setAccessibleName("");
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
@@ -113,7 +119,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 1229, 550));
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 1240, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -127,16 +133,19 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         int identrada;
         int idsalida;
+        int idprestamo;
         String codmaterial;
         String nommaterial;
         String categoria;
         String medida;
         String almacen;
         String fechareq;
-        int cant;
-        double precio;
         String descripcion;
         String nfactura;
+        String motivo;
+        String responsable;
+        int cant;
+        double precio;
         DetalleEntradas arrayent; 
         ArrayList<DetalleEntradas> entrada;
         entrada = new ArrayList<>();
@@ -145,10 +154,16 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         ArrayList<DetalleSalidas> salida;
         salida = new ArrayList<>();
         salida.clear();
+        DetallePrestamos arrayprestamos;
+        ArrayList <DetallePrestamos> prestamos;
+        prestamos = new ArrayList<>();
+        prestamos.clear();
         int numregent = entradaMaterial.tableentradas.getRowCount();
         int numregsal = salidas.tablesalidas.getRowCount();
+        int numregpres = PrestamoMaterial.tableprestamo.getRowCount();
         modeloentrada = (DefaultTableModel) entradaMaterial.tableentradas.getModel();
         modelosalida = (DefaultTableModel) salidas.tablesalidas.getModel();
+        modeloprestamo = (DefaultTableModel) PrestamoMaterial.tableprestamo.getModel();
         modelodptofechaentrada = (DefaultTableModel) entradaMaterial.tabledptofecha.getModel();
         modelodptofechasalida = (DefaultTableModel) salidas.tabledptofecha.getModel();
         tabbedfocus = this.TabbedPaneMovimientos.getSelectedIndex();
@@ -429,7 +444,97 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                     }else {
                         JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Agregar al Menos un Registro</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
                     }
-                    break;   
+                    break; 
+                case 3: if (numregpres > 0) {
+                            fechaprestamo = dateformat.format(PrestamoMaterial.date.getDate());
+                            try {
+                                PreparedStatement ps = null;
+                                ResultSet rs = null;
+                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevoprestamomaterial ?,?");
+                                ps.setString(1, fechaprestamo);
+                                ps.setString(2, (String) PrestamoMaterial.jComboBoxdpto.getSelectedItem());
+                                rs = ps.executeQuery();
+                                while(rs.next()){
+                                    try{
+                                        PrestamoMaterial.labelnid.setText(rs.getString(1));
+                                        for (int i = 0; i < numregpres; i++) {
+                                            idprestamo = Integer.parseInt(PrestamoMaterial.labelnid.getText());
+                                            codmaterial = (String) modeloprestamo.getValueAt(i, 0);
+                                            nommaterial = (String) modeloprestamo.getValueAt(i, 1);
+                                            cant = Integer.parseInt((String) modeloprestamo.getValueAt(i, 2));
+                                            motivo = (String) modeloprestamo.getValueAt(i, 3);
+                                            responsable = (String) modeloprestamo.getValueAt(i, 4);
+                                            arrayprestamos = new DetallePrestamos();
+                                            arrayprestamos.setidprestamo(idprestamo);
+                                            arrayprestamos.setcodmaterial(codmaterial);
+                                            arrayprestamos.setnommaterial(nommaterial);
+                                            arrayprestamos.setcant(cant);
+                                            arrayprestamos.setmotivo(motivo);
+                                            arrayprestamos.setresponsable(responsable);
+                                            prestamos.add(arrayprestamos);
+                                        }
+                                        try {
+                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaprestamo  ?,?,?");
+                                            ps.setString(1, fechaprestamo );
+                                            ps.setString(2, (String) PrestamoMaterial.jComboBoxdpto.getSelectedItem());
+                                            ps.setInt(3, Integer.parseInt(PrestamoMaterial.labelnid.getText()));
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                //       
+                                            }
+                                        } catch (java.sql.SQLException ex) {
+                                                error = ex.getMessage();
+                                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        }
+                                        for (int i = 0; i < prestamos.size(); i++) {
+                                            try {
+                                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesprestamosmaterial ?,?,?,?,?,?");
+                                                ps.setInt(1, prestamos.get(i).getidprestamo());
+                                                ps.setString(2, prestamos.get(i).getcodmaterial());
+                                                ps.setString(3, prestamos.get(i).getnommaterial());
+                                                ps.setInt(4, prestamos.get(i).getcant());
+                                                ps.setString(5, prestamos.get(i).getmotivo());
+                                                ps.setString(6, prestamos.get(i).getresponsable());
+                                                rs = ps.executeQuery();
+                                                while (rs.next()) {
+                                                    //       
+                                                }
+                                            } catch (java.sql.SQLException ex) {
+                                                error = ex.getMessage();
+                                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                            }
+                                        }
+                                        for (int i = 0; i < prestamos.size(); i++) {
+                                            try {
+                                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotaprestamo ?,?,?,?");
+                                                ps.setString(1, prestamos.get(i).getcodmaterial());
+                                                ps.setInt(2, prestamos.get(i).getcant());
+                                                ps.setString(3, prestamos.get(i).getmotivo());
+                                                ps.setString(4, prestamos.get(i).getresponsable());
+                                                rs = ps.executeQuery();
+                                                while (rs.next()) {
+                                                    //       
+                                                }
+                                            } catch (java.sql.SQLException ex) {
+                                                error = ex.getMessage();
+                                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                            }
+                                        }
+                                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Ejecutado con Exito </h3></html>",
+                                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                                    }catch(SQLException ex){
+                                        error = ex.getMessage();
+                                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror); 
+                                    }    
+                                }      
+                             }catch(SQLException ex){
+                                error = ex.getMessage();
+                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror); 
+                            }        
+                }else {
+                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Agregar al Menos un Registro</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+                }
+                break;
             }    
         }        
     }//GEN-LAST:event_botonaceptarActionPerformed
@@ -470,6 +575,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Paneles.PrestamoMaterial PrestamoMaterial;
     public javax.swing.JTabbedPane TabbedPaneMovimientos;
     public javax.swing.JButton botonaceptar;
     public Paneles.EntradaMaterial entradaMaterial;
