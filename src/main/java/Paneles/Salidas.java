@@ -4,8 +4,6 @@
  */
 package Paneles;
 
-import static Paneles.EntradaMaterial.modelodptofecha;
-import com.alimundo.moduloalmacen.CargarComponentes;
 import com.alimundo.moduloalmacen.Conexion;
 import com.alimundo.moduloalmacen.Parametros;
 import com.alimundo.moduloalmacen.RequisicionesSalidas;

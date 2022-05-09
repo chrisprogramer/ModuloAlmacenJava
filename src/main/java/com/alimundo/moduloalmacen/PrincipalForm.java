@@ -90,23 +90,15 @@ public class PrincipalForm extends javax.swing.JFrame {
         labelnbd = new javax.swing.JLabel();
         labelempresa = new javax.swing.JLabel();
         labelnomempresa = new javax.swing.JLabel();
-        panelmainmenu = new javax.swing.JPanel();
-        botonsalir = new javax.swing.JButton();
-        botonmovimientos = new javax.swing.JButton();
-        botonentradamaterial = new javax.swing.JButton();
-        botonreportes = new javax.swing.JButton();
-        botonayuda = new javax.swing.JButton();
-        labelsalir = new javax.swing.JLabel();
-        labelmovimiento1 = new javax.swing.JLabel();
-        labelmovimiento2 = new javax.swing.JLabel();
-        labelingresamaterial = new javax.swing.JLabel();
-        labelayuda = new javax.swing.JLabel();
-        labelreportes1 = new javax.swing.JLabel();
-        labelreportes2 = new javax.swing.JLabel();
         labellogo = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
         labelicono = new javax.swing.JLabel();
         labeltitulo = new javax.swing.JLabel();
+        botonayuda = new javax.swing.JButton();
+        botonentradamaterial = new javax.swing.JButton();
+        botonreportes = new javax.swing.JButton();
+        botonmovimientos = new javax.swing.JButton();
+        botonsalir = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,83 +126,6 @@ public class PrincipalForm extends javax.swing.JFrame {
         labelnomempresa.setPreferredSize(new java.awt.Dimension(10, 10));
         getContentPane().add(labelnomempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 630, 140, 20));
 
-        panelmainmenu.setBackground(new java.awt.Color(255, 255, 255));
-        panelmainmenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelmainmenu.setDoubleBuffered(false);
-        panelmainmenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        botonsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/power_on_off_switch_exit_icon_141963.png"))); // NOI18N
-        botonsalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        botonsalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonsalirActionPerformed(evt);
-            }
-        });
-        panelmainmenu.add(botonsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
-
-        botonmovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/trolley3_122342.png"))); // NOI18N
-        botonmovimientos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonmovimientosActionPerformed(evt);
-            }
-        });
-        panelmainmenu.add(botonmovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 60, 60));
-
-        botonentradamaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/diagram-60_24457.png"))); // NOI18N
-        botonentradamaterial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonentradamaterialActionPerformed(evt);
-            }
-        });
-        panelmainmenu.add(botonentradamaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 60, 60));
-
-        botonreportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/file_pdf_icon_188248.png"))); // NOI18N
-        botonreportes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonreportesActionPerformed(evt);
-            }
-        });
-        panelmainmenu.add(botonreportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 60, 60));
-
-        botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/Help_icon-icons.com_55891.png"))); // NOI18N
-        botonayuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonayudaActionPerformed(evt);
-            }
-        });
-        panelmainmenu.add(botonayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 60, 60));
-
-        labelsalir.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelsalir.setText("Salir ");
-        panelmainmenu.add(labelsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 20));
-
-        labelmovimiento1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelmovimiento1.setText("Movimientos");
-        panelmainmenu.add(labelmovimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 60, -1, -1));
-
-        labelmovimiento2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelmovimiento2.setText("de Almacén");
-        labelmovimiento2.setToolTipText("");
-        panelmainmenu.add(labelmovimiento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
-
-        labelingresamaterial.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelingresamaterial.setText("Materiales");
-        panelmainmenu.add(labelingresamaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 60, -1, -1));
-
-        labelayuda.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelayuda.setText("Acerca de");
-        panelmainmenu.add(labelayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 60, -1, -1));
-
-        labelreportes1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelreportes1.setText("Consultas");
-        panelmainmenu.add(labelreportes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 60, -1, -1));
-
-        labelreportes2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelreportes2.setText("y Reportes");
-        panelmainmenu.add(labelreportes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 70, -1, 20));
-
-        getContentPane().add(panelmainmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 1480, 90));
-
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO ALIMUNDO PEQUE.png"))); // NOI18N
         getContentPane().add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 475, 420, 100));
 
@@ -219,7 +134,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 1000));
 
         labelicono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/Palet-Boxes_35544.png"))); // NOI18N
-        getContentPane().add(labelicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 0, 50, 40));
+        getContentPane().add(labelicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 2, 50, 40));
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -227,36 +142,61 @@ public class PrincipalForm extends javax.swing.JFrame {
         labeltitulo.setText("MODULO MANEJO DE ALMACEN");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1511, 40));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1511, 45));
+
+        botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/Help_icon-icons.com_55891.png"))); // NOI18N
+        botonayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonayudaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 46, 60, 60));
+
+        botonentradamaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/diagram-60_24457.png"))); // NOI18N
+        botonentradamaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonentradamaterialActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonentradamaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 46, 60, 60));
+
+        botonreportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/file_pdf_icon_188248.png"))); // NOI18N
+        botonreportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonreportesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonreportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 46, 60, 60));
+
+        botonmovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/trolley3_122342.png"))); // NOI18N
+        botonmovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonmovimientosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonmovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 46, 60, 60));
+
+        botonsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/power_on_off_switch_exit_icon_141963.png"))); // NOI18N
+        botonsalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonsalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 46, 60, 60));
 
         fondo.setBackground(new java.awt.Color(153, 204, 255));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1930, 1040));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1930, 1040));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonsalirActionPerformed
-        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        Object[] textoOpciones = {"Si","No"};
-        int opc = JOptionPane.showOptionDialog(this,"<html><h3 style=font-family:Verdana;>¿Desea salir del Modulo Almacén?</h3></html>",
-            "",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
-        if (opc == 0)
-            System.exit(0);
-        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_botonsalirActionPerformed
-
-    private void botonmovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonmovimientosActionPerformed
-        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        new MovimientosAlmacen().setVisible(true);
-        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_botonmovimientosActionPerformed
-
-    private void botonentradamaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonentradamaterialActionPerformed
-        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
-        new NuevoMaterial().setVisible(true);
-        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_botonentradamaterialActionPerformed
+    private void botonayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonayudaActionPerformed
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        new Ayuda().setVisible(true);
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonayudaActionPerformed
 
     private void botonreportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonreportesActionPerformed
         this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
@@ -264,11 +204,27 @@ public class PrincipalForm extends javax.swing.JFrame {
         this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonreportesActionPerformed
 
-    private void botonayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonayudaActionPerformed
-       this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-       new Ayuda().setVisible(true);
-       this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_botonayudaActionPerformed
+    private void botonentradamaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonentradamaterialActionPerformed
+        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
+        new NuevoMaterial().setVisible(true);
+        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonentradamaterialActionPerformed
+
+    private void botonmovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonmovimientosActionPerformed
+        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
+        new MovimientosAlmacen().setVisible(true);
+        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonmovimientosActionPerformed
+
+    private void botonsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonsalirActionPerformed
+        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
+        Object[] textoOpciones = {"Si","No"};
+        int opc = JOptionPane.showOptionDialog(this,"<html><h3 style=font-family:Verdana;>¿Desea salir del Modulo Almacén?</h3></html>",
+            "",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
+        if (opc == 0)
+        System.exit(0);
+        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonsalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,20 +271,12 @@ public class PrincipalForm extends javax.swing.JFrame {
     private javax.swing.JLabel fondo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel labelayuda;
     private javax.swing.JLabel labelempresa;
     private javax.swing.JLabel labelicono;
-    private javax.swing.JLabel labelingresamaterial;
     private javax.swing.JLabel labellogo;
-    private javax.swing.JLabel labelmovimiento1;
-    private javax.swing.JLabel labelmovimiento2;
     private javax.swing.JLabel labelnbd;
     private javax.swing.JLabel labelnomempresa;
-    private javax.swing.JLabel labelreportes1;
-    private javax.swing.JLabel labelreportes2;
-    private javax.swing.JLabel labelsalir;
     private javax.swing.JLabel labeltitulo;
-    private javax.swing.JPanel panelmainmenu;
     private javax.swing.JPanel panelopciones;
     private javax.swing.JLabel verbd;
     // End of variables declaration//GEN-END:variables

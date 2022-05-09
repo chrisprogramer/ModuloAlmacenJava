@@ -60,12 +60,10 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1230, 549));
         setMinimumSize(new java.awt.Dimension(1230, 549));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setName("dialog()"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1230, 549));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
