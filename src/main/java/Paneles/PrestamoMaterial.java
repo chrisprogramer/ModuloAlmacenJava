@@ -203,7 +203,7 @@ public class PrestamoMaterial extends javax.swing.JPanel {
     private void tableprestamoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableprestamoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
             if (tableprestamo.getSelectedRowCount() > 0) {
-                modelosalida.removeRow(tableprestamo.getSelectedRow());
+                modeloprestamo.removeRow(tableprestamo.getSelectedRow());
             }
             else{
                 JOptionPane.showMessageDialog(null,"<html><h3 style=font-family:Verdana;>Debe Seleccionar un Registro</h3></html>",null,JOptionPane.PLAIN_MESSAGE,new Parametros().iconadvertencia);
@@ -238,16 +238,30 @@ public class PrestamoMaterial extends javax.swing.JPanel {
         modelo = (DefaultTableModel) tablebuscarmaterial.getModel();
         if (evt.getClickCount() == 2) {
             seleccion = String.valueOf(modelobusqueda.getValueAt(tablebuscarmaterial.getSelectedRow(), 0));
-            try {
+            try{
                 PreparedStatement ps = null;
                 ResultSet rs = null;
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosmaterial ?");
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornacantexistencia ?");
                 ps.setString(1, seleccion);
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2)});
-                }
-                ps.close();
+                    cantidad = rs.getInt(1);
+                    if(cantidad > 0){
+                        try {
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosmaterial ?");
+                            ps.setString(1, seleccion);
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2)});
+                            }
+                        }catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                        }
+                    }else{
+                         JOptionPane.showMessageDialog(null,"<html><h3 style=font-family:Verdana;>El Material no se Encuentra en Stock</h3></html>",null,JOptionPane.PLAIN_MESSAGE,new Parametros().iconadvertencia);
+                    }
+                }ps.close();
             }catch (SQLException ex) {
                 error = ex.getMessage();
                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);

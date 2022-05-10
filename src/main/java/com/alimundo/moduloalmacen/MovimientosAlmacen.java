@@ -44,6 +44,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         setResizable(false);
         setLayout(null);
         setLocationRelativeTo(null);
+        this.botoncerrarprestamo.setVisible(false);
         this.setModal(true);
     }
 
@@ -54,6 +55,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         labelcerrar = new javax.swing.JLabel();
         labeltitulo = new javax.swing.JLabel();
         botonaceptar = new javax.swing.JButton();
+        botoncerrarprestamo = new javax.swing.JButton();
         TabbedPaneMovimientos = new javax.swing.JTabbedPane();
         entradaMaterial = new Paneles.EntradaMaterial();
         salidas = new Paneles.Salidas();
@@ -100,8 +102,22 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         });
         getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 487, 60, 60));
 
+        botoncerrarprestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/refresh_paper_load_update_icon_141966.png"))); // NOI18N
+        botoncerrarprestamo.setOpaque(false);
+        botoncerrarprestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncerrarprestamoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botoncerrarprestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 487, 60, 60));
+
         TabbedPaneMovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TabbedPaneMovimientos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        TabbedPaneMovimientos.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                TabbedPaneMovimientosStateChanged(evt);
+            }
+        });
 
         entradaMaterial.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         TabbedPaneMovimientos.addTab("Entradas", entradaMaterial);
@@ -134,6 +150,8 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         int identrada;
         int idsalida;
         int idprestamo;
+        int contvalida = 0;
+        String valida;
         String codmaterial;
         String nommaterial;
         String categoria;
@@ -446,98 +464,132 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                     }
                     break; 
                 case 3: if (numregpres > 0) {
-                            fechaprestamo = dateformat.format(PrestamoMaterial.date.getDate());
-                            try {
-                                PreparedStatement ps = null;
-                                ResultSet rs = null;
-                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevoprestamomaterial ?,?");
-                                ps.setString(1, fechaprestamo);
-                                ps.setString(2, (String) PrestamoMaterial.jComboBoxdpto.getSelectedItem());
-                                rs = ps.executeQuery();
-                                while(rs.next()){
-                                    try{
-                                        PrestamoMaterial.labelnid.setText(rs.getString(1));
-                                        for (int i = 0; i < numregpres; i++) {
-                                            idprestamo = Integer.parseInt(PrestamoMaterial.labelnid.getText());
-                                            codmaterial = (String) modeloprestamo.getValueAt(i, 0);
-                                            nommaterial = (String) modeloprestamo.getValueAt(i, 1);
-                                            cant = Integer.parseInt((String) modeloprestamo.getValueAt(i, 2));
-                                            motivo = (String) modeloprestamo.getValueAt(i, 3);
-                                            responsable = (String) modeloprestamo.getValueAt(i, 4);
-                                            arrayprestamos = new DetallePrestamos();
-                                            arrayprestamos.setidprestamo(idprestamo);
-                                            arrayprestamos.setcodmaterial(codmaterial);
-                                            arrayprestamos.setnommaterial(nommaterial);
-                                            arrayprestamos.setcant(cant);
-                                            arrayprestamos.setmotivo(motivo);
-                                            arrayprestamos.setresponsable(responsable);
-                                            prestamos.add(arrayprestamos);
-                                        }
-                                        try {
-                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaprestamo  ?,?,?");
-                                            ps.setString(1, fechaprestamo );
-                                            ps.setString(2, (String) PrestamoMaterial.jComboBoxdpto.getSelectedItem());
-                                            ps.setInt(3, Integer.parseInt(PrestamoMaterial.labelnid.getText()));
-                                            rs = ps.executeQuery();
-                                            while (rs.next()) {
-                                                //       
+                            for (int i = 0; i < numregpres; i++) {
+                                int j = 1;
+                                valida = (String) modeloprestamo.getValueAt(i, 2);
+                                if (ValidarDatos.isNumeric(valida)) {
+                                    contvalida = contvalida + j;
+                                }
+                            }
+                            if(contvalida == numregpres){
+                                fechaprestamo = dateformat.format(PrestamoMaterial.date.getDate());
+                                try {
+                                    PreparedStatement ps = null;
+                                    ResultSet rs = null;
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevoprestamomaterial ?,?");
+                                    ps.setString(1, fechaprestamo);
+                                    ps.setString(2, (String) PrestamoMaterial.jComboBoxdpto.getSelectedItem());
+                                    rs = ps.executeQuery();
+                                    while(rs.next()){
+                                        try{
+                                            PrestamoMaterial.labelnid.setText(rs.getString(1));
+                                            for (int i = 0; i < numregpres; i++) {
+                                                idprestamo = Integer.parseInt(PrestamoMaterial.labelnid.getText());
+                                                codmaterial = (String) modeloprestamo.getValueAt(i, 0);
+                                                nommaterial = (String) modeloprestamo.getValueAt(i, 1);
+                                                cant = Integer.parseInt((String) modeloprestamo.getValueAt(i, 2));
+                                                motivo = (String) modeloprestamo.getValueAt(i, 3);
+                                                responsable = (String) modeloprestamo.getValueAt(i, 4);
+                                                arrayprestamos = new DetallePrestamos();
+                                                arrayprestamos.setidprestamo(idprestamo);
+                                                arrayprestamos.setcodmaterial(codmaterial);
+                                                arrayprestamos.setnommaterial(nommaterial);
+                                                arrayprestamos.setcant(cant);
+                                                arrayprestamos.setmotivo(motivo);
+                                                arrayprestamos.setresponsable(responsable);
+                                                prestamos.add(arrayprestamos);
                                             }
-                                        } catch (java.sql.SQLException ex) {
-                                                error = ex.getMessage();
-                                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                                        }
-                                        for (int i = 0; i < prestamos.size(); i++) {
                                             try {
-                                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesprestamosmaterial ?,?,?,?,?,?");
-                                                ps.setInt(1, prestamos.get(i).getidprestamo());
-                                                ps.setString(2, prestamos.get(i).getcodmaterial());
-                                                ps.setString(3, prestamos.get(i).getnommaterial());
-                                                ps.setInt(4, prestamos.get(i).getcant());
-                                                ps.setString(5, prestamos.get(i).getmotivo());
-                                                ps.setString(6, prestamos.get(i).getresponsable());
+                                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaprestamo ?,?,?");
+                                                ps.setString(1, fechaprestamo );
+                                                ps.setString(2, (String) PrestamoMaterial.jComboBoxdpto.getSelectedItem());
+                                                ps.setInt(3, Integer.parseInt(PrestamoMaterial.labelnid.getText()));
                                                 rs = ps.executeQuery();
                                                 while (rs.next()) {
                                                     //       
                                                 }
                                             } catch (java.sql.SQLException ex) {
-                                                error = ex.getMessage();
-                                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                                    error = ex.getMessage();
+                                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                                             }
-                                        }
-                                        for (int i = 0; i < prestamos.size(); i++) {
-                                            try {
-                                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotaprestamo ?,?,?,?");
-                                                ps.setString(1, prestamos.get(i).getcodmaterial());
-                                                ps.setInt(2, prestamos.get(i).getcant());
-                                                ps.setString(3, prestamos.get(i).getmotivo());
-                                                ps.setString(4, prestamos.get(i).getresponsable());
-                                                rs = ps.executeQuery();
-                                                while (rs.next()) {
-                                                    //       
+                                            for (int i = 0; i < prestamos.size(); i++) {
+                                                try {
+                                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalleprestamomaterial ?,?,?,?,?,?");
+                                                    ps.setInt(1, prestamos.get(i).getidprestamo());
+                                                    ps.setString(2, prestamos.get(i).getcodmaterial());
+                                                    ps.setString(3, prestamos.get(i).getnommaterial());
+                                                    ps.setInt(4, prestamos.get(i).getcant());
+                                                    ps.setString(5, prestamos.get(i).getmotivo());
+                                                    ps.setString(6, prestamos.get(i).getresponsable());
+                                                    rs = ps.executeQuery();
+                                                    while (rs.next()) {
+                                                        //       
+                                                    }
+                                                } catch (java.sql.SQLException ex) {
+                                                    error = ex.getMessage();
+                                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                                                 }
-                                            } catch (java.sql.SQLException ex) {
-                                                error = ex.getMessage();
-                                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                                             }
-                                        }
-                                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Ejecutado con Exito </h3></html>",
-                                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                                    }catch(SQLException ex){
-                                        error = ex.getMessage();
-                                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror); 
-                                    }    
-                                }      
-                             }catch(SQLException ex){
-                                error = ex.getMessage();
-                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror); 
-                            }        
-                }else {
+                                            for (int i = 0; i < prestamos.size(); i++) {
+                                                try {
+                                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotaprestamo ?,?,?,?");
+                                                    ps.setString(1, prestamos.get(i).getcodmaterial());
+                                                    ps.setInt(2, prestamos.get(i).getcant());
+                                                    ps.setString(3, prestamos.get(i).getmotivo());
+                                                    ps.setString(4, prestamos.get(i).getresponsable());
+                                                    rs = ps.executeQuery();
+                                                    while (rs.next()) {
+                                                        //       
+                                                    }
+                                                } catch (java.sql.SQLException ex) {
+                                                    error = ex.getMessage();
+                                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                                }
+                                            }
+                                            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Ejecutado con Exito </h3></html>",
+                                                            null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                                            try {
+                                                reportesalmacen.ReporteNotaPrestamo(Integer.parseInt(PrestamoMaterial.labelnid.getText()), Integer.parseInt(PrestamoMaterial.labelnid.getText()));
+                                            } catch (JRException | IOException ex) {
+                                                Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+                                        }catch(SQLException ex){
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror); 
+                                        }    
+                                    }      
+                                }catch(SQLException ex){
+                                    error = ex.getMessage();
+                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror); 
+                                }
+                                modeloprestamo.setRowCount(0);
+                                PrestamoMaterial.labelnid.setText("");
+                            }else{
+                                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Ingrese una Cantidad Valida y Mayor a 0</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+                            }
+                        }else {
                         JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Agregar al Menos un Registro</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+                        break;
                 }
-                break;
             }    
         }        
     }//GEN-LAST:event_botonaceptarActionPerformed
+
+    private void botoncerrarprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncerrarprestamoActionPerformed
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        new EditarPrestamo().setVisible(true);
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botoncerrarprestamoActionPerformed
+
+    private void TabbedPaneMovimientosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_TabbedPaneMovimientosStateChanged
+       tabbedfocus = this.TabbedPaneMovimientos.getSelectedIndex();
+       if(tabbedfocus >=0 && tabbedfocus <3){
+           this.botoncerrarprestamo.setVisible(false);
+       }else{
+           this.botoncerrarprestamo.setVisible(true);
+       }
+    }//GEN-LAST:event_TabbedPaneMovimientosStateChanged
 
     /**
      * @param args the command line arguments
@@ -575,9 +627,10 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Paneles.PrestamoMaterial PrestamoMaterial;
+    public Paneles.PrestamoMaterial PrestamoMaterial;
     public javax.swing.JTabbedPane TabbedPaneMovimientos;
     public javax.swing.JButton botonaceptar;
+    private javax.swing.JButton botoncerrarprestamo;
     public Paneles.EntradaMaterial entradaMaterial;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;

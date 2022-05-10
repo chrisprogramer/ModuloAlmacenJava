@@ -150,7 +150,7 @@ public class ReportesDB {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
-     public void ReporteNotaSalida(int idnotasalida, int numnota) throws SQLException, JRException, IOException {
+    public void ReporteNotaSalida(int idnotasalida, int numnota) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
         Map<String, Object> parametro = new HashMap();
         parametro.put("idnotasalida", idnotasalida);
@@ -167,12 +167,44 @@ public class ReportesDB {
              error = ex.getMessage();
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
-    }  
+    }
+    public void ReporteNotaPrestamo(int idnotaprestamo, int numnota) throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("idnotaprestamo", idnotaprestamo);
+        String nombrearch = "Nota de Prestamo";
+        String rutacompleta;
+
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", parametro, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch, numnota);
+            rutacompleta = ruta + nombrearch + " " + numnota + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
     public void SubReporteNotaSalida(int idnotasalida) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
         Map<String, Object> parametro = new HashMap();
         parametro.put("idnotasalida", idnotasalida);
         String nombrearch = "Sub_ReporteNotasSalidas";
+        
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", parametro, con);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
+    public void SubReporteNotaPrestamo(int idnotaprestamo) throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("idnotaprestamosub", idnotaprestamo);
+        String nombrearch = "Sub_ReporteNotasPrestamos";
         
         try {
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
