@@ -186,6 +186,24 @@ public class ReportesDB {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
+        public void ReporteNotaDevPrestamo(int idnotadevprestamo, int numnota) throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("idnotadevprestamo", idnotadevprestamo);
+        String nombrearch = "Nota de DevPrestamo";
+        String rutacompleta;
+
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", parametro, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch, numnota);
+            rutacompleta = ruta + nombrearch + " " + numnota + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
     public void SubReporteNotaSalida(int idnotasalida) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
         Map<String, Object> parametro = new HashMap();
@@ -205,6 +223,20 @@ public class ReportesDB {
         Map<String, Object> parametro = new HashMap();
         parametro.put("idnotaprestamosub", idnotaprestamo);
         String nombrearch = "Sub_ReporteNotasPrestamos";
+        
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", parametro, con);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
+     public void SubReporteDevNotaPrestamo(int idnotadevprestamo) throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("idnotadevprestamosub", idnotadevprestamo);
+        String nombrearch = "Sub_ReporteNotasDevPrestamo";
         
         try {
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"

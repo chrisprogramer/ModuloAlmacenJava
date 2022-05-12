@@ -140,7 +140,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
         labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labeltitulo.setText("MODULO MANEJO DE ALMACEN");
+        labeltitulo.setText("MODULO CONTROL DE ALMACEN");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
         getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1511, 45));
@@ -188,6 +188,7 @@ public class PrincipalForm extends javax.swing.JFrame {
 
         fondo.setBackground(new java.awt.Color(153, 204, 255));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        fondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1930, 1040));
 
         pack();

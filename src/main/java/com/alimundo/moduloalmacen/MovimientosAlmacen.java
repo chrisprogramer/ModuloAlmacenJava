@@ -229,7 +229,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                             arrayent.setdescripcion(descripcion);
                                             arrayent.setnumfactura(nfactura);
                                             entrada.add(arrayent);
-                                            }
+                                        }
                                             try {
                                                 ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaentrada ?,?,?");
                                                 ps.setString(1, (String)modelodptofechaentrada.getValueAt(0, 1));

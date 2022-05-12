@@ -4,16 +4,23 @@
  */
 package com.alimundo.moduloalmacen;
 
+import Reportes.ReportesDB;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -25,7 +32,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     public static DefaultTableModel modeloprestamo = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int filas, int columnas){
-            if (columnas == 2){
+            if (columnas <=2){
                 return false;
             }else return true;
         }
@@ -36,25 +43,29 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         columnModel.getColumn(0).setPreferredWidth(150);
         columnModel.getColumn(1).setPreferredWidth(600);
         columnModel.getColumn(2).setPreferredWidth(150);
-        columnModel.getColumn(3).setPreferredWidth(550);
     }
     
-    Conexion con = new Conexion();
+    int numregdev;
     String error;
-    Date fechahoy;
+    String fechadevpreststr;
     String fechaformat = "dd/MM/yyyy";
-    JTextFieldDateEditor editor;
     String seleccion;
-    DefaultTableModel modelo;
+    String valida;
+    Date fechahoy;
     Date fechadevprest;
+    Conexion con = new Conexion();
+    SimpleDateFormat dateformat = new SimpleDateFormat(fechaformat);
+    JTextFieldDateEditor editor;
+    DefaultTableModel modelo;
+    ReportesDB reportesalmacen = new ReportesDB();
     
     public CerrarPrestamoMaterial() {
         initComponents();
-            setResizable(false);
+        setResizable(false);
         setLocationRelativeTo(null);
         setModal(true);
         modeloprestamo.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
-            "<html><h3 style=font-family:Verdana;>Cant.</h3></html>","<html><h3 style=font-family:Verdana;>Devuelve</h3></html>"});
+            "<html><h3 style=font-family:Verdana;>Cant.</h3></html>"});
         tamanocolumnasprestamo(tabledevolucionprestamo); 
         modeloprestamo.setRowCount(0);
         tabledevolucionprestamo.getTableHeader().setResizingAllowed(false);
@@ -95,6 +106,8 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelcerrar = new javax.swing.JLabel();
         labeltitulo1 = new javax.swing.JLabel();
         labelfecha = new javax.swing.JLabel();
+        labeldevuelve = new javax.swing.JLabel();
+        textfieldevuelve = new javax.swing.JTextField();
         labeldepartamento = new javax.swing.JLabel();
         textfieldpto = new javax.swing.JTextField();
         date = new com.toedter.calendar.JDateChooser();
@@ -107,11 +120,9 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(720, 477));
         setMinimumSize(new java.awt.Dimension(720, 477));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(720, 477));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -137,16 +148,26 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
+        labeldevuelve.setBackground(new java.awt.Color(255, 255, 255));
+        labeldevuelve.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labeldevuelve.setText("Devuelve:");
+        labeldevuelve.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        labeldevuelve.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(labeldevuelve, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        textfieldevuelve.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        getContentPane().add(textfieldevuelve, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 115, 260, 30));
+
         labeldepartamento.setBackground(new java.awt.Color(255, 255, 255));
         labeldepartamento.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeldepartamento.setText("Departamento");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
+        getContentPane().add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
         textfieldpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfieldpto.setEnabled(false);
-        getContentPane().add(textfieldpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 210, 30));
+        getContentPane().add(textfieldpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 210, 30));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         date.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -181,7 +202,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         tabledevolucionprestamo.setShowGrid(true);
         jScrollPane.setViewportView(tabledevolucionprestamo);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 700, 290));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 700, 260));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -202,27 +223,109 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        int cant;
+        int iddevp;
+        int idnotadevprest = 0;
+        String codmaterial;
+        String nommaterial;
+        String devuelve;
+        numregdev = this.tabledevolucionprestamo.getRowCount();
         fechadevprest = this.date.getDate();
-        try{
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?");
-            ps.setDate(1, fechadevprest);
-            ps.setString(2, this.textfieldpto.getText());
-            rs = ps.executeQuery();
-            while(rs.next()){
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
-                ps.setInt(1,Integer.parseInt(this.labelnid.getText()));
+        fechadevpreststr = dateformat.format(fechadevprest);
+        devuelve = this.textfieldevuelve.getText();
+        DetalleDevPrestamos arraydevprestamos; 
+        ArrayList<DetalleDevPrestamos> devprestamos;
+        devprestamos = new ArrayList<>();
+        devprestamos.clear();
+
+        if (this.textfieldevuelve.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Especificar quien Devuelve el Prestamo del Material</h3></html>", 
+                     null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+        }else {
+            try{
+                PreparedStatement ps = null;
+                ResultSet rs = null;
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?,?");
+                ps.setString(1, fechadevpreststr);
+                ps.setString(2, this.textfieldpto.getText());
+                ps.setString(3, devuelve);
                 rs = ps.executeQuery();
-                while(rs.next()){
-                    //
+                if(rs.next()){
+                    iddevp = rs.getInt(1);
+                    for (int i = 0; i < numregdev; i++) {
+                        codmaterial = (String) modeloprestamo.getValueAt(i,0);
+                        nommaterial = (String) modeloprestamo.getValueAt(i, 1);
+                        cant = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+                        arraydevprestamos = new DetalleDevPrestamos() ;
+                        arraydevprestamos.setiddevprestamo(iddevp);
+                        arraydevprestamos.setcodmaterial(codmaterial);
+                        arraydevprestamos.setnommaterial(nommaterial);
+                        arraydevprestamos.setcant(cant);
+                        devprestamos.add(arraydevprestamos);
+                    }
+                    try {
+                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?,?");
+                        ps.setString(1, fechadevpreststr);
+                        ps.setString(2, this.textfieldpto.getText());
+                        ps.setInt(3, iddevp);
+                        ps.setString(4, devuelve);
+                        rs = ps.executeQuery();
+                        while (rs.next()) {
+                            idnotadevprest = rs.getInt(1);
+                        }
+                    } catch (java.sql.SQLException ex) {
+                        error = ex.getMessage();
+                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                    }
+                    for (int i = 0; i < devprestamos.size(); i++) {
+                        try {
+                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetalledevprestamomaterial ?,?,?,?");
+                            ps.setInt(1, devprestamos.get(i).getiddevprestamo());
+                            ps.setString(2, devprestamos.get(i).getcodmaterial());
+                            ps.setString(3, devprestamos.get(i).getnommaterial());
+                            ps.setInt(4, devprestamos.get(i).getcant());
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                //       
+                            }
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                        }
+                    }
+                    for (int i = 0; i < devprestamos.size(); i++) {
+                        try {
+                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotadevprestamo ?,?");
+                            ps.setString(1, devprestamos.get(i).getcodmaterial());
+                            ps.setInt(2, devprestamos.get(i).getcant());
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                //       
+                            }
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                        }
+                    }
+                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
+                    ps.setInt(1,Integer.parseInt(this.labelnid.getText()));
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Cerrado con Exito </h3></html>",
+                                null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                    }
                 }
+            }catch(SQLException ex){
+                error = ex.getMessage();
+                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
             }
-            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Cerrado con Exito </h3></html>",
-                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-        }catch(SQLException ex){
-           error = ex.getMessage();
-           JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+            try {
+                reportesalmacen.ReporteNotaDevPrestamo(idnotadevprest , idnotadevprest);
+            } catch (JRException | IOException ex) {
+                Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CerrarPrestamoMaterial.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonaceptarActionPerformed
@@ -268,6 +371,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labeldepartamento;
+    private javax.swing.JLabel labeldevuelve;
     private javax.swing.JLabel labelfecha;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labelid;
@@ -275,6 +379,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labeltitulo1;
     private javax.swing.JPanel panelopciones;
     public javax.swing.JTable tabledevolucionprestamo;
+    private javax.swing.JTextField textfieldevuelve;
     private javax.swing.JTextField textfieldpto;
     // End of variables declaration//GEN-END:variables
 }
