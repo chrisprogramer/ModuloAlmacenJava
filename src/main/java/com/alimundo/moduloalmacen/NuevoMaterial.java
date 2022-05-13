@@ -54,12 +54,12 @@ public class NuevoMaterial extends javax.swing.JDialog {
         labelalmacen = new javax.swing.JLabel();
         choicealmacenes = new java.awt.Choice();
         labelcantidad = new javax.swing.JLabel();
-        botonmas = new javax.swing.JButton();
-        botonmenos = new javax.swing.JButton();
         textfieldcantidad = new javax.swing.JTextField();
         labeldescripcion = new javax.swing.JLabel();
         textfielddescripcion = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        labeltotemin = new javax.swing.JLabel();
+        textfieldtopemin = new javax.swing.JTextField();
         botonaceptar = new javax.swing.JButton();
         botonbuscar = new javax.swing.JButton();
         labelbuscar = new javax.swing.JLabel();
@@ -71,7 +71,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(509, 440));
+        setMinimumSize(new java.awt.Dimension(509, 461));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
         getContentPane().setLayout(null);
@@ -85,127 +85,117 @@ public class NuevoMaterial extends javax.swing.JDialog {
         getContentPane().add(labelcerrar);
         labelcerrar.setBounds(470, 0, 32, 40);
 
-        labelcodigo.setBackground(new java.awt.Color(0, 153, 204));
+        labelcodigo.setBackground(new java.awt.Color(255, 255, 255));
         labelcodigo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelcodigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelcodigo.setText("Codigo:");
         labelcodigo.setOpaque(true);
         getContentPane().add(labelcodigo);
-        labelcodigo.setBounds(70, 80, 90, 30);
+        labelcodigo.setBounds(70, 50, 90, 30);
 
         textfieldcodigo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         textfieldcodigo.setForeground(new java.awt.Color(255, 0, 0));
         textfieldcodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         textfieldcodigo.setOpaque(false);
         getContentPane().add(textfieldcodigo);
-        textfieldcodigo.setBounds(170, 80, 300, 30);
+        textfieldcodigo.setBounds(170, 50, 300, 30);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(170, 110, 300, 10);
+        jSeparator1.setBounds(170, 80, 300, 10);
 
-        labelnommat.setBackground(new java.awt.Color(0, 153, 204));
+        labelnommat.setBackground(new java.awt.Color(255, 255, 255));
         labelnommat.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelnommat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelnommat.setText("Nombre:");
         labelnommat.setOpaque(true);
         getContentPane().add(labelnommat);
-        labelnommat.setBounds(70, 120, 90, 30);
+        labelnommat.setBounds(70, 90, 90, 30);
 
         texfieldnombre.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         texfieldnombre.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         texfieldnombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         texfieldnombre.setOpaque(false);
         getContentPane().add(texfieldnombre);
-        texfieldnombre.setBounds(170, 120, 300, 30);
+        texfieldnombre.setBounds(170, 90, 300, 30);
         getContentPane().add(jSeparator2);
-        jSeparator2.setBounds(170, 150, 300, 10);
+        jSeparator2.setBounds(170, 120, 300, 10);
 
-        labelcategoria.setBackground(new java.awt.Color(0, 153, 204));
+        labelcategoria.setBackground(new java.awt.Color(255, 255, 255));
         labelcategoria.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelcategoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelcategoria.setText("Categoria:");
         labelcategoria.setOpaque(true);
         getContentPane().add(labelcategoria);
-        labelcategoria.setBounds(70, 160, 90, 30);
+        labelcategoria.setBounds(70, 130, 90, 30);
 
         choicecategorias.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         getContentPane().add(choicecategorias);
-        choicecategorias.setBounds(170, 160, 280, 40);
+        choicecategorias.setBounds(170, 130, 280, 40);
 
-        labelmedida.setBackground(new java.awt.Color(0, 153, 204));
+        labelmedida.setBackground(new java.awt.Color(255, 255, 255));
         labelmedida.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelmedida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelmedida.setText("Medida:");
         labelmedida.setOpaque(true);
         getContentPane().add(labelmedida);
-        labelmedida.setBounds(90, 200, 70, 30);
+        labelmedida.setBounds(90, 170, 70, 30);
         getContentPane().add(choicemedidas);
-        choicemedidas.setBounds(170, 200, 280, 40);
+        choicemedidas.setBounds(170, 170, 280, 40);
 
-        labelalmacen.setBackground(new java.awt.Color(0, 153, 204));
+        labelalmacen.setBackground(new java.awt.Color(255, 255, 255));
         labelalmacen.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelalmacen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelalmacen.setText("Asignar Almacén:");
         labelalmacen.setOpaque(true);
         getContentPane().add(labelalmacen);
-        labelalmacen.setBounds(10, 240, 150, 30);
+        labelalmacen.setBounds(10, 210, 150, 30);
         getContentPane().add(choicealmacenes);
-        choicealmacenes.setBounds(170, 240, 280, 40);
+        choicealmacenes.setBounds(170, 210, 280, 40);
 
-        labelcantidad.setBackground(new java.awt.Color(0, 153, 204));
+        labelcantidad.setBackground(new java.awt.Color(255, 255, 255));
         labelcantidad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelcantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelcantidad.setText("Cantidad:");
         labelcantidad.setOpaque(true);
         getContentPane().add(labelcantidad);
-        labelcantidad.setBounds(80, 280, 80, 30);
+        labelcantidad.setBounds(80, 250, 80, 30);
 
-        botonmas.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        botonmas.setText("+");
-        botonmas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        botonmas.setOpaque(false);
-        botonmas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonmasMouseClicked(evt);
-            }
-        });
-        getContentPane().add(botonmas);
-        botonmas.setBounds(250, 276, 30, 40);
-
-        botonmenos.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        botonmenos.setText("-");
-        botonmenos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        botonmenos.setOpaque(false);
-        botonmenos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonmenosMouseClicked(evt);
-            }
-        });
-        getContentPane().add(botonmenos);
-        botonmenos.setBounds(280, 276, 30, 40);
-
-        textfieldcantidad.setEditable(false);
         textfieldcantidad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         textfieldcantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textfieldcantidad.setText("0");
         textfieldcantidad.setToolTipText("");
         getContentPane().add(textfieldcantidad);
-        textfieldcantidad.setBounds(170, 280, 80, 30);
+        textfieldcantidad.setBounds(170, 250, 80, 30);
 
-        labeldescripcion.setBackground(new java.awt.Color(0, 153, 204));
+        labeldescripcion.setBackground(new java.awt.Color(255, 255, 255));
         labeldescripcion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeldescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labeldescripcion.setText("Descripción:");
         labeldescripcion.setOpaque(true);
         getContentPane().add(labeldescripcion);
-        labeldescripcion.setBounds(50, 320, 110, 30);
+        labeldescripcion.setBounds(50, 290, 110, 30);
 
         textfielddescripcion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfielddescripcion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         textfielddescripcion.setOpaque(false);
         getContentPane().add(textfielddescripcion);
-        textfielddescripcion.setBounds(170, 320, 300, 30);
+        textfielddescripcion.setBounds(170, 290, 300, 30);
         getContentPane().add(jSeparator3);
-        jSeparator3.setBounds(170, 350, 300, 10);
+        jSeparator3.setBounds(170, 320, 300, 10);
+
+        labeltotemin.setBackground(new java.awt.Color(255, 255, 255));
+        labeltotemin.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labeltotemin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltotemin.setText("Tope Minimo");
+        labeltotemin.setOpaque(true);
+        getContentPane().add(labeltotemin);
+        labeltotemin.setBounds(50, 330, 110, 30);
+
+        textfieldtopemin.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        textfieldtopemin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textfieldtopemin.setText("0");
+        textfieldtopemin.setToolTipText("");
+        getContentPane().add(textfieldtopemin);
+        textfieldtopemin.setBounds(170, 330, 80, 30);
 
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/add_paper_plus_insert_append_incorporate_icon_141955.png"))); // NOI18N
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +204,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonaceptar);
-        botonaceptar.setBounds(420, 360, 60, 60);
+        botonaceptar.setBounds(420, 370, 60, 60);
 
         botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/search_look_for_seek_magnifying_glass_lens_icon_141967.png"))); // NOI18N
         botonbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -223,17 +213,17 @@ public class NuevoMaterial extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonbuscar);
-        botonbuscar.setBounds(360, 360, 60, 60);
+        botonbuscar.setBounds(360, 370, 60, 60);
 
         labelbuscar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelbuscar.setText("Buscar");
         getContentPane().add(labelbuscar);
-        labelbuscar.setBounds(365, 420, 50, 16);
+        labelbuscar.setBounds(370, 430, 50, 16);
 
         labelaceptar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelaceptar.setText("Aceptar");
         getContentPane().add(labelaceptar);
-        labelaceptar.setBounds(423, 420, 60, 16);
+        labelaceptar.setBounds(430, 430, 60, 16);
 
         botonmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/edit_pencil_paper_modify_write_icon_141958.png"))); // NOI18N
         botonmodificar.addActionListener(new java.awt.event.ActionListener() {
@@ -242,17 +232,17 @@ public class NuevoMaterial extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonmodificar);
-        botonmodificar.setBounds(300, 360, 60, 60);
+        botonmodificar.setBounds(300, 370, 60, 60);
 
         labelmodificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelmodificar.setText("Modificar");
         getContentPane().add(labelmodificar);
-        labelmodificar.setBounds(298, 420, 70, 16);
+        labelmodificar.setBounds(300, 430, 70, 16);
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panelopciones);
-        panelopciones.setBounds(0, 40, 30, 400);
+        panelopciones.setBounds(0, 40, 30, 420);
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -266,7 +256,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelfondo);
-        labelfondo.setBounds(0, 0, 510, 440);
+        labelfondo.setBounds(0, 10, 510, 451);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
@@ -274,42 +264,50 @@ public class NuevoMaterial extends javax.swing.JDialog {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Object[] textoOpciones = {"Si", "No"};
+        int cantidad;
+        
         int opc = JOptionPane.showOptionDialog(null, "<html><h3 style=font-family:Verdana New;>¿Esta Seguro que Desea Guardar la Entrada?</h3></html>",
                 null, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
         if (opc == 0) {
             if (validar.vacio(this.textfieldcodigo.getText(), this.texfieldnombre.getText())) {
-                if (validar.ValidaCantidad(Integer.parseInt(this.textfieldcantidad.getText()))) {
-                    try {
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardanvomaterial ?,?,?,?,?,?,?");
-                        ps.setString(1, this.textfieldcodigo.getText());
-                        ps.setString(2, this.texfieldnombre.getText());
-                        ps.setString(3, this.choicecategorias.getSelectedItem());
-                        ps.setString(4, this.choicemedidas.getSelectedItem());
-                        ps.setString(5, this.choicealmacenes.getSelectedItem());
-                        ps.setInt(6, Integer.parseInt(this.textfieldcantidad.getText()));
-                        ps.setString(7, this.textfielddescripcion.getText());
-                        rs = ps.executeQuery();
-                        while (rs.next()) {
-                            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Material Guardado con Exito </h3></html>",
-                                    null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                            this.textfieldcodigo.setText(" ");
-                            this.texfieldnombre.setText(" ");
-                            this.textfieldcantidad.setText("0");
-                            this.textfielddescripcion.setText(" ");
+                if (ValidarDatos.isNumeric(this.textfieldcantidad.getText()) && validar.ValidaCantidad(Integer.parseInt(this.textfieldcantidad.getText()))){
+                    if (ValidarDatos.isNumeric(this.textfieldtopemin.getText())){
+                        try {
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardanvomaterial ?,?,?,?,?,?,?,?");
+                            ps.setString(1, this.textfieldcodigo.getText());
+                            ps.setString(2, this.texfieldnombre.getText());
+                            ps.setString(3, this.choicecategorias.getSelectedItem());
+                            ps.setString(4, this.choicemedidas.getSelectedItem());
+                            ps.setString(5, this.choicealmacenes.getSelectedItem());
+                            ps.setInt(6, Integer.parseInt(this.textfieldcantidad.getText()));
+                            ps.setString(7, this.textfielddescripcion.getText());
+                            ps.setInt(8,Integer.parseInt(this.textfieldtopemin.getText()));
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Material Guardado con Exito </h3></html>",
+                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                                this.textfieldcodigo.setText(" ");
+                                this.texfieldnombre.setText(" ");
+                                this.textfieldcantidad.setText("0");
+                                this.textfielddescripcion.setText(" ");
+                            }
+                            ps.close();
+                        } catch (SQLException ex) {
+                            errorsql = ex.getErrorCode();
+                            if (errorsql == 2627) {
+                                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Material ya existe en el Sistema</h3></html>",
+                                        "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                            } else {
+                                error = ex.getMessage();
+                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                            }
                         }
-                        ps.close();
-                    } catch (SQLException ex) {
-                        errorsql = ex.getErrorCode();
-                        if (errorsql == 2627) {
-                            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Material ya existe en el Sistema</h3></html>",
-                                    "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                        } else {
-                            error = ex.getMessage();
-                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                        }
-                    }
+                    } else {
+                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Ingresar un Tope Minimo Valido</h3></html>",
+                            "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                    }   
                 } else {
-                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>La cantidad debe ser mayor a 0</h3></html>",
+                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Ingresar una Cantidad Valida y mayor a 0</h3></html>",
                             "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                 }
             } else {
@@ -326,29 +324,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_labelcerrarMouseClicked
 
-    private void botonmasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonmasMouseClicked
-        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        int acumulador;
-        acumulador = Integer.parseInt(this.textfieldcantidad.getText());
-        acumulador = acumulador + 1;
-        this.textfieldcantidad.setText(String.valueOf(acumulador));
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-    }//GEN-LAST:event_botonmasMouseClicked
-
-    private void botonmenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonmenosMouseClicked
-        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        int acumulador;
-        acumulador = Integer.parseInt(this.textfieldcantidad.getText());
-        if (acumulador == 0) {
-            acumulador = 0;
-        } else {
-            acumulador = acumulador - 1;
-        }
-        this.textfieldcantidad.setText(String.valueOf(acumulador));
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_botonmenosMouseClicked
-
     private void botonbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonbuscarActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         this.dispose();
@@ -358,35 +333,41 @@ public class NuevoMaterial extends javax.swing.JDialog {
 
     private void botonmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonmodificarActionPerformed
         if(validar.vacio(this.textfieldcodigo.getText(),this.texfieldnombre.getText())){
-            try {
-                PreparedStatement ps = null;
-                ResultSet rs = null;
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_modificarmaterial ?,?,?,?,?,?");
-                ps.setString(1, this.textfieldcodigo.getText());
-                ps.setString(2, this.texfieldnombre.getText());
-                ps.setString(3, this.choicecategorias.getSelectedItem());
-                ps.setString(4, this.choicemedidas.getSelectedItem());
-                ps.setString(5, this.choicealmacenes.getSelectedItem());
-                ps.setString(6, this.textfielddescripcion.getText());
-                rs = ps.executeQuery();
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Material Modificado con Exito </h3></html>",
-                            null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                    this.textfieldcodigo.setText(" ");
-                    this.texfieldnombre.setText(" ");
-                    this.textfieldcantidad.setText("0");
-                    this.textfielddescripcion.setText(" ");
+            if(ValidarDatos.isNumeric(this.textfieldtopemin.getText())){
+                try {
+                    PreparedStatement ps = null;
+                    ResultSet rs = null;
+                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_modificarmaterial ?,?,?,?,?,?,?");
+                    ps.setString(1, this.textfieldcodigo.getText());
+                    ps.setString(2, this.texfieldnombre.getText());
+                    ps.setString(3, this.choicecategorias.getSelectedItem());
+                    ps.setString(4, this.choicemedidas.getSelectedItem());
+                    ps.setString(5, this.choicealmacenes.getSelectedItem());
+                    ps.setString(6, this.textfielddescripcion.getText());
+                    ps.setInt(7, Integer.parseInt(this.textfieldtopemin.getText()));
+                    rs = ps.executeQuery();
+                    if (rs.next()) {
+                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Material Modificado con Exito </h3></html>",
+                                null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                        this.textfieldcodigo.setText(" ");
+                        this.texfieldnombre.setText(" ");
+                        this.textfieldcantidad.setText("0");
+                        this.textfielddescripcion.setText(" ");
+                    }
+                    ps.close();
+                } catch (SQLException ex) {
+                    errorsql = ex.getErrorCode();
+                    if (errorsql == 0){
+                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Codigo ingresado no existe en el Sistema</h3></html>",
+                                        "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                    }else{
+                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                    }
                 }
-                ps.close();
-            } catch (SQLException ex) {
-                errorsql = ex.getErrorCode();
-                if (errorsql == 0){
-                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Codigo ingresado no existe en el Sistema</h3></html>",
-                                    "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                }else{
-                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                }
-            }
+            }else {
+                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Ingresar un Tope Minimo Valido</h3></html>",
+                        "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                }   
         }else {JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Codigo y Nombre no pueden estar vacios</h3></html>",
                         "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
             
@@ -397,8 +378,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botonaceptar;
     private javax.swing.JButton botonbuscar;
-    public javax.swing.JButton botonmas;
-    public javax.swing.JButton botonmenos;
     private javax.swing.JButton botonmodificar;
     public java.awt.Choice choicealmacenes;
     public java.awt.Choice choicecategorias;
@@ -419,11 +398,13 @@ public class NuevoMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labelmodificar;
     private javax.swing.JLabel labelnommat;
     private javax.swing.JLabel labeltitulo;
+    private javax.swing.JLabel labeltotemin;
     private javax.swing.JPanel panelopciones;
     public javax.swing.JTextField texfieldnombre;
     public javax.swing.JTextField textfieldcantidad;
     public javax.swing.JTextField textfieldcodigo;
     public javax.swing.JTextField textfielddescripcion;
+    public javax.swing.JTextField textfieldtopemin;
     // End of variables declaration//GEN-END:variables
 
 }

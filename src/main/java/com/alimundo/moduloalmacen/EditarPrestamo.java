@@ -101,6 +101,7 @@ public class EditarPrestamo extends javax.swing.JDialog {
 
         tableprestamo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tableprestamo.setModel(modeloprestamo);
+        tableprestamo.setShowGrid(true);
         jScrollPane.setViewportView(tableprestamo);
 
         getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 500, 190));

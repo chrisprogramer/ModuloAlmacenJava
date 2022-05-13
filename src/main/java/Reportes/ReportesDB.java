@@ -457,5 +457,36 @@ public class ReportesDB {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
-    
+    public void ReporteMaterialenPrestamo() throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        String nombrearch = "Nota de MaterialenPrestamo";
+        String rutacompleta;
+
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", null, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch);
+            rutacompleta = ruta + nombrearch + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
+    public void ReporteAlertaMaterial() throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        String nombrearch = "Nota de AlertaMateriales";
+        String rutacompleta;
+
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", null, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch);
+            rutacompleta = ruta + nombrearch + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
 }

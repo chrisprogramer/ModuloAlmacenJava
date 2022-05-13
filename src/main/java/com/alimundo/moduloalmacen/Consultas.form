@@ -349,7 +349,7 @@
     <Component class="javax.swing.JButton" name="botonaceptar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/pngs48X48/print_printer_icon_141965.png"/>
+          <Image iconType="3" name="/pngs48X48/file_pdf_icon_188248.png"/>
         </Property>
       </Properties>
       <Events>

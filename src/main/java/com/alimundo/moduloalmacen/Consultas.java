@@ -323,7 +323,7 @@ public class Consultas extends javax.swing.JDialog {
         datehasta.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         getContentPane().add(datehasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 130, 210, 30));
 
-        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/print_printer_icon_141965.png"))); // NOI18N
+        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/file_pdf_icon_188248.png"))); // NOI18N
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonaceptarActionPerformed(evt);

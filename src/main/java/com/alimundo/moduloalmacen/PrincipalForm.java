@@ -100,6 +100,13 @@ public class PrincipalForm extends javax.swing.JFrame {
         botonreportes = new javax.swing.JButton();
         botonmovimientos = new javax.swing.JButton();
         botonsalir = new javax.swing.JButton();
+        botonalertas = new javax.swing.JButton();
+        labelsalir = new javax.swing.JLabel();
+        labelmovimientos = new javax.swing.JLabel();
+        labelmateriales = new javax.swing.JLabel();
+        labelconsultas = new javax.swing.JLabel();
+        labelinfo = new javax.swing.JLabel();
+        labelalertas = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,7 +152,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         labeltitulo.setOpaque(true);
         getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1511, 45));
 
-        botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/Help_icon-icons.com_55891.png"))); // NOI18N
+        botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/informationwebcircularbuttonsymbol_79860.png"))); // NOI18N
         botonayuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonayudaActionPerformed(evt);
@@ -186,10 +193,42 @@ public class PrincipalForm extends javax.swing.JFrame {
         });
         getContentPane().add(botonsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 46, 60, 60));
 
+        botonalertas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/alert_triangle_icon_128962.png"))); // NOI18N
+        botonalertas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonalertasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonalertas, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 46, 60, 60));
+
+        labelsalir.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelsalir.setText("Salir");
+        getContentPane().add(labelsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 110, -1, -1));
+
+        labelmovimientos.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelmovimientos.setText("Movimiento");
+        getContentPane().add(labelmovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+
+        labelmateriales.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelmateriales.setText("Materiales");
+        getContentPane().add(labelmateriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 110, -1, -1));
+
+        labelconsultas.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelconsultas.setText("Consultas");
+        getContentPane().add(labelconsultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 110, -1, -1));
+
+        labelinfo.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelinfo.setText("Información");
+        getContentPane().add(labelinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
+
+        labelalertas.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelalertas.setText("Alertas");
+        getContentPane().add(labelalertas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+
         fondo.setBackground(new java.awt.Color(153, 204, 255));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         fondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1930, 1040));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1510, 664));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,6 +267,12 @@ public class PrincipalForm extends javax.swing.JFrame {
         this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonsalirActionPerformed
 
+    private void botonalertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonalertasActionPerformed
+        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
+        new Alertas().setVisible(true);
+        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonalertasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,6 +310,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonalertas;
     private javax.swing.JButton botonayuda;
     private javax.swing.JButton botonentradamaterial;
     private javax.swing.JButton botonmovimientos;
@@ -273,11 +319,17 @@ public class PrincipalForm extends javax.swing.JFrame {
     private javax.swing.JLabel fondo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labelalertas;
+    private javax.swing.JLabel labelconsultas;
     private javax.swing.JLabel labelempresa;
     private javax.swing.JLabel labelicono;
+    private javax.swing.JLabel labelinfo;
     private javax.swing.JLabel labellogo;
+    private javax.swing.JLabel labelmateriales;
+    private javax.swing.JLabel labelmovimientos;
     private javax.swing.JLabel labelnbd;
     private javax.swing.JLabel labelnomempresa;
+    private javax.swing.JLabel labelsalir;
     private javax.swing.JLabel labeltitulo;
     private javax.swing.JPanel panelopciones;
     private javax.swing.JLabel verbd;

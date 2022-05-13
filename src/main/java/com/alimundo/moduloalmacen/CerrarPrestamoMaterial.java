@@ -328,6 +328,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
             }
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        this.dispose();
     }//GEN-LAST:event_botonaceptarActionPerformed
 
     /**

@@ -56,6 +56,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         labeltitulo = new javax.swing.JLabel();
         botonaceptar = new javax.swing.JButton();
         botoncerrarprestamo = new javax.swing.JButton();
+        botonconsultar = new javax.swing.JButton();
         TabbedPaneMovimientos = new javax.swing.JTabbedPane();
         entradaMaterial = new Paneles.EntradaMaterial();
         salidas = new Paneles.Salidas();
@@ -110,6 +111,14 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
             }
         });
         getContentPane().add(botoncerrarprestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 487, 60, 60));
+
+        botonconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/analytics_report_analysis_document_data_study_icon_143867.png"))); // NOI18N
+        botonconsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonconsultarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonconsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 487, 60, 60));
 
         TabbedPaneMovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TabbedPaneMovimientos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -586,10 +595,18 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
        tabbedfocus = this.TabbedPaneMovimientos.getSelectedIndex();
        if(tabbedfocus >=0 && tabbedfocus <3){
            this.botoncerrarprestamo.setVisible(false);
+           this.botonconsultar.setVisible(false);
        }else{
            this.botoncerrarprestamo.setVisible(true);
+           this.botonconsultar.setVisible(true);
        }
     }//GEN-LAST:event_TabbedPaneMovimientosStateChanged
+
+    private void botonconsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonconsultarActionPerformed
+       this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+       new MaterialTransito().setVisible(true);
+       this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonconsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -631,6 +648,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     public javax.swing.JTabbedPane TabbedPaneMovimientos;
     public javax.swing.JButton botonaceptar;
     private javax.swing.JButton botoncerrarprestamo;
+    private javax.swing.JButton botonconsultar;
     public Paneles.EntradaMaterial entradaMaterial;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;

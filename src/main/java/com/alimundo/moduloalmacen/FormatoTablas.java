@@ -36,7 +36,7 @@ public class FormatoTablas {
         cellRendereraligcenter.setHorizontalAlignment(SwingConstants.CENTER);
         cellRendereraligright.setHorizontalAlignment(SwingConstants.RIGHT);
         cellRendereraligleft.setHorizontalAlignment(SwingConstants.LEFT);
-        cellRendererformatcolorfont.setForeground(Color.WHITE);
+        cellRendererformatcolorfont.setForeground(Color.RED);
         cellRendererformatfont.setFont(new Font("Consolas", Font.BOLD,14));
     }
 
