@@ -12,7 +12,6 @@
 	<field name="id_nota" class="java.lang.Integer"/>
 	<field name="Codigo" class="java.lang.String"/>
 	<field name="Material" class="java.lang.String"/>
-	<field name="Medida" class="java.lang.String"/>
 	<field name="AlmacenOrigen" class="java.lang.String"/>
 	<field name="AlmacenDestino" class="java.lang.String"/>
 	<field name="motivo" class="java.lang.String"/>
@@ -51,20 +50,6 @@
 	<columnHeader>
 		<band height="32" splitType="Stretch">
 			<staticText>
-				<reportElement x="157" y="0" width="71" height="32" uuid="73136a16-ecf7-4b0a-b601-808515f6a071"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Medida]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="0" y="0" width="47" height="32" uuid="fba75b38-1839-48cc-a953-2f0563d314db"/>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -79,7 +64,7 @@
 				<text><![CDATA[Cod.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="0" width="110" height="32" uuid="3ee36595-044c-42c2-9e57-088bbe9ddcd0"/>
+				<reportElement x="47" y="0" width="167" height="32" uuid="3ee36595-044c-42c2-9e57-088bbe9ddcd0"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -93,7 +78,7 @@
 				<text><![CDATA[Material]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="228" y="0" width="97" height="32" uuid="d8848a51-0a61-4116-acf9-bf95772618ce"/>
+				<reportElement x="213" y="0" width="97" height="32" uuid="d8848a51-0a61-4116-acf9-bf95772618ce"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -107,7 +92,7 @@
 				<text><![CDATA[Almacén Origen]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="325" y="0" width="109" height="32" uuid="2ce863b8-531d-4fc7-a87a-7c8e38bedbf4"/>
+				<reportElement x="310" y="0" width="109" height="32" uuid="2ce863b8-531d-4fc7-a87a-7c8e38bedbf4"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -121,7 +106,7 @@
 				<text><![CDATA[Almacén Destino]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="434" y="0" width="121" height="32" uuid="58243218-3155-48db-aa5a-f2c00b21dcd4"/>
+				<reportElement x="419" y="0" width="136" height="32" uuid="58243218-3155-48db-aa5a-f2c00b21dcd4"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -153,7 +138,7 @@
 				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="228" y="0" width="97" height="16" uuid="a44114d7-7ded-4bf5-9994-f02c4407e7c2"/>
+				<reportElement x="213" y="0" width="97" height="16" uuid="a44114d7-7ded-4bf5-9994-f02c4407e7c2"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -167,7 +152,7 @@
 				<textFieldExpression><![CDATA[$F{AlmacenOrigen}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="47" y="0" width="110" height="16" uuid="efc0d52b-4952-4975-bd43-33832c55a367"/>
+				<reportElement x="47" y="0" width="167" height="16" uuid="efc0d52b-4952-4975-bd43-33832c55a367"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -181,21 +166,7 @@
 				<textFieldExpression><![CDATA[$F{Material}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="157" y="0" width="71" height="16" uuid="60fdc211-8263-467a-94f9-5ef6576dd136"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font fontName="Arial" size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Medida}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="325" y="0" width="109" height="16" uuid="5f815329-e304-46c1-8f89-9bf894dca864"/>
+				<reportElement x="310" y="0" width="109" height="16" uuid="5f815329-e304-46c1-8f89-9bf894dca864"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -209,7 +180,7 @@
 				<textFieldExpression><![CDATA[$F{AlmacenDestino}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="434" y="0" width="121" height="16" uuid="06994c96-cf39-4126-ae98-7291b2aa70a8"/>
+				<reportElement x="419" y="0" width="136" height="16" uuid="06994c96-cf39-4126-ae98-7291b2aa70a8"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>

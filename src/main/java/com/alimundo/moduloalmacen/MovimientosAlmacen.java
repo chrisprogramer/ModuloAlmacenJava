@@ -35,6 +35,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     int cantreg;
     DefaultTableModel modeloentrada = new DefaultTableModel();
     DefaultTableModel modelosalida = new DefaultTableModel();
+    DefaultTableModel modelotransferencia = new DefaultTableModel();
     DefaultTableModel modeloprestamo = new DefaultTableModel();
     DefaultTableModel modelodptofechaentrada = new DefaultTableModel();
     DefaultTableModel modelodptofechasalida = new DefaultTableModel();
@@ -131,7 +132,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         entradaMaterial.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         TabbedPaneMovimientos.addTab("Entradas", entradaMaterial);
         TabbedPaneMovimientos.addTab("Salidas", salidas);
-        TabbedPaneMovimientos.addTab("Transferencias de Material", transferenciaAlmacen);
+        TabbedPaneMovimientos.addTab("Transferencia de Almacén", transferenciaAlmacen);
         TabbedPaneMovimientos.addTab("Prestamo de Material", PrestamoMaterial);
 
         getContentPane().add(TabbedPaneMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 1200, -1));
@@ -158,6 +159,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         int identrada;
         int idsalida;
+        int idtransferencia;
         int idprestamo;
         int contvalida = 0;
         String valida;
@@ -167,10 +169,13 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         String medida;
         String almacen;
         String fechareq;
+        String fechatransferencia;
         String descripcion;
         String nfactura;
         String motivo;
         String responsable;
+        String almacenori;
+        String almacendes;
         int cant;
         double precio;
         DetalleEntradas arrayent; 
@@ -181,15 +186,22 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         ArrayList<DetalleSalidas> salida;
         salida = new ArrayList<>();
         salida.clear();
+        DetalleTransferencias arraytrans;
+        ArrayList<DetalleTransferencias> transferencias;
+        transferencias = new ArrayList<>();
+        transferencias.clear();
         DetallePrestamos arrayprestamos;
         ArrayList <DetallePrestamos> prestamos;
         prestamos = new ArrayList<>();
         prestamos.clear();
         int numregent = entradaMaterial.tableentradas.getRowCount();
         int numregsal = salidas.tablesalidas.getRowCount();
+        int numregtrans = transferenciaAlmacen.tablatransferencia.getRowCount();
         int numregpres = PrestamoMaterial.tableprestamo.getRowCount();
+        fechatransferencia = dateformat.format(transferenciaAlmacen.date.getDate());
         modeloentrada = (DefaultTableModel) entradaMaterial.tableentradas.getModel();
         modelosalida = (DefaultTableModel) salidas.tablesalidas.getModel();
+        modelotransferencia = (DefaultTableModel) transferenciaAlmacen.tablatransferencia.getModel();
         modeloprestamo = (DefaultTableModel) PrestamoMaterial.tableprestamo.getModel();
         modelodptofechaentrada = (DefaultTableModel) entradaMaterial.tabledptofecha.getModel();
         modelodptofechasalida = (DefaultTableModel) salidas.tabledptofecha.getModel();
@@ -471,7 +483,128 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                     }else {
                         JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Agregar al Menos un Registro</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
                     }
-                    break; 
+                    break;
+                case 2: if (numregtrans > 0){
+                            for (int i = 0; i < numregtrans; i++){
+                                int j = 1;
+                                valida = (String) modelotransferencia.getValueAt(i, 3);
+                                if(new ValidarDatos().vacio(valida)){
+                                    contvalida = contvalida + j;
+                                }
+                            }
+                            if (contvalida == numregtrans){
+                                try {
+                                    PreparedStatement ps = null;
+                                    ResultSet rs = null;
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevatransferencia ?");
+                                    ps.setString(1,fechatransferencia);
+                                    rs = ps.executeQuery();
+                                    if (rs.next()) {
+                                        try{
+                                            transferenciaAlmacen.labelnid.setText(rs.getString(1));
+                                                for (int i = 0; i < numregtrans; i++) {
+                                                    idtransferencia = Integer.parseInt(transferenciaAlmacen.labelnid.getText());
+                                                    codmaterial = (String) modelotransferencia.getValueAt(i, 0);
+                                                    nommaterial = (String) modelotransferencia.getValueAt(i, 1);
+                                                    almacenori = (String) modelotransferencia.getValueAt(i, 2);
+                                                    almacendes = (String) modelotransferencia.getValueAt(i, 3);
+                                                    motivo = (String) modelotransferencia.getValueAt(i, 4);
+                                                    arraytrans = new DetalleTransferencias();
+                                                    arraytrans.setidtransferencia(idtransferencia);
+                                                    arraytrans.setcodmaterial(codmaterial);
+                                                    arraytrans.setnommaterial(nommaterial);
+                                                    arraytrans.setalmacenori(almacenori);
+                                                    arraytrans.setalmacendes(almacendes);
+                                                    arraytrans.setmotivo(motivo);
+                                                    transferencias.add(arraytrans);
+                                                }
+                                                try {
+                                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotatransferencia ?,?");
+                                                    ps.setString(1, fechatransferencia);
+                                                    ps.setInt(2, Integer.parseInt(transferenciaAlmacen.labelnid.getText()));
+                                                    rs = ps.executeQuery();
+                                                    while (rs.next()) {
+                                                        //       
+                                                    }
+                                                } catch (java.sql.SQLException ex) {
+                                                    error = ex.getMessage();
+                                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                                }
+                                                for (int i = 0; i < transferencias.size(); i++) {
+                                                    try {
+                                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalletransferencia ?,?,?,?,?,?");
+                                                        ps.setInt(1, transferencias.get(i).getidtransferencia());
+                                                        ps.setString(2, transferencias.get(i).getcodmaterial());
+                                                        ps.setString(3, transferencias.get(i).getnommaterial());
+                                                        ps.setString(4, transferencias.get(i).getalmacenori());
+                                                        ps.setString(5, transferencias.get(i).getalmacendes());
+                                                        ps.setString(6, transferencias.get(i).getmotivo());
+                                                        rs = ps.executeQuery();
+                                                        while (rs.next()) {
+                                                            //       
+                                                        }
+                                                    } catch (SQLException ex) {
+                                                        error = ex.getMessage();
+                                                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                                    }
+                                                }
+                                                for (int i = 0; i < transferencias.size(); i++) {
+                                                    try {
+                                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotatransferencia ?,?,?,?");
+                                                        ps.setString(1, transferencias.get(i).getcodmaterial());
+                                                        ps.setString(2, transferencias.get(i).getalmacenori());
+                                                        ps.setString(3, transferencias.get(i).getalmacendes());
+                                                        ps.setString(4, transferencias.get(i).getmotivo());
+                                                        rs = ps.executeQuery();
+                                                        while (rs.next()) {
+                                                            //       
+                                                        }
+                                                    } catch (java.sql.SQLException ex) {
+                                                        error = ex.getMessage();
+                                                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                                    }
+                                                }
+                                                for (int i = 0; i < transferencias.size(); i++) {
+                                                    try {
+                                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_transferenciamaterial ?,?");
+                                                        ps.setString(1, transferencias.get(i).getcodmaterial());
+                                                        ps.setString(2, transferencias.get(i).getalmacendes());
+                                                        rs = ps.executeQuery();
+                                                        while (rs.next()) {
+                                                            //
+                                                        }
+                                                    } catch (SQLException ex) {
+                                                        error = ex.getMessage();
+                                                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                                    }
+                                                }
+                                                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Transfrencia Ejecutada con Exito </h3></html>",
+                                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                                                try {
+                                                    reportesalmacen.ReporteNotaTransferencia(Integer.parseInt(transferenciaAlmacen.labelnid.getText()));
+                                                } catch (JRException | IOException ex) {
+                                                    Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+                                                }
+                                        }catch (SQLException ex) {
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        }ps.close();    
+                                    }
+                                }catch (SQLException ex) {
+                                    error = ex.getMessage();
+                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);    
+                                }
+                                modelotransferencia.setRowCount(0);
+                                transferenciaAlmacen.labelnid.setText("");
+                            }else{
+                                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Indique el Almacén de Destino</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+                            }    
+                        } else {
+                            JOptionPane.showMessageDialog(null,"<html><h3 style=font-family:Verdana;>Debe Agregar al Menos un Registro</h3></html>",null,JOptionPane.PLAIN_MESSAGE,new Parametros().iconadvertencia);
+                        }    
+                        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+                        break;
+                        
                 case 3: if (numregpres > 0) {
                             for (int i = 0; i < numregpres; i++) {
                                 int j = 1;
