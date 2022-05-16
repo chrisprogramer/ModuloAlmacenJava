@@ -25,7 +25,7 @@
 				<text><![CDATA[Material:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="0" width="136" height="20" uuid="ffe45f7e-8767-4cad-9f44-60d94104a683"/>
+				<reportElement x="65" y="0" width="293" height="20" uuid="ffe45f7e-8767-4cad-9f44-60d94104a683"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="14"/>
 				</textElement>
@@ -46,14 +46,14 @@
 				<textFieldExpression><![CDATA[$F{cod_material}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="216" y="1" width="61" height="20" uuid="b1f11c17-62d9-4982-8335-1002bd506ab1"/>
+				<reportElement x="358" y="1" width="61" height="20" uuid="b1f11c17-62d9-4982-8335-1002bd506ab1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Medida:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="277" y="1" width="136" height="20" uuid="9cd8b704-f11b-4370-b907-b0c649f72b3f"/>
+				<reportElement x="419" y="1" width="136" height="20" uuid="9cd8b704-f11b-4370-b907-b0c649f72b3f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="14"/>
 				</textElement>

@@ -106,7 +106,7 @@
 				<text><![CDATA[Cant.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="177" y="0" width="236" height="29" uuid="bd9f056a-9ab6-44c2-804a-cad9d6d00ae5"/>
+				<reportElement x="177" y="0" width="378" height="29" uuid="bd9f056a-9ab6-44c2-804a-cad9d6d00ae5"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -124,7 +124,7 @@
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="177" y="0" width="236" height="21" uuid="0adcf069-def0-49e7-8d97-1917d07105fe"/>
+				<reportElement x="177" y="0" width="378" height="21" uuid="0adcf069-def0-49e7-8d97-1917d07105fe"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>

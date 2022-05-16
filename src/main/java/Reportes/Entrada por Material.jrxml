@@ -64,7 +64,7 @@
 	<columnHeader>
 		<band height="29" splitType="Stretch">
 			<staticText>
-				<reportElement x="176" y="0" width="236" height="29" uuid="4e65cb41-1287-4220-8b3d-20ecc89b9774"/>
+				<reportElement x="176" y="0" width="379" height="29" uuid="4e65cb41-1287-4220-8b3d-20ecc89b9774"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -138,7 +138,7 @@
 				<textFieldExpression><![CDATA[$F{fecha_entrada}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="176" y="0" width="236" height="21" uuid="df4122ce-3575-435d-9272-585231674a81"/>
+				<reportElement x="176" y="0" width="379" height="21" uuid="df4122ce-3575-435d-9272-585231674a81"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>

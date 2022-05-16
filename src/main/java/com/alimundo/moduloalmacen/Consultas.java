@@ -500,7 +500,7 @@ public class Consultas extends javax.swing.JDialog {
                 this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;
             case ("Salida de Materiales"):
-                switch (seleccionrpt){
+                switch (selecciontiporpt){
                     case ("Por Categoria"):
                         seleccion = this.choicecategorias.getSelectedItem();
                         try {
@@ -545,8 +545,9 @@ public class Consultas extends javax.swing.JDialog {
                         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                         break;    
                 }
-                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                break;
         }
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonaceptarActionPerformed
 
     private void choicetiporptItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choicetiporptItemStateChanged
@@ -722,7 +723,7 @@ public class Consultas extends javax.swing.JDialog {
                             modelomovimientos.setRowCount(0);
                             PreparedStatement ps = null;
                             ResultSet rs = null;
-                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxdepartamentoentradas ?,?.?");
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultaxdepartamentoentradas ?,?,?");
                             ps.setString(1, selecciondpto);
                             ps.setString(2, fechadesde);
                             ps.setString(3, fechahasta);
