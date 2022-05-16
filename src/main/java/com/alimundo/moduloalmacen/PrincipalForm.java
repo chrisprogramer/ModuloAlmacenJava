@@ -158,7 +158,7 @@ public class PrincipalForm extends javax.swing.JFrame {
                 botonayudaActionPerformed(evt);
             }
         });
-        getContentPane().add(botonayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 46, 60, 60));
+        getContentPane().add(botonayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 46, 60, 60));
 
         botonentradamaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/diagram-60_24457.png"))); // NOI18N
         botonentradamaterial.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +199,7 @@ public class PrincipalForm extends javax.swing.JFrame {
                 botonalertasActionPerformed(evt);
             }
         });
-        getContentPane().add(botonalertas, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 46, 60, 60));
+        getContentPane().add(botonalertas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 46, 60, 60));
 
         labelsalir.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         labelsalir.setText("Salir");
@@ -219,11 +219,11 @@ public class PrincipalForm extends javax.swing.JFrame {
 
         labelinfo.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         labelinfo.setText("Información");
-        getContentPane().add(labelinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
+        getContentPane().add(labelinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
 
         labelalertas.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         labelalertas.setText("Alertas");
-        getContentPane().add(labelalertas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+        getContentPane().add(labelalertas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
 
         fondo.setBackground(new java.awt.Color(153, 204, 255));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N

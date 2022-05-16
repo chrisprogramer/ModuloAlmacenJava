@@ -303,7 +303,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
                             }
                         }
                     } else {
-                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Ingresar un Tope Minimo Valido</h3></html>",
+                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Ingresar un Tope Minimo Valido</h3></html>",
                             "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                     }   
                 } else {

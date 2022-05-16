@@ -401,6 +401,7 @@ public class Consultas extends javax.swing.JDialog {
     private void radiobotonentradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobotonentradasMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         modelobusqueda.setRowCount(0);
+        modelomovimientos.setRowCount(0);
         this.textfieldbuscar.setText("");
         this.choicetiporpt.setEnabled(true);
         if ("Por Material".equals(this.choicetiporpt.getSelectedItem())){
@@ -417,6 +418,7 @@ public class Consultas extends javax.swing.JDialog {
     private void radiobotonsalidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobotonsalidasMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         modelobusqueda.setRowCount(0);
+        modelomovimientos.setRowCount(0);
         this.textfieldbuscar.setText("");
         this.choicetiporpt.setEnabled(true);
          if ("Por Material".equals(this.choicetiporpt.getSelectedItem())){
@@ -740,6 +742,7 @@ public class Consultas extends javax.swing.JDialog {
                         }
                         break;
                 }
+                break;
             case ("Salida de Materiales"):
                 switch(seleccionrpt){
                     case("Por Categoria"):
