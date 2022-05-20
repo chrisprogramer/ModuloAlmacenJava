@@ -53,8 +53,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
         choicemedidas = new java.awt.Choice();
         labelalmacen = new javax.swing.JLabel();
         choicealmacenes = new java.awt.Choice();
-        labelcantidad = new javax.swing.JLabel();
-        textfieldcantidad = new javax.swing.JTextField();
         labeldescripcion = new javax.swing.JLabel();
         textfielddescripcion = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
@@ -71,7 +69,8 @@ public class NuevoMaterial extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(509, 461));
+        setMaximumSize(new java.awt.Dimension(509, 429));
+        setMinimumSize(new java.awt.Dimension(509, 429));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
         getContentPane().setLayout(null);
@@ -151,36 +150,26 @@ public class NuevoMaterial extends javax.swing.JDialog {
         getContentPane().add(choicealmacenes);
         choicealmacenes.setBounds(170, 210, 280, 40);
 
-        labelcantidad.setBackground(new java.awt.Color(255, 255, 255));
-        labelcantidad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelcantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelcantidad.setText("Cantidad:");
-        labelcantidad.setOpaque(true);
-        getContentPane().add(labelcantidad);
-        labelcantidad.setBounds(80, 250, 80, 30);
-
-        textfieldcantidad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        textfieldcantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textfieldcantidad.setText("0");
-        textfieldcantidad.setToolTipText("");
-        getContentPane().add(textfieldcantidad);
-        textfieldcantidad.setBounds(170, 250, 80, 30);
-
         labeldescripcion.setBackground(new java.awt.Color(255, 255, 255));
         labeldescripcion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeldescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labeldescripcion.setText("Descripción:");
         labeldescripcion.setOpaque(true);
         getContentPane().add(labeldescripcion);
-        labeldescripcion.setBounds(50, 290, 110, 30);
+        labeldescripcion.setBounds(50, 250, 110, 30);
 
         textfielddescripcion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfielddescripcion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         textfielddescripcion.setOpaque(false);
+        textfielddescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textfielddescripcionActionPerformed(evt);
+            }
+        });
         getContentPane().add(textfielddescripcion);
-        textfielddescripcion.setBounds(170, 290, 300, 30);
+        textfielddescripcion.setBounds(170, 250, 300, 30);
         getContentPane().add(jSeparator3);
-        jSeparator3.setBounds(170, 320, 300, 10);
+        jSeparator3.setBounds(170, 279, 300, 10);
 
         labeltotemin.setBackground(new java.awt.Color(255, 255, 255));
         labeltotemin.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -188,14 +177,14 @@ public class NuevoMaterial extends javax.swing.JDialog {
         labeltotemin.setText("Tope Minimo");
         labeltotemin.setOpaque(true);
         getContentPane().add(labeltotemin);
-        labeltotemin.setBounds(50, 330, 110, 30);
+        labeltotemin.setBounds(50, 290, 110, 30);
 
         textfieldtopemin.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         textfieldtopemin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textfieldtopemin.setText("0");
         textfieldtopemin.setToolTipText("");
         getContentPane().add(textfieldtopemin);
-        textfieldtopemin.setBounds(170, 330, 80, 30);
+        textfieldtopemin.setBounds(170, 290, 80, 30);
 
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/add_paper_plus_insert_append_incorporate_icon_141955.png"))); // NOI18N
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +193,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonaceptar);
-        botonaceptar.setBounds(420, 370, 60, 60);
+        botonaceptar.setBounds(420, 340, 60, 60);
 
         botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/search_look_for_seek_magnifying_glass_lens_icon_141967.png"))); // NOI18N
         botonbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -213,17 +202,17 @@ public class NuevoMaterial extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonbuscar);
-        botonbuscar.setBounds(360, 370, 60, 60);
+        botonbuscar.setBounds(360, 340, 60, 60);
 
         labelbuscar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelbuscar.setText("Buscar");
         getContentPane().add(labelbuscar);
-        labelbuscar.setBounds(370, 430, 50, 16);
+        labelbuscar.setBounds(370, 400, 50, 16);
 
         labelaceptar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelaceptar.setText("Aceptar");
         getContentPane().add(labelaceptar);
-        labelaceptar.setBounds(430, 430, 60, 16);
+        labelaceptar.setBounds(430, 400, 60, 16);
 
         botonmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/edit_pencil_paper_modify_write_icon_141958.png"))); // NOI18N
         botonmodificar.addActionListener(new java.awt.event.ActionListener() {
@@ -232,17 +221,17 @@ public class NuevoMaterial extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonmodificar);
-        botonmodificar.setBounds(300, 370, 60, 60);
+        botonmodificar.setBounds(300, 340, 60, 60);
 
         labelmodificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         labelmodificar.setText("Modificar");
         getContentPane().add(labelmodificar);
-        labelmodificar.setBounds(300, 430, 70, 16);
+        labelmodificar.setBounds(300, 400, 70, 16);
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panelopciones);
-        panelopciones.setBounds(0, 40, 30, 420);
+        panelopciones.setBounds(0, 40, 30, 390);
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -256,7 +245,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelfondo);
-        labelfondo.setBounds(0, 10, 510, 451);
+        labelfondo.setBounds(0, 10, 510, 420);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
@@ -270,25 +259,22 @@ public class NuevoMaterial extends javax.swing.JDialog {
                 null, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
         if (opc == 0) {
             if (validar.vacio(this.textfieldcodigo.getText(), this.texfieldnombre.getText())) {
-                if (ValidarDatos.isNumeric(this.textfieldcantidad.getText()) && validar.ValidaCantidad(Integer.parseInt(this.textfieldcantidad.getText()))){
-                    if (ValidarDatos.isNumeric(this.textfieldtopemin.getText())){
+                    if (ValidarDatos.isNumeric(this.textfieldtopemin.getText()) || this.textfieldtopemin.getText().equals('0')) {
                         try {
-                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardanvomaterial ?,?,?,?,?,?,?,?");
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardanvomaterial ?,?,?,?,?,?,?");
                             ps.setString(1, this.textfieldcodigo.getText());
                             ps.setString(2, this.texfieldnombre.getText());
                             ps.setString(3, this.choicecategorias.getSelectedItem());
                             ps.setString(4, this.choicemedidas.getSelectedItem());
                             ps.setString(5, this.choicealmacenes.getSelectedItem());
-                            ps.setInt(6, Integer.parseInt(this.textfieldcantidad.getText()));
-                            ps.setString(7, this.textfielddescripcion.getText());
-                            ps.setInt(8,Integer.parseInt(this.textfieldtopemin.getText()));
+                            ps.setString(6, this.textfielddescripcion.getText());
+                            ps.setInt(7,Integer.parseInt(this.textfieldtopemin.getText()));
                             rs = ps.executeQuery();
                             while (rs.next()) {
                                 JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Material Guardado con Exito </h3></html>",
                                         null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                                 this.textfieldcodigo.setText(" ");
                                 this.texfieldnombre.setText(" ");
-                                this.textfieldcantidad.setText("0");
                                 this.textfielddescripcion.setText(" ");
                             }
                             ps.close();
@@ -306,10 +292,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Ingresar un Tope Minimo Valido</h3></html>",
                             "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                     }   
-                } else {
-                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Ingresar una Cantidad Valida y mayor a 0</h3></html>",
-                            "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                }
             } else {
                 JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Codigo y Nombre no pueden estar vacios</h3></html>",
                         "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
@@ -351,7 +333,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
                                 null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                         this.textfieldcodigo.setText(" ");
                         this.texfieldnombre.setText(" ");
-                        this.textfieldcantidad.setText("0");
                         this.textfielddescripcion.setText(" ");
                     }
                     ps.close();
@@ -374,6 +355,10 @@ public class NuevoMaterial extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botonmodificarActionPerformed
 
+    private void textfielddescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfielddescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textfielddescripcionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botonaceptar;
@@ -388,7 +373,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labelaceptar;
     private javax.swing.JLabel labelalmacen;
     private javax.swing.JLabel labelbuscar;
-    private javax.swing.JLabel labelcantidad;
     private javax.swing.JLabel labelcategoria;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelcodigo;
@@ -401,7 +385,6 @@ public class NuevoMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labeltotemin;
     private javax.swing.JPanel panelopciones;
     public javax.swing.JTextField texfieldnombre;
-    public javax.swing.JTextField textfieldcantidad;
     public javax.swing.JTextField textfieldcodigo;
     public javax.swing.JTextField textfielddescripcion;
     public javax.swing.JTextField textfieldtopemin;

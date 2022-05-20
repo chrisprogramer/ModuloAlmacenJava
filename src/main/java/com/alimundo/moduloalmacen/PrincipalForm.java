@@ -39,7 +39,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         UIManager.put("OptionPane.background", Color.WHITE);
         UIManager.put("Panel.background", Color.WHITE);
         
-        Reloj reloj = new Reloj(1400,630,140,20);
+        Reloj reloj = new Reloj(1200,630,140,20);
         reloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         reloj.setFont(new java.awt.Font(letra,1,16));
         add(reloj);
@@ -50,7 +50,6 @@ public class PrincipalForm extends javax.swing.JFrame {
         add(fecha);        
 
         initComponents();
-        setSize(1511, 665);
         setResizable(false);
         setLocationRelativeTo(null);
         
@@ -111,8 +110,10 @@ public class PrincipalForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
-        setMinimumSize(new java.awt.Dimension(1511, 665));
+        setMaximumSize(new java.awt.Dimension(1349, 665));
+        setMinimumSize(new java.awt.Dimension(1349, 665));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1349, 665));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 1920, 10));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 1920, 10));
@@ -150,7 +151,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         labeltitulo.setText("MODULO CONTROL DE ALMACEN");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1511, 45));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 45));
 
         botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/informationwebcircularbuttonsymbol_79860.png"))); // NOI18N
         botonayuda.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +229,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         fondo.setBackground(new java.awt.Color(153, 204, 255));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         fondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1510, 664));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 664));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

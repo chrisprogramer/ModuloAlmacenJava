@@ -174,7 +174,6 @@ public class Busqueda extends javax.swing.JDialog {
                     entradamaterial.choicemedidas.select(rs.getString(4));
                     entradamaterial.choicealmacenes.select(rs.getString(5));
                     entradamaterial.textfielddescripcion.setText(rs.getString(6));
-                    entradamaterial.textfieldcantidad.setEditable(false);
                     entradamaterial.textfieldtopemin.setText(String.valueOf(rs.getInt(7)));
                     this.dispose();
                     entradamaterial.botonaceptar.setEnabled(false);

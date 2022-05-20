@@ -76,9 +76,8 @@ public class Alertas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
         colorletra.setForeground(Color.RED);
-         /*(DefaultTableCellRenderer) tablealertas.getColumn(3).getCsetCellRenderer(colorletra); 
-        getTableHeader().getDefaultRenderer())
-                       .setHorizontalAlignment(SwingConstants.CENTER); */
+        tablealertas.getColumnModel().getColumn(3).setCellRenderer(colorletra);
+        
     }
 
     @SuppressWarnings("unchecked")

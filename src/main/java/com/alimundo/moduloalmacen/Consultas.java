@@ -60,7 +60,6 @@ public class Consultas extends javax.swing.JDialog {
 
     public Consultas() {
         initComponents();
-        setSize(1511, 665);
         setResizable(false);
         setLocationRelativeTo(null);
         setModal(true);
@@ -89,54 +88,54 @@ public class Consultas extends javax.swing.JDialog {
         modelomovimientos.setColumnIdentifiers(new Object[]{"", "", "", "", "", ""});
 
         if (tablebuscarmaterial.getColumnModel().getColumnCount() > 0) {
-            tablebuscarmaterial.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>Codigo</h3></html>");
+            tablebuscarmaterial.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>Cod.</h3></html>");
             tablebuscarmaterial.getColumnModel().getColumn(0).setPreferredWidth(250);
             tablebuscarmaterial.getColumnModel().getColumn(0).setMaxWidth(250);
             tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(false);
-            tablebuscarmaterial.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>");
+            tablebuscarmaterial.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Material</h3></html>");
             tablebuscarmaterial.getColumnModel().getColumn(1).setPreferredWidth(900);
             tablebuscarmaterial.getColumnModel().getColumn(1).setMaxWidth(900);
             tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
             tablebuscarmaterial.getColumnModel().getColumn(2).setHeaderValue("<html><h3 style=font-family:Medida;>Medida</h3></html>");
-            tablebuscarmaterial.getColumnModel().getColumn(2).setPreferredWidth(400);
-            tablebuscarmaterial.getColumnModel().getColumn(2).setMaxWidth(400);
+            tablebuscarmaterial.getColumnModel().getColumn(2).setPreferredWidth(300);
+            tablebuscarmaterial.getColumnModel().getColumn(2).setMaxWidth(300);
             tablebuscarmaterial.getColumnModel().getColumn(2).setResizable(false);
-            tablebuscarmaterial.getColumnModel().getColumn(3).setHeaderValue("<html><h3 style=font-family:Verdana;>Cantidad</h3></html>");
-            tablebuscarmaterial.getColumnModel().getColumn(3).setPreferredWidth(250);
-            tablebuscarmaterial.getColumnModel().getColumn(3).setMaxWidth(250);
+            tablebuscarmaterial.getColumnModel().getColumn(3).setHeaderValue("<html><h3 style=font-family:Verdana;>Cant.</h3></html>");
+            tablebuscarmaterial.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tablebuscarmaterial.getColumnModel().getColumn(3).setMaxWidth(150);
             tablebuscarmaterial.getColumnModel().getColumn(3).setResizable(false);
             tablebuscarmaterial.getColumnModel().getColumn(4).setHeaderValue("<html><h3 style=font-family:Verdana;>Precio</h3></html>");
-            tablebuscarmaterial.getColumnModel().getColumn(4).setPreferredWidth(250);
-            tablebuscarmaterial.getColumnModel().getColumn(4).setMaxWidth(250);
+            tablebuscarmaterial.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tablebuscarmaterial.getColumnModel().getColumn(4).setMaxWidth(200);
             tablebuscarmaterial.getColumnModel().getColumn(4).setResizable(false);
         }
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
         this.tablebuscarmaterial.setEnabled(false);
 
         if (tablemovimientos.getColumnModel().getColumnCount() > 0) {
-            tablemovimientos.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>N°de Nota</h3></html>");
-            tablemovimientos.getColumnModel().getColumn(0).setPreferredWidth(250);
-            tablemovimientos.getColumnModel().getColumn(0).setMaxWidth(250);
+            tablemovimientos.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>Nota</h3></html>");
+            tablemovimientos.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tablemovimientos.getColumnModel().getColumn(0).setMaxWidth(150);
             tablemovimientos.getColumnModel().getColumn(0).setResizable(false);
             tablemovimientos.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Fecha</h3></html>");
             tablemovimientos.getColumnModel().getColumn(1).setPreferredWidth(300);
             tablemovimientos.getColumnModel().getColumn(1).setMaxWidth(300);
             tablemovimientos.getColumnModel().getColumn(1).setResizable(false);
-            tablemovimientos.getColumnModel().getColumn(2).setHeaderValue("<html><h3 style=font-family:Verdana;>Codigo</h3></html>");
+            tablemovimientos.getColumnModel().getColumn(2).setHeaderValue("<html><h3 style=font-family:Verdana;>Cod.</h3></html>");
             tablemovimientos.getColumnModel().getColumn(2).setPreferredWidth(250);
             tablemovimientos.getColumnModel().getColumn(2).setMaxWidth(250);
             tablemovimientos.getColumnModel().getColumn(2).setResizable(false);
             tablemovimientos.getColumnModel().getColumn(3).setHeaderValue("<html><h3 style=font-family:Verdana;>Material</h3></html>");
-            tablemovimientos.getColumnModel().getColumn(3).setPreferredWidth(1000);
-            tablemovimientos.getColumnModel().getColumn(3).setMaxWidth(1000);
+            tablemovimientos.getColumnModel().getColumn(3).setPreferredWidth(650);
+            tablemovimientos.getColumnModel().getColumn(3).setMaxWidth(650);
             tablemovimientos.getColumnModel().getColumn(3).setResizable(false);
             tablemovimientos.getColumnModel().getColumn(4).setHeaderValue("<html><h3 style=font-family:Verdana;>Cant.</h3></html>");
-            tablemovimientos.getColumnModel().getColumn(4).setPreferredWidth(200);
-            tablemovimientos.getColumnModel().getColumn(4).setMaxWidth(200);
+            tablemovimientos.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tablemovimientos.getColumnModel().getColumn(4).setMaxWidth(150);
             tablemovimientos.getColumnModel().getColumn(4).setResizable(false);
             tablemovimientos.getColumnModel().getColumn(5).setHeaderValue("<html><h3 style=font-family:Verdana;>Descripción</h3></html>");
-            tablemovimientos.getColumnModel().getColumn(5).setPreferredWidth(900);
-            tablemovimientos.getColumnModel().getColumn(5).setMaxWidth(900);
+            tablemovimientos.getColumnModel().getColumn(5).setPreferredWidth(650);
+            tablemovimientos.getColumnModel().getColumn(5).setMaxWidth(650);
             tablemovimientos.getColumnModel().getColumn(5).setResizable(false);
         }
         tablemovimientos.getTableHeader().setReorderingAllowed(false);
@@ -185,8 +184,11 @@ public class Consultas extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1349, 665));
+        setMinimumSize(new java.awt.Dimension(1349, 665));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1349, 665));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -195,7 +197,7 @@ public class Consultas extends javax.swing.JDialog {
                 labelcerrarMouseClicked(evt);
             }
         });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1473, 4, -1, -1));
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 4, -1, -1));
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -203,7 +205,7 @@ public class Consultas extends javax.swing.JDialog {
         labeltitulo.setText("CONSULTAS");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1510, 40));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 40));
 
         grupobotonreportes.add(radiobotonconsolidado);
         radiobotonconsolidado.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -214,7 +216,7 @@ public class Consultas extends javax.swing.JDialog {
                 radiobotonconsolidadoMouseClicked(evt);
             }
         });
-        getContentPane().add(radiobotonconsolidado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        getContentPane().add(radiobotonconsolidado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 63, -1, -1));
 
         grupobotonreportes.add(radiobotonexistencia);
         radiobotonexistencia.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -236,7 +238,7 @@ public class Consultas extends javax.swing.JDialog {
                 radiobotonentradasMouseClicked(evt);
             }
         });
-        getContentPane().add(radiobotonentradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, -1, -1));
+        getContentPane().add(radiobotonentradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 65, -1, -1));
 
         grupobotonreportes.add(radiobotonsalidas);
         radiobotonsalidas.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -247,7 +249,7 @@ public class Consultas extends javax.swing.JDialog {
                 radiobotonsalidasMouseClicked(evt);
             }
         });
-        getContentPane().add(radiobotonsalidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 90, -1, -1));
+        getContentPane().add(radiobotonsalidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, -1, -1));
 
         choicetiporpt.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         choicetiporpt.addItemListener(new java.awt.event.ItemListener() {
@@ -255,13 +257,13 @@ public class Consultas extends javax.swing.JDialog {
                 choicetiporptItemStateChanged(evt);
             }
         });
-        getContentPane().add(choicetiporpt, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, 260, 30));
+        getContentPane().add(choicetiporpt, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 260, 30));
 
         choicecategorias.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(choicecategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 160, 260, 30));
+        getContentPane().add(choicecategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 162, 260, 30));
 
         choicedepartamentos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(choicedepartamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 160, 260, 30));
+        getContentPane().add(choicedepartamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 190, 260, 30));
 
         tablemovimientos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablemovimientos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -269,7 +271,7 @@ public class Consultas extends javax.swing.JDialog {
         tablemovimientos.setShowGrid(true);
         jScrollPane2.setViewportView(tablemovimientos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 790, 310));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 670, 310));
 
         botonbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
         botonbuscar.setOpaque(false);
@@ -278,7 +280,7 @@ public class Consultas extends javax.swing.JDialog {
                 botonbuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 189, 60, 60));
+        getContentPane().add(botonbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 170, 60, 60));
 
         botonxmaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
         botonxmaterial.setOpaque(false);
@@ -287,7 +289,7 @@ public class Consultas extends javax.swing.JDialog {
                 botonxmaterialActionPerformed(evt);
             }
         });
-        getContentPane().add(botonxmaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 60, 60));
+        getContentPane().add(botonxmaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, 60, 60));
 
         botongastos.setBackground(new java.awt.Color(0, 0, 0));
         botongastos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -298,7 +300,7 @@ public class Consultas extends javax.swing.JDialog {
                 botongastosActionPerformed(evt);
             }
         });
-        getContentPane().add(botongastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 200, 180, 40));
+        getContentPane().add(botongastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 180, 180, 40));
 
         textfieldbuscar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfieldbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -306,7 +308,7 @@ public class Consultas extends javax.swing.JDialog {
                 textfieldbuscarKeyReleased(evt);
             }
         });
-        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 630, 30));
+        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 590, 30));
 
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -315,13 +317,13 @@ public class Consultas extends javax.swing.JDialog {
         tablebuscarmaterial.setShowGrid(true);
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 630, 300));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 590, 300));
 
         datedesde.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(datedesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 130, 210, 30));
+        getContentPane().add(datedesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, 210, 30));
 
         datehasta.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(datehasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 130, 210, 30));
+        getContentPane().add(datehasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 130, 210, 30));
 
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/file_pdf_icon_188248.png"))); // NOI18N
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -329,39 +331,39 @@ public class Consultas extends javax.swing.JDialog {
                 botonaceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 575, 60, 60));
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 580, 60, 60));
 
         labelborde.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelborde, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 570, 60));
 
         labelborde2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(labelborde2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 470, 60));
+        getContentPane().add(labelborde2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 470, 60));
 
         labeldesde.setBackground(new java.awt.Color(255, 255, 255));
         labeldesde.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labeldesde.setLabelFor(datedesde);
         labeldesde.setText("Desde:");
-        getContentPane().add(labeldesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 131, -1, -1));
+        getContentPane().add(labeldesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 135, -1, -1));
 
         labelhasta.setBackground(new java.awt.Color(255, 255, 255));
         labelhasta.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelhasta.setText("Hasta:");
-        getContentPane().add(labelhasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 131, -1, -1));
+        getContentPane().add(labelhasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 135, -1, -1));
 
         labelcategorias.setBackground(new java.awt.Color(255, 255, 255));
         labelcategorias.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelcategorias.setLabelFor(choicecategorias);
         labelcategorias.setText("Categorias:");
-        getContentPane().add(labelcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 164, -1, -1));
+        getContentPane().add(labelcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 168, -1, -1));
 
         labeldptos.setBackground(new java.awt.Color(255, 255, 255));
         labeldptos.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labeldptos.setLabelFor(choicecategorias);
         labeldptos.setText("Departamentos:");
-        getContentPane().add(labeldptos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 164, -1, -1));
+        getContentPane().add(labeldptos, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 195, -1, -1));
 
         labelborde1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(labelborde1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 810, 520));
+        getContentPane().add(labelborde1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, 710, 520));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -370,7 +372,7 @@ public class Consultas extends javax.swing.JDialog {
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1510, 664));
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 664));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
