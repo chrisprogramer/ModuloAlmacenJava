@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\AdminSrv\\Documents\\NetBeansProjects\\ModuloAlmacen\\src\\main\\java\\Reportes\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["\\\\192.168.1.100\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="idnotadevprestamo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
