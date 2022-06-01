@@ -283,7 +283,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                             ps.setInt(1, devprestamos.get(i).getiddevprestamo());
                             ps.setString(2, devprestamos.get(i).getcodmaterial());
                             ps.setString(3, devprestamos.get(i).getnommaterial());
-                            ps.setInt(4, devprestamos.get(i).getcant());
+                            ps.setDouble(4, devprestamos.get(i).getcant());
                             rs = ps.executeQuery();
                             while (rs.next()) {
                                 //       
@@ -297,7 +297,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                         try {
                             ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotadevprestamo ?,?");
                             ps.setString(1, devprestamos.get(i).getcodmaterial());
-                            ps.setInt(2, devprestamos.get(i).getcant());
+                            ps.setDouble(2, devprestamos.get(i).getcant());
                             rs = ps.executeQuery();
                             while (rs.next()) {
                                 //       

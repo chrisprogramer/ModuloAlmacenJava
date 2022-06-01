@@ -165,7 +165,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_entrada}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="###0.00">
 				<reportElement x="137" y="0" width="39" height="21" uuid="81ab226f-13fd-442c-8565-814449b9a1ba"/>
 				<box>
 					<pen lineWidth="1.0"/>

@@ -234,7 +234,7 @@ public class PrestamoMaterial extends javax.swing.JPanel {
 
     private void tablebuscarmaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablebuscarmaterialMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        int cantidad;
+        double cantidad;
         modelo = (DefaultTableModel) tablebuscarmaterial.getModel();
         if (evt.getClickCount() == 2) {
             seleccion = String.valueOf(modelobusqueda.getValueAt(tablebuscarmaterial.getSelectedRow(), 0));
@@ -245,7 +245,7 @@ public class PrestamoMaterial extends javax.swing.JPanel {
                 ps.setString(1, seleccion);
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    cantidad = rs.getInt(1);
+                    cantidad = rs.getDouble(1);
                     if(cantidad > 0){
                         try {
                             ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosmaterial ?");

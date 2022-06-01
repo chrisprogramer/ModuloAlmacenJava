@@ -16,7 +16,7 @@ public class DetalleSalidas {
     private String categoria;
     private String medida;
     private String almacen;
-    private int cant;
+    private double cant;
     private String descripcion;
     
     public void setidsalida (int idsalida){
@@ -67,11 +67,11 @@ public class DetalleSalidas {
         return almacen;
     }
     
-    public void setcant (int cant) {
+    public void setcant (double cant) {
         this.cant = cant;
     }
 
-    public int getcant() {
+    public double getcant() {
         return cant;
     }
     

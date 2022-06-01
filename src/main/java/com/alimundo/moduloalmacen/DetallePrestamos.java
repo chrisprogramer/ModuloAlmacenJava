@@ -12,7 +12,7 @@ public class DetallePrestamos {
     private int idprestamo;
     private String codmaterial;
     private String nommaterial;
-    private int cant;
+    private double cant;
     private String motivo;
     private String responsable;
 
@@ -40,11 +40,11 @@ public class DetallePrestamos {
         return nommaterial;
     }
    
-    public void setcant (int cant) {
+    public void setcant (double cant) {
         this.cant = cant;
     }
 
-    public int getcant() {
+    public double getcant() {
         return cant;
     }
 

@@ -16,7 +16,7 @@
 	<field name="fecha_entrada" class="java.sql.Date"/>
 	<field name="cod_material" class="java.lang.String"/>
 	<field name="nom_material" class="java.lang.String"/>
-	<field name="cant" class="java.lang.Integer"/>
+	<field name="cant" class="java.math.BigDecimal"/>
 	<field name="descripcion" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -221,7 +221,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_entrada}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="###0.00">
 				<reportElement x="401" y="0" width="39" height="21" uuid="a902f729-510b-4614-ac62-4b1e62504d6a"/>
 				<box>
 					<pen lineWidth="1.0"/>

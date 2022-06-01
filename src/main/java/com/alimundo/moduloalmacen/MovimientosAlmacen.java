@@ -176,7 +176,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
         String responsable;
         String almacenori;
         String almacendes;
-        int cant;
+        double cant;
         double precio;
         DetalleEntradas arrayent; 
         ArrayList<DetalleEntradas> entrada;
@@ -230,7 +230,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                             categoria = (String) modeloentrada.getValueAt(i, 2);
                                             medida = (String) modeloentrada.getValueAt(i, 3);
                                             almacen = (String) modeloentrada.getValueAt(i, 4);
-                                            cant = Integer.parseInt((String) modeloentrada.getValueAt(i, 5));
+                                            cant = Double.parseDouble((String) modeloentrada.getValueAt(i, 5));
                                             try {
                                                 precio = Double.parseDouble((String) modeloentrada.getValueAt(i, 6));
                                             } catch (NullPointerException ex) {
@@ -273,7 +273,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                     ps.setString(4, entrada.get(i).getcategoria());
                                                     ps.setString(5, entrada.get(i).getmedida());
                                                     ps.setString(6, entrada.get(i).getalmacen());
-                                                    ps.setInt(7, entrada.get(i).getcant());
+                                                    ps.setDouble(7, entrada.get(i).getcant());
                                                     ps.setDouble(8, entrada.get(i).getprecio());
                                                     ps.setString(9, entrada.get(i).getdescripcion());
                                                     ps.setString(10, entrada.get(i).getnumfactura());
@@ -293,7 +293,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                     ps.setString(2, entrada.get(i).getcategoria());
                                                     ps.setString(3, entrada.get(i).getmedida());
                                                     ps.setString(4, entrada.get(i).getalmacen());
-                                                    ps.setInt(5, entrada.get(i).getcant());
+                                                    ps.setDouble(5, entrada.get(i).getcant());
                                                     ps.setDouble(6, entrada.get(i).getprecio());
                                                     ps.setString(7, entrada.get(i).getdescripcion());
                                                     rs = ps.executeQuery();
@@ -309,7 +309,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                 try {
                                                     ps = con.EstablecerConexion().prepareStatement("EXEC spu_sumaexistenciamaterial ?,?");
                                                     ps.setString(1, entrada.get(i).getcodmaterial());
-                                                    ps.setInt(2, entrada.get(i).getcant());
+                                                    ps.setDouble(2, entrada.get(i).getcant());
                                                     rs = ps.executeQuery();
                                                     while (rs.next()) {
                                                         //
@@ -372,7 +372,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                             categoria = (String) modelosalida.getValueAt(i, 2);
                                             medida = (String) modelosalida.getValueAt(i, 3);
                                             almacen = (String) modelosalida.getValueAt(i, 4);
-                                            cant = Integer.parseInt((String) modelosalida.getValueAt(i, 5));
+                                            cant = Double.parseDouble((String) modelosalida.getValueAt(i, 5));
                                             descripcion = (String) modelosalida.getValueAt(i, 6);
                                             arraysal = new DetalleSalidas();
                                             arraysal.setidsalida(idsalida);
@@ -407,7 +407,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                     ps.setString(4, salida.get(i).getcategoria());
                                                     ps.setString(5, salida.get(i).getmedida());
                                                     ps.setString(6, salida.get(i).getalmacen());
-                                                    ps.setInt(7, salida.get(i).getcant());
+                                                    ps.setDouble(7, salida.get(i).getcant());
                                                     ps.setString(8, salida.get(i).getdescripcion());
                                                     rs = ps.executeQuery();
                                                     while (rs.next()) {
@@ -425,7 +425,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                     ps.setString(2, salida.get(i).getcategoria());
                                                     ps.setString(3, salida.get(i).getmedida());
                                                     ps.setString(4, salida.get(i).getalmacen());
-                                                    ps.setInt(5, salida.get(i).getcant());
+                                                    ps.setDouble(5, salida.get(i).getcant());
                                                     ps.setString(6, salida.get(i).getdescripcion());
                                                     rs = ps.executeQuery();
                                                     while (rs.next()) {
@@ -440,7 +440,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                 try {
                                                     ps = con.EstablecerConexion().prepareStatement("EXEC spu_restaexistenciamaterial ?,?");
                                                     ps.setString(1, salida.get(i).getcodmaterial());
-                                                    ps.setInt(2, salida.get(i).getcant());
+                                                    ps.setDouble(2, salida.get(i).getcant());
                                                     rs = ps.executeQuery();
                                                     while (rs.next()) {
                                                         //
@@ -629,7 +629,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                 idprestamo = Integer.parseInt(PrestamoMaterial.labelnid.getText());
                                                 codmaterial = (String) modeloprestamo.getValueAt(i, 0);
                                                 nommaterial = (String) modeloprestamo.getValueAt(i, 1);
-                                                cant = Integer.parseInt((String) modeloprestamo.getValueAt(i, 2));
+                                                cant = Double.parseDouble((String) modeloprestamo.getValueAt(i, 2));
                                                 motivo = (String) modeloprestamo.getValueAt(i, 3);
                                                 responsable = (String) modeloprestamo.getValueAt(i, 4);
                                                 arrayprestamos = new DetallePrestamos();
@@ -660,7 +660,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                     ps.setInt(1, prestamos.get(i).getidprestamo());
                                                     ps.setString(2, prestamos.get(i).getcodmaterial());
                                                     ps.setString(3, prestamos.get(i).getnommaterial());
-                                                    ps.setInt(4, prestamos.get(i).getcant());
+                                                    ps.setDouble(4, prestamos.get(i).getcant());
                                                     ps.setString(5, prestamos.get(i).getmotivo());
                                                     ps.setString(6, prestamos.get(i).getresponsable());
                                                     rs = ps.executeQuery();
@@ -676,7 +676,7 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                                 try {
                                                     ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotaprestamo ?,?,?,?");
                                                     ps.setString(1, prestamos.get(i).getcodmaterial());
-                                                    ps.setInt(2, prestamos.get(i).getcant());
+                                                    ps.setDouble(2, prestamos.get(i).getcant());
                                                     ps.setString(3, prestamos.get(i).getmotivo());
                                                     ps.setString(4, prestamos.get(i).getresponsable());
                                                     rs = ps.executeQuery();

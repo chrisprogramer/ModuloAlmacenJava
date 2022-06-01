@@ -142,7 +142,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nom_material}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0">
+			<textField pattern="###0.00">
 				<reportElement x="495" y="0" width="60" height="16" uuid="b568c0bb-0b0d-4b98-b1a0-f15d346d536a"/>
 				<box>
 					<pen lineWidth="1.0"/>

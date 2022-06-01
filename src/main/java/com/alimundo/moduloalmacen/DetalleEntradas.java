@@ -16,7 +16,7 @@ public class DetalleEntradas {
     private String categoria;
     private String medida;
     private String almacen;
-    private int cant;
+    private double cant;
     private double precio;
     private String descripcion;
     private String numfactura;
@@ -69,11 +69,11 @@ public class DetalleEntradas {
         return almacen;
     }
     
-    public void setcant (int cant) {
+    public void setcant (double cant) {
         this.cant = cant;
     }
 
-    public int getcant() {
+    public double getcant() {
         return cant;
     }
     

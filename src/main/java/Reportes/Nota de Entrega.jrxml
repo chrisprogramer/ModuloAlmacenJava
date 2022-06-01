@@ -36,7 +36,7 @@
 				<textElement>
 					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nota de Entrega de Almacén]]></text>
+				<text><![CDATA[Nota de Entrada de Almacén]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="474" y="3" width="78" height="25" forecolor="#CC0000" uuid="df37e5eb-2c96-42d1-b165-bf2560e2a57b"/>
@@ -240,7 +240,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Almacen}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0">
+			<textField pattern="###0.00">
 				<reportElement x="413" y="0" width="39" height="16" uuid="974d2518-2f4f-4967-8a18-cd6ddf3bfb02"/>
 				<box>
 					<pen lineWidth="1.0"/>

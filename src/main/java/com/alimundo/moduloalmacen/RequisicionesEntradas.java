@@ -140,7 +140,7 @@ public class RequisicionesEntradas extends javax.swing.JDialog{
             String categoria;
             String medida;
             String almacen;
-            int cant;
+            double cant;
             String dpto;
             String fecha;
             seleccionrow = tablerequisiciones.getSelectedRow();
@@ -157,7 +157,7 @@ public class RequisicionesEntradas extends javax.swing.JDialog{
                     categoria = rs.getString(3);
                     medida = rs.getString(4);
                     almacen = rs.getString(5);
-                    cant = rs.getInt(6);
+                    cant = rs.getDouble(6);
                     movimientos.entradaMaterial.modeloentrada.addRow(new Object[]{codigo, nommat, categoria, medida,almacen,String.valueOf(cant)});
                 }
                 ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornafechadptorequisiciones ?");

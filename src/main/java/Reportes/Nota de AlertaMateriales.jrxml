@@ -114,7 +114,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tope_min}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0">
+			<textField pattern="###0.00">
 				<reportElement x="360" y="0" width="113" height="20" uuid="3c909391-2d1d-4ad1-ad72-1d382f7d8932"/>
 				<box>
 					<pen lineWidth="1.0"/>

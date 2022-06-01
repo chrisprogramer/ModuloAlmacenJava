@@ -125,7 +125,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0">
+			<textField pattern="###0.00">
 				<reportElement x="506" y="0" width="46" height="16" uuid="974d2518-2f4f-4967-8a18-cd6ddf3bfb02"/>
 				<box>
 					<pen lineWidth="1.0"/>

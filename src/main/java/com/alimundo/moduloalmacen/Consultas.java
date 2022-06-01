@@ -630,7 +630,7 @@ public class Consultas extends javax.swing.JDialog {
                 }else{
                     this.botonxmaterial.setEnabled(true);
                 }
-                modelobusqueda.addRow(new Object[]{rs.getString(1), rs.getString(2),rs.getString(3), rs.getInt(4), rs.getFloat(5)});
+                modelobusqueda.addRow(new Object[]{rs.getString(1), rs.getString(2),rs.getString(3), rs.getFloat(4), rs.getFloat(5)});
             }
             if (!bandera) {
                 this.botonxmaterial.setEnabled(false);
@@ -686,7 +686,7 @@ public class Consultas extends javax.swing.JDialog {
                             while (rs.next()) {
                                 bandera = true;
                                 this.botonaceptar.setEnabled(true);
-                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                             }
                             if (!bandera) {
                                 this.botonaceptar.setEnabled(false);
@@ -709,7 +709,7 @@ public class Consultas extends javax.swing.JDialog {
                             while (rs.next()) {
                                 bandera = true;
                                 this.botonaceptar.setEnabled(true);
-                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                             }
                             if (!bandera) {
                                 this.botonaceptar.setEnabled(false);
@@ -733,7 +733,7 @@ public class Consultas extends javax.swing.JDialog {
                             while(rs.next()){
                                 bandera = true;
                                 this.botonaceptar.setEnabled(true);
-                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                             }
                             if (!bandera) {
                                 this.botonaceptar.setEnabled(false);
@@ -762,7 +762,7 @@ public class Consultas extends javax.swing.JDialog {
                             while (rs.next()) {
                                 bandera = true;
                                 this.botonaceptar.setEnabled(true);
-                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                             }
                             if (!bandera) {
                                 this.botonaceptar.setEnabled(false);
@@ -786,7 +786,7 @@ public class Consultas extends javax.swing.JDialog {
                                 bandera = true;
                                 this.botonaceptar.setEnabled(true);
                                 this.botongastos.setEnabled(true);
-                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                             }
                             if (!bandera) {
                                 this.botonaceptar.setEnabled(false);
@@ -810,7 +810,7 @@ public class Consultas extends javax.swing.JDialog {
                             while (rs.next()) {
                                 bandera = true;
                                 this.botonaceptar.setEnabled(true);
-                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                                modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                             }
                             if (!bandera) {
                                 this.botonaceptar.setEnabled(false);
@@ -852,7 +852,7 @@ public class Consultas extends javax.swing.JDialog {
                     while (rs.next()) {
                         this.botonaceptar.setEnabled(true);
                         bandera = true;
-                        modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                        modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                     }
                     if (!bandera) {
                         this.botonaceptar.setEnabled(false);
@@ -876,7 +876,7 @@ public class Consultas extends javax.swing.JDialog {
                     while (rs.next()) {
                         this.botonaceptar.setEnabled(true);
                         bandera = true;
-                        modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)});
+                        modelomovimientos.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6)});
                     }
                     if (!bandera) {
                         this.botonaceptar.setEnabled(false);
