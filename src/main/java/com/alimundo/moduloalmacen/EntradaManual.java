@@ -7,15 +7,20 @@ package com.alimundo.moduloalmacen;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -130,11 +135,9 @@ public class EntradaManual extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1232, 571));
         setMinimumSize(new java.awt.Dimension(1232, 571));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1232, 571));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -240,6 +243,11 @@ public class EntradaManual extends javax.swing.JDialog {
         getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 1170, 290));
 
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
+        botonaceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonaceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 504, 60, 60));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
@@ -317,6 +325,171 @@ public class EntradaManual extends javax.swing.JDialog {
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_tablebuscarmaterialMouseClicked
+
+    private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
+        int identrada;
+        String codmaterial;
+        String nommaterial;
+        String categoria;
+        String medida;
+        String almacen;
+        String descripcion;
+        String nfactura;
+        double cant;
+        double precio;
+        DetalleEntradas arrayent; 
+        ArrayList<DetalleEntradas> entrada;
+        entrada = new ArrayList<>();
+        entrada.clear();
+                
+        Object[] textoOpciones = {"Si", "No"};
+        int opc = JOptionPane.showOptionDialog(null, "<html><h3 style=font-family:Verdana New;>¿Esta Seguro que Desea Generar la Entrada?</h3></html>",
+                null, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
+        if (opc == 0) {
+            int numregent = tableentradas.getRowCount();
+            fechaentrada = dateformat.format(this.date.getDate());
+            if (numregent > 0) {
+                for (int i = 0; i < numregent; i++) {
+                    int j = 1;
+                    valida = (String) modeloentrada.getValueAt(i, 5);
+                    if (ValidarDatos.isNumeric(valida)) {
+                        contvalida = contvalida + j;
+                    }
+                }
+                if (contvalida == numregent) {
+                    try {
+                        PreparedStatement ps = null;
+                        ResultSet rs = null;
+                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevaentrada ?,?");
+                        ps.setString(1, fechaentrada);
+                        ps.setString(2, (String) this.jComboBoxdpto.getSelectedItem());
+                        rs = ps.executeQuery();
+                        if (rs.next()) {
+                            try {
+                                this.labelnid.setText(rs.getString(1));
+                                for (int i = 0; i < numregent; i++) {
+                                    identrada = Integer.parseInt(this.labelnid.getText());
+                                    codmaterial = (String) modeloentrada.getValueAt(i, 0);
+                                    nommaterial = (String) modeloentrada.getValueAt(i, 1);
+                                    categoria = (String) modeloentrada.getValueAt(i, 2);
+                                    medida = (String) modeloentrada.getValueAt(i, 3);
+                                    almacen = (String) modeloentrada.getValueAt(i, 4);
+                                    cant = Double.parseDouble((String) modeloentrada.getValueAt(i, 5));
+                                    try {
+                                        precio = Double.parseDouble((String) modeloentrada.getValueAt(i, 6));
+                                    } catch (NullPointerException ex) {
+                                        precio = 0.00;
+                                    }
+                                    descripcion = (String) modeloentrada.getValueAt(i, 7);
+                                    nfactura = (String) modeloentrada.getValueAt(i, 8);
+                                    arrayent = new DetalleEntradas();
+                                    arrayent.setidentrada(identrada);
+                                    arrayent.setcodmaterial(codmaterial);
+                                    arrayent.setnommaterial(nommaterial);
+                                    arrayent.setcategoria(categoria);
+                                    arrayent.setmedida(medida);
+                                    arrayent.setalmacen(almacen);
+                                    arrayent.setcant(cant);
+                                    arrayent.setprecio(precio);
+                                    arrayent.setdescripcion(descripcion);
+                                    arrayent.setnumfactura(nfactura);
+                                    entrada.add(arrayent);
+                                }
+                                    try {
+                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaentrada ?,?,?");
+                                        ps.setString(1, (String) fechaentrada);
+                                        ps.setString(2, (String)this.jComboBoxdpto.getSelectedItem());
+                                        ps.setInt(3, Integer.parseInt(this.labelnid.getText()));
+                                        rs = ps.executeQuery();
+                                        while (rs.next()) {
+                                            //       
+                                        }
+                                    } catch (java.sql.SQLException ex) {
+                                        error = ex.getMessage();
+                                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                    }
+                                    for (int i = 0; i < entrada.size(); i++) {
+                                        try {
+                                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetalleentrada ?,?,?,?,?,?,?,?,?,?");
+                                            ps.setInt(1, entrada.get(i).getidentrada());
+                                            ps.setString(2, entrada.get(i).getcodmaterial());
+                                            ps.setString(3, entrada.get(i).getnommaterial());
+                                            ps.setString(4, entrada.get(i).getcategoria());
+                                            ps.setString(5, entrada.get(i).getmedida());
+                                            ps.setString(6, entrada.get(i).getalmacen());
+                                            ps.setDouble(7, entrada.get(i).getcant());
+                                            ps.setDouble(8, entrada.get(i).getprecio());
+                                            ps.setString(9, entrada.get(i).getdescripcion());
+                                            ps.setString(10, entrada.get(i).getnumfactura());
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                //       
+                                            }
+                                        } catch (SQLException ex) {
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        }
+                                    }
+                                    for (int i = 0; i < entrada.size(); i++) {
+                                        try {
+                                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotaentrada ?,?,?,?,?,?,?");
+                                            ps.setString(1, entrada.get(i).getcodmaterial());
+                                            ps.setString(2, entrada.get(i).getcategoria());
+                                            ps.setString(3, entrada.get(i).getmedida());
+                                            ps.setString(4, entrada.get(i).getalmacen());
+                                            ps.setDouble(5, entrada.get(i).getcant());
+                                            ps.setDouble(6, entrada.get(i).getprecio());
+                                            ps.setString(7, entrada.get(i).getdescripcion());
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                //       
+                                            }
+                                        } catch (java.sql.SQLException ex) {
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        }
+                                    }
+                                    for (int i = 0; i < entrada.size(); i++) {
+                                        try {
+                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_sumaexistenciamaterial ?,?");
+                                            ps.setString(1, entrada.get(i).getcodmaterial());
+                                            ps.setDouble(2, entrada.get(i).getcant());
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                //
+                                            }
+                                        } catch (SQLException ex) {
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        }
+                                    }
+                                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Entrada Ejecutada con Exito </h3></html>",
+                                                null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                                        try {
+                                            reportesalmacen.ReporteNotaEntrega(Integer.parseInt(entradaMaterial.labelnid.getText()), Integer.parseInt(entradaMaterial.labelnid.getText()));
+                                        } catch (JRException | IOException ex) {
+                                            Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                            } catch (SQLException ex) {
+                                error = ex.getMessage();
+                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                            }        
+                        }
+                    }catch (SQLException ex) {
+                        error = ex.getMessage();
+                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Ingrese una Cantidad Valida y Mayor a 0</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+                }    
+                modeloentrada.setRowCount(0);
+                modelodptofechaentrada.setRowCount(0);
+                entradaMaterial.labelnid.setText("");
+            }else {
+                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Agregar al Menos un Registro</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+            }
+        }    
+    }//GEN-LAST:event_botonaceptarActionPerformed
 
     /**
      * @param args the command line arguments
