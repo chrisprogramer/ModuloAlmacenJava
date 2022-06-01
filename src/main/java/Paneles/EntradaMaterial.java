@@ -5,6 +5,7 @@
 package Paneles;
 
 import com.alimundo.moduloalmacen.Conexion;
+import com.alimundo.moduloalmacen.EntradaManual;
 import com.alimundo.moduloalmacen.Parametros;
 import com.alimundo.moduloalmacen.RequisicionesEntradas;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -96,6 +97,7 @@ public class EntradaMaterial extends javax.swing.JPanel {
         labelnid = new javax.swing.JLabel();
         labelid = new javax.swing.JLabel();
         botoncargareq = new javax.swing.JButton();
+        botonentradamanual = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
         tableentradas = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -141,6 +143,18 @@ public class EntradaMaterial extends javax.swing.JPanel {
         });
         add(botoncargareq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 40));
 
+        botonentradamanual.setBackground(new java.awt.Color(0, 0, 0));
+        botonentradamanual.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        botonentradamanual.setForeground(new java.awt.Color(255, 255, 255));
+        botonentradamanual.setText("Entrada Manual");
+        botonentradamanual.setBorder(null);
+        botonentradamanual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonentradamanualActionPerformed(evt);
+            }
+        });
+        add(botonentradamanual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 40));
+
         tableentradas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tableentradas.setModel(modeloentrada);
         tableentradas.setShowGrid(true);
@@ -183,8 +197,15 @@ public class EntradaMaterial extends javax.swing.JPanel {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_tableentradasKeyPressed
 
+    private void botonentradamanualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonentradamanualActionPerformed
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        new EntradaManual().setVisible(true);
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonentradamanualActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botoncargareq;
+    private javax.swing.JButton botonentradamanual;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelfondo;
