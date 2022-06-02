@@ -502,6 +502,16 @@ public class Consultas extends javax.swing.JDialog {
                         }
                         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                         break;
+                    case ("Por Container"):
+                        try {
+                            reportesalmacen.ReporteEntradasxContainers();
+                        } catch (JRException | IOException ex) {
+                            Logger.getLogger(SalidaManual.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        break;
                 }
                 this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;

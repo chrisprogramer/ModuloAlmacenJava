@@ -7,6 +7,7 @@ package Paneles;
 import com.alimundo.moduloalmacen.Conexion;
 import com.alimundo.moduloalmacen.Parametros;
 import com.alimundo.moduloalmacen.RequisicionesSalidas;
+import com.alimundo.moduloalmacen.SalidaManual;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
@@ -98,6 +99,7 @@ public class Salidas extends javax.swing.JPanel {
         labelnid = new javax.swing.JLabel();
         labelid = new javax.swing.JLabel();
         botoncargareq = new javax.swing.JButton();
+        botonsalidamanual = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
         tablesalidas = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -141,6 +143,18 @@ public class Salidas extends javax.swing.JPanel {
         });
         add(botoncargareq, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 40));
 
+        botonsalidamanual.setBackground(new java.awt.Color(0, 0, 0));
+        botonsalidamanual.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        botonsalidamanual.setForeground(new java.awt.Color(255, 255, 255));
+        botonsalidamanual.setText("Salida Manual");
+        botonsalidamanual.setBorder(null);
+        botonsalidamanual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonsalidamanualActionPerformed(evt);
+            }
+        });
+        add(botonsalidamanual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 40));
+
         tablesalidas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablesalidas.setModel(modelosalida);
         tablesalidas.setShowGrid(true);
@@ -181,9 +195,16 @@ public class Salidas extends javax.swing.JPanel {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botoncargareqActionPerformed
 
+    private void botonsalidamanualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonsalidamanualActionPerformed
+       this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+       new SalidaManual().setVisible(true);
+       this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonsalidamanualActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botoncargareq;
+    private javax.swing.JButton botonsalidamanual;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelfondo;

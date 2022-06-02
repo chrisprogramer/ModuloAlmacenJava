@@ -31,7 +31,7 @@ public class EntradaManual extends javax.swing.JDialog {
 
     String error;
     String seleccion;
-    String valida;;
+    String valida;
     Date fechahoy;
     String fechaentrada;
     int contvalida;
