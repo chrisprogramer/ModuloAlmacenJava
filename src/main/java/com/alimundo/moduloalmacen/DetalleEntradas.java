@@ -20,6 +20,7 @@ public class DetalleEntradas {
     private double precio;
     private String descripcion;
     private String numfactura;
+    private String container;
     
     public void setidentrada (int identrada){
        this.identrada = identrada;
@@ -100,6 +101,7 @@ public class DetalleEntradas {
     public String getnumfactura() {
         return numfactura;
     }
+
     
     @Override
     public String toString() {

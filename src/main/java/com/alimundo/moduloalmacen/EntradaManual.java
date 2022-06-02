@@ -4,6 +4,7 @@
  */
 package com.alimundo.moduloalmacen;
 
+import Reportes.ReportesDB;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
@@ -41,6 +42,7 @@ public class EntradaManual extends javax.swing.JDialog {
     JTextFieldDateEditor editor;
     String fechaformat = "dd/MM/yyyy";
     SimpleDateFormat dateformat = new SimpleDateFormat(fechaformat);
+    ReportesDB reportesalmacen = new ReportesDB();
     
     DefaultTableModel modelobusqueda = new DefaultTableModel() {
     @Override
@@ -168,9 +170,9 @@ public class EntradaManual extends javax.swing.JDialog {
 
         labelid.setBackground(new java.awt.Color(255, 255, 255));
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelid.setText("ID Requisición");
+        labelid.setText("ID Entrada");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 50, -1, -1));
+        getContentPane().add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 50, -1, -1));
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
         labelnid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -335,6 +337,7 @@ public class EntradaManual extends javax.swing.JDialog {
         String almacen;
         String descripcion;
         String nfactura;
+        String container;
         double cant;
         double precio;
         DetalleEntradas arrayent; 
@@ -360,9 +363,10 @@ public class EntradaManual extends javax.swing.JDialog {
                     try {
                         PreparedStatement ps = null;
                         ResultSet rs = null;
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevaentrada ?,?");
+                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevaentrada ?,?,?");
                         ps.setString(1, fechaentrada);
                         ps.setString(2, (String) this.jComboBoxdpto.getSelectedItem());
+                        ps.setString(3, this.textfieldcontainer.getText());
                         rs = ps.executeQuery();
                         if (rs.next()) {
                             try {
@@ -382,6 +386,7 @@ public class EntradaManual extends javax.swing.JDialog {
                                     }
                                     descripcion = (String) modeloentrada.getValueAt(i, 7);
                                     nfactura = (String) modeloentrada.getValueAt(i, 8);
+                                    container = this.textfieldcontainer.getText();
                                     arrayent = new DetalleEntradas();
                                     arrayent.setidentrada(identrada);
                                     arrayent.setcodmaterial(codmaterial);
@@ -396,10 +401,11 @@ public class EntradaManual extends javax.swing.JDialog {
                                     entrada.add(arrayent);
                                 }
                                     try {
-                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaentrada ?,?,?");
+                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaentrada ?,?,?,?");
                                         ps.setString(1, (String) fechaentrada);
                                         ps.setString(2, (String)this.jComboBoxdpto.getSelectedItem());
                                         ps.setInt(3, Integer.parseInt(this.labelnid.getText()));
+                                        ps.setString(4, this.textfieldcontainer.getText());
                                         rs = ps.executeQuery();
                                         while (rs.next()) {
                                             //       
@@ -466,7 +472,7 @@ public class EntradaManual extends javax.swing.JDialog {
                                     JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Entrada Ejecutada con Exito </h3></html>",
                                                 null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                                         try {
-                                            reportesalmacen.ReporteNotaEntrega(Integer.parseInt(entradaMaterial.labelnid.getText()), Integer.parseInt(entradaMaterial.labelnid.getText()));
+                                            reportesalmacen.ReporteNotaEntrega(Integer.parseInt(this.labelnid.getText()), Integer.parseInt(this.labelnid.getText()));
                                         } catch (JRException | IOException ex) {
                                             Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                                         }
@@ -479,12 +485,11 @@ public class EntradaManual extends javax.swing.JDialog {
                         error = ex.getMessage();
                         JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                     }
+                    modeloentrada.setRowCount(0);
+                    this.labelnid.setText("");
                 }else {
                     JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Ingrese una Cantidad Valida y Mayor a 0</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
                 }    
-                modeloentrada.setRowCount(0);
-                modelodptofechaentrada.setRowCount(0);
-                entradaMaterial.labelnid.setText("");
             }else {
                 JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Agregar al Menos un Registro</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
             }

@@ -82,7 +82,7 @@ public class Consultas extends javax.swing.JDialog {
         this.botonxmaterial.setEnabled(false);
         this.botongastos.setEnabled(false);
         selecciontiporpt = this.choicetiporpt.getSelectedItem();
-        new CargarComponentes().llenarchoice(choicetiporpt, "SELECT nom_opcreporte FROM OpcionRpt");
+        //new CargarComponentes().llenarchoice(choicetiporpt, "SELECT nom_opcreporte FROM OpcionRpt");
         new CargarComponentes().llenarchoice(choicedepartamentos, "SELECT nom_departamento FROM Departamentos");
         modelobusqueda.setColumnIdentifiers(new Object[]{"", "", "", "", ""});
         modelomovimientos.setColumnIdentifiers(new Object[]{"", "", "", "", "", ""});
@@ -402,6 +402,8 @@ public class Consultas extends javax.swing.JDialog {
 
     private void radiobotonentradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobotonentradasMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        this.choicetiporpt.removeAll();
+        new CargarComponentes().llenarchoice(choicetiporpt, "SELECT nom_opcreporte FROM OpcionRpt");
         modelobusqueda.setRowCount(0);
         modelomovimientos.setRowCount(0);
         this.textfieldbuscar.setText("");
@@ -419,6 +421,8 @@ public class Consultas extends javax.swing.JDialog {
 
     private void radiobotonsalidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobotonsalidasMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        this.choicetiporpt.removeAll();
+        new CargarComponentes().llenarchoice(choicetiporpt, "SELECT TOP 5 nom_opcreporte FROM OpcionRpt");
         modelobusqueda.setRowCount(0);
         modelomovimientos.setRowCount(0);
         this.textfieldbuscar.setText("");

@@ -214,9 +214,10 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                             try {
                                 PreparedStatement ps = null;
                                 ResultSet rs = null;
-                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevaentrada ?,?");
+                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevaentrada ?,?,?");
                                 ps.setString(1, fechareq);
                                 ps.setString(2, (String)modelodptofechaentrada.getValueAt(0, 0));
+                                ps.setString(3, "S/C");
                                 rs = ps.executeQuery();
                                 if (rs.next()) {
                                     try {
@@ -250,10 +251,11 @@ public class MovimientosAlmacen extends javax.swing.JDialog{
                                             entrada.add(arrayent);
                                         }
                                             try {
-                                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaentrada ?,?,?");
+                                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotaentrada ?,?,?,?");
                                                 ps.setString(1, (String)modelodptofechaentrada.getValueAt(0, 1));
                                                 ps.setString(2, (String)modelodptofechaentrada.getValueAt(0, 0));
                                                 ps.setInt(3, Integer.parseInt(entradaMaterial.labelnid.getText()));
+                                                ps.setString(4, "S/C");
                                                 rs = ps.executeQuery();
                                                 while (rs.next()) {
                                                     //       
