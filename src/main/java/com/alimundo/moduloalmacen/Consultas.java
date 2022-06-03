@@ -449,14 +449,13 @@ public class Consultas extends javax.swing.JDialog {
             case ("Consolidado de Almacén"):
                 try {
                 reportesalmacen.ReporteConsolidadoAlmacen();
-            } catch (JRException | IOException ex) {
-                Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            break;
-
+                } catch (JRException | IOException ex) {
+                    Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                break;
             case ("Entradas de Materiales"):
                 switch (selecciontiporpt){
                     case ("Por Categoria"):
@@ -504,7 +503,7 @@ public class Consultas extends javax.swing.JDialog {
                         break;
                     case ("Por Container"):
                         try {
-                            reportesalmacen.ReporteEntradasxContainers();
+                            reportesalmacen.ReporteEntradasxContainers(fechadesde,fechahasta);
                         } catch (JRException | IOException ex) {
                             Logger.getLogger(SalidaManual.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
@@ -617,6 +616,19 @@ public class Consultas extends javax.swing.JDialog {
                 this.tablebuscarmaterial.setEnabled(false);
                 this.botonbuscar.setEnabled(true);
                 this.botonaceptar.setEnabled(false);
+                modelomovimientos.setRowCount(0);
+                modelobusqueda.setRowCount(0);
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                break;
+            case "Por Container":
+                this.choicedepartamentos.setEnabled(false);
+                this.choicecategorias.setEnabled(false);
+                this.textfieldbuscar.setText("");
+                this.textfieldbuscar.setEnabled(false);
+                this.tablebuscarmaterial.setEnabled(false);
+                this.botonbuscar.setEnabled(false);
+                this.botongastos.setEnabled(false);
+                this.botonaceptar.setEnabled(true);
                 modelomovimientos.setRowCount(0);
                 modelobusqueda.setRowCount(0);
                 this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));

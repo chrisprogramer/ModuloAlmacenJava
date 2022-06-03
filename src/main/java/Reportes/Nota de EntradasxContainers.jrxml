@@ -1,59 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" whenNoDataType="BlankPage" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c1be116e-1a3f-4c26-a638-8d0006d0aed1">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c1be116e-1a3f-4c26-a638-8d0006d0aed1">
 	<property name="ireport.zoom" value="1.2100000000000004"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\AdminSrv\\Documents\\NetBeansProjects\\ModuloAlmacen\\src\\main\\java\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="fdesde" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fhasta" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[EXEC spu_retornadetallesmaterialesenprestamo]]>
+		<![CDATA[EXEC spu_retornaentradasxcontainer $P{fdesde},$P{fhasta}]]>
 	</queryString>
-	<field name="id_prestamo" class="java.lang.Integer"/>
+	<field name="id_entrada" class="java.lang.Integer"/>
+	<field name="fecha_entrada" class="java.sql.Date"/>
+	<field name="container" class="java.lang.String"/>
 	<field name="cod_material" class="java.lang.String"/>
 	<field name="nom_material" class="java.lang.String"/>
-	<field name="cant" class="java.lang.Integer"/>
-	<field name="fecha_prestamo" class="java.sql.Date"/>
-	<field name="nom_departamento" class="java.lang.String"/>
-	<field name="motivo" class="java.lang.String"/>
-	<field name="responsable" class="java.lang.String"/>
-	<group name="codigo_material">
-		<groupExpression><![CDATA[$F{cod_material}]]></groupExpression>
+	<field name="nom_medida" class="java.lang.String"/>
+	<field name="cant" class="java.math.BigDecimal"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<group name="Containers">
+		<groupExpression><![CDATA[$F{container}]]></groupExpression>
 		<groupHeader>
-			<band height="24">
-				<textField>
-					<reportElement x="54" y="0" width="80" height="22" uuid="31aa31c9-177c-4aa4-9513-aac05dee240a"/>
-					<textElement verticalAlignment="Bottom">
-						<font fontName="Arial" size="10"/>
+			<band height="20">
+				<staticText>
+					<reportElement x="241" y="0" width="83" height="20" uuid="c5fa3b62-b4a8-402c-8733-a3cac9d00e54"/>
+					<box>
+						<pen lineWidth="1.0" lineColor="#000000"/>
+						<topPen lineWidth="1.0" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+						<bottomPen lineColor="#000000"/>
+						<rightPen lineColor="#FFFFFF"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{cod_material}]]></textFieldExpression>
+					<text><![CDATA[Containers:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="324" y="0" width="185" height="20" uuid="c8f07a0d-3e08-4f6c-a7ef-e9e4bfd9e617"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{container}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="140" y="2" width="57" height="21" uuid="a1174d01-90e6-4a76-8bb8-a6140262ed6d"/>
-					<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<reportElement x="4" y="0" width="108" height="20" uuid="9730e6c5-d0c3-4796-ba75-74c85053eb11"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+						<bottomPen lineWidth="1.0" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					</box>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Material:]]></text>
+					<text><![CDATA[Fecha de Entrada:]]></text>
 				</staticText>
-				<staticText>
-					<reportElement x="3" y="2" width="50" height="21" uuid="101e6e64-4c13-47b3-9b9d-42aba8f82284"/>
-					<textElement textAlignment="Center" verticalAlignment="Bottom">
-						<font fontName="Arial" size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Cod.]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="197" y="1" width="194" height="21" uuid="7b31c115-496d-4e73-94a8-8bb5e12629cc"/>
-					<textElement verticalAlignment="Bottom">
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="110" y="0" width="100" height="20" uuid="bb30506a-4b9d-48a7-a2a9-975db4d7b3cc"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+						<bottomPen lineWidth="1.0" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{nom_material}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{fecha_entrada}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
-		<groupFooter>
-			<band height="4"/>
-		</groupFooter>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -65,11 +96,11 @@
 				<imageExpression><![CDATA["\\\\192.168.1.100\\Reportes\\LOGO ALIMUNDO PEQUE.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="220" y="3" width="184" height="38" uuid="a115793e-717a-46ab-91f5-4a30f68309dd"/>
-				<textElement>
+				<reportElement x="179" y="3" width="212" height="38" uuid="a115793e-717a-46ab-91f5-4a30f68309dd"/>
+				<textElement textAlignment="Center">
 					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Material en Prestamo]]></text>
+				<text><![CDATA[Entradas por Containers]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="472" y="3" width="100" height="20" uuid="fcb7ab5e-4602-4e18-91f5-9b4ee6d4438d"/>
@@ -83,7 +114,21 @@
 	<columnHeader>
 		<band height="32" splitType="Stretch">
 			<staticText>
-				<reportElement x="197" y="0" width="46" height="32" uuid="a81b3517-9c7d-4a7f-a1a3-2ea20622f93f"/>
+				<reportElement x="297" y="0" width="83" height="32" uuid="a81b3517-9c7d-4a7f-a1a3-2ea20622f93f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="45" height="32" uuid="b26827b7-ccd4-494e-a1ec-99832f208c1b"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -97,7 +142,7 @@
 				<text><![CDATA[Cant.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="243" y="0" width="127" height="32" uuid="b26827b7-ccd4-494e-a1ec-99832f208c1b"/>
+				<reportElement x="2" y="0" width="51" height="32" uuid="3e3895d7-fee9-43b4-95b9-877c3d70a7f3"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -105,13 +150,13 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Departamento Asignado]]></text>
+				<text><![CDATA[Id.Ent.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="2" y="0" width="82" height="32" uuid="3e3895d7-fee9-43b4-95b9-877c3d70a7f3"/>
+				<reportElement x="112" y="0" width="185" height="32" uuid="44ee1c17-2128-47a7-8859-859d13f958b9"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -122,10 +167,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Id. Prestamo]]></text>
+				<text><![CDATA[Material]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="84" y="0" width="113" height="32" uuid="44ee1c17-2128-47a7-8859-859d13f958b9"/>
+				<reportElement x="425" y="0" width="147" height="32" uuid="4009e2d1-973b-4981-bf60-0bff73f945a9"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -136,10 +181,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Fecha Prestamo]]></text>
+				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="0" width="102" height="32" uuid="4009e2d1-973b-4981-bf60-0bff73f945a9"/>
+				<reportElement x="53" y="0" width="59" height="32" uuid="570dc7df-c993-4328-940a-413689bfe901"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -150,28 +195,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Motivo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="472" y="0" width="100" height="32" uuid="1f5733e0-4c0d-4475-be7c-a9681d82e808"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Responsable]]></text>
+				<text><![CDATA[Cod.]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
 			<textField pattern="###0.00">
-				<reportElement x="197" y="0" width="46" height="16" uuid="974d2518-2f4f-4967-8a18-cd6ddf3bfb02"/>
+				<reportElement x="297" y="0" width="83" height="16" uuid="974d2518-2f4f-4967-8a18-cd6ddf3bfb02"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -181,25 +212,25 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_medida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="45" height="16" uuid="3d02bc07-bc2d-41ba-b5f5-9b496d5cd394"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cant}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="243" y="0" width="127" height="16" uuid="3d02bc07-bc2d-41ba-b5f5-9b496d5cd394"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement verticalAlignment="Bottom">
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nom_departamento}]]></textFieldExpression>
-			</textField>
 			<textField pattern="###0">
-				<reportElement x="2" y="0" width="82" height="16" uuid="ee9a8c6c-4de6-42a6-aa5a-ec4f44079e23"/>
+				<reportElement x="2" y="0" width="52" height="16" uuid="ee9a8c6c-4de6-42a6-aa5a-ec4f44079e23"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -210,10 +241,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{id_prestamo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{id_entrada}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="84" y="0" width="113" height="16" uuid="3c909391-2d1d-4ad1-ad72-1d382f7d8932"/>
+				<reportElement x="112" y="0" width="185" height="16" uuid="3c909391-2d1d-4ad1-ad72-1d382f7d8932"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -224,10 +255,10 @@
 				<textElement verticalAlignment="Bottom">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_prestamo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nom_material}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="0" width="102" height="16" uuid="732380f0-a69d-4881-9e6c-5318ad607b39"/>
+				<reportElement x="425" y="0" width="147" height="16" uuid="732380f0-a69d-4881-9e6c-5318ad607b39"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -238,10 +269,10 @@
 				<textElement verticalAlignment="Bottom">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="472" y="0" width="100" height="16" uuid="bfd4c12b-742e-4900-9027-8a4194144b0e"/>
+			<textField pattern="###0">
+				<reportElement x="54" y="0" width="58" height="16" uuid="9bc421b8-7bc6-4c90-9579-e46a51cbea40"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -249,10 +280,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
-					<font fontName="Arial"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cod_material}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

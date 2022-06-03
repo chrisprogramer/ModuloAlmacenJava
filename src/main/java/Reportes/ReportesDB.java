@@ -489,14 +489,16 @@ public class ReportesDB {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
-        public void ReporteEntradasxContainers() throws SQLException, JRException, IOException {
+        public void ReporteEntradasxContainers(String fdesde, String fhasta) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("fdesde", fdesde);
+        parametro.put("fhasta", fhasta);
         String nombrearch = "Nota de EntradasxContainers";
         String rutacompleta;
-
         try {
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
-                     + nombrearch + ".jasper", null, con);
+                     + nombrearch + ".jasper", parametro, con);
             this.ExportarPDF(jasperPrintWindow, nombrearch);
             rutacompleta = ruta + nombrearch + ".pdf";
             this.AbrirPDF(rutacompleta);
