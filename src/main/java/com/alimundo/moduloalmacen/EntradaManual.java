@@ -379,11 +379,7 @@ public class EntradaManual extends javax.swing.JDialog {
                                     medida = (String) modeloentrada.getValueAt(i, 3);
                                     almacen = (String) modeloentrada.getValueAt(i, 4);
                                     cant = Double.parseDouble((String) modeloentrada.getValueAt(i, 5));
-                                    try {
-                                        precio = Double.parseDouble((String) modeloentrada.getValueAt(i, 6));
-                                    } catch (NullPointerException ex) {
-                                        precio = 0.00;
-                                    }
+                                    precio = 0.00;
                                     descripcion = (String) modeloentrada.getValueAt(i, 7);
                                     nfactura = (String) modeloentrada.getValueAt(i, 8);
                                     container = this.textfieldcontainer.getText();

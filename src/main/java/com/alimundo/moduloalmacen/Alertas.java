@@ -4,7 +4,6 @@
  */
 package com.alimundo.moduloalmacen;
 
-import static Paneles.PrestamoMaterial.modeloprestamo;
 import Reportes.ReportesDB;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -16,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
