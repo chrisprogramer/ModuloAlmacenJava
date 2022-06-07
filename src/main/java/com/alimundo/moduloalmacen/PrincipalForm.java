@@ -47,7 +47,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         Fecha fecha = new Fecha(5,630,180,20);
         fecha.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         fecha.setFont(new java.awt.Font(letra,1,16));
-        add(fecha);        
+        add(fecha);       
 
         initComponents();
         setResizable(false);
