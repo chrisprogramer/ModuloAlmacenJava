@@ -5,10 +5,15 @@
 package com.alimundo.moduloalmacen;
 
 import java.awt.Cursor;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -128,7 +133,29 @@ public class Busqueda extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        public ImageIcon GetFoto(String codigo){
+            int ancho = entradamaterial.labelfotografia.getWidth();
+            int largo = entradamaterial.labelfotografia.getHeight();
+            ImageIcon imagen = null;
+            InputStream dato = null;
+            
+            try{
+                PreparedStatement ps = null;
+                ResultSet rs = null;
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornafotomaterial ?");
+                ps.setString(1, codigo);
+                rs = ps.executeQuery();
+                while (rs.next()){
+                   dato = rs.getBinaryStream(1);
+                   Image leerimagen = ImageIO.read(dato).getScaledInstance(ancho,largo,Image.SCALE_DEFAULT);
+                   imagen = new ImageIcon(leerimagen);  
+                }
+            }catch(SQLException | IOException ex){
+                error = ex.getMessage();
+                JOptionPane.showMessageDialog(null,error,"ERROR",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
+            }    
+        return imagen;
+    }
     private void labelcerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelcerrarMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         this.dispose();
@@ -162,6 +189,7 @@ public class Busqueda extends javax.swing.JDialog {
             modelo = (DefaultTableModel) this.tablebuscarmaterial.getModel();
             seleccion = String.valueOf(modelo.getValueAt(this.tablebuscarmaterial.getSelectedRow(), 0));
             try {
+                ImageIcon foto = GetFoto(seleccion);
                 PreparedStatement ps = null;
                 ResultSet rs = null;
                 ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornainfomaterial ?");
@@ -175,6 +203,7 @@ public class Busqueda extends javax.swing.JDialog {
                     entradamaterial.choicealmacenes.select(rs.getString(5));
                     entradamaterial.textfielddescripcion.setText(rs.getString(6));
                     entradamaterial.textfieldtopemin.setText(String.valueOf(rs.getInt(7)));
+                    entradamaterial.labelfotografia.setIcon(foto);
                     this.dispose();
                     entradamaterial.botonaceptar.setEnabled(false);
                     entradamaterial.textfieldcodigo.setEnabled(false);
