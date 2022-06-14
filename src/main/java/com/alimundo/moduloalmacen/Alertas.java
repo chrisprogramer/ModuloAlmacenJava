@@ -58,8 +58,11 @@ public class Alertas extends javax.swing.JDialog {
                                                          "<html><h3 style=font-family:Verdana;>Tope Minimo</h3></html>","<html><h3 style=font-family:Verdana;>En Stock</h3></html>"});
         this.tamanocolumnasalertas(tablealertas);
         modeloalerta.setRowCount(0);
+        tablealertas.getColumnModel().getColumn(0).setResizable(false);
+        tablealertas.getColumnModel().getColumn(1).setResizable(true);
+        tablealertas.getColumnModel().getColumn(2).setResizable(false);
+        tablealertas.getColumnModel().getColumn(3).setResizable(false);
         tablealertas.getTableHeader().setReorderingAllowed(false);
-        tablealertas.getTableHeader().setResizingAllowed(false);
         
          try{
             PreparedStatement ps = null;

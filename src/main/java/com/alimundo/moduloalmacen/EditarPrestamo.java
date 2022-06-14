@@ -47,9 +47,11 @@ public class EditarPrestamo extends javax.swing.JDialog {
                                             "<html><h3 style=font-family:Verdana;>Departamento</h3></html>"});
         this.tamanocolumnasprestamo(tableprestamo);
         modeloprestamo.setRowCount(0);
+        tableprestamo.getColumnModel().getColumn(0).setResizable(false);
+        tableprestamo.getColumnModel().getColumn(1).setResizable(false);
+        tableprestamo.getColumnModel().getColumn(2).setResizable(false);
         tableprestamo.getTableHeader().setReorderingAllowed(false);
-        tableprestamo.getTableHeader().setResizingAllowed(false);
-        
+                
          try{
             PreparedStatement ps = null;
             ResultSet rs = null;

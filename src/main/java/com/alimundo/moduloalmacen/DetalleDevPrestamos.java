@@ -13,6 +13,8 @@ public class DetalleDevPrestamos {
     private String codmaterial;
     private String nommaterial;
     private double cant;
+    private double cantdev;
+    private String devuelve;
 
     public void setiddevprestamo (int iddevprestamo){
        this.iddevprestamo = iddevprestamo;
@@ -45,7 +47,22 @@ public class DetalleDevPrestamos {
     public double getcant() {
         return cant;
     }
+    
+    public void setcantdev (double cantdev) {
+        this.cantdev = cantdev;
+    }
 
+    public double getcantdev() {
+        return cantdev;
+    }
+    
+    public void setdevuelve(String devuelve) {
+        this.devuelve = devuelve;
+    }
+
+    public String getdevuelve() {
+        return devuelve;
+    }
     
     @Override
     public String toString() {
@@ -59,6 +76,10 @@ public class DetalleDevPrestamos {
         sb.append("\ncategoria: ");
         sb.append("\ncant: ");
         sb.append(cant);
+        sb.append("\ncantdev: ");
+        sb.append(cantdev);
+        sb.append("\ndevuelve: ");
+        sb.append(devuelve);
         return sb.toString();
     } 
 

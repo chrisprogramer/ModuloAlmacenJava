@@ -76,8 +76,16 @@ public class EntradaMaterial extends javax.swing.JPanel {
                                             ,"<html><h3 style=font-family:Verdana;>N° Factura</h3></html>"});
         this.tamanocolumnasentradas(tableentradas);
         modeloentrada.setRowCount(0);
+        tableentradas.getColumnModel().getColumn(0).setResizable(false);
+        tableentradas.getColumnModel().getColumn(1).setResizable(true);
+        tableentradas.getColumnModel().getColumn(2).setResizable(false);
+        tableentradas.getColumnModel().getColumn(3).setResizable(false);
+        tableentradas.getColumnModel().getColumn(4).setResizable(false);
+        tableentradas.getColumnModel().getColumn(5).setResizable(false);
+        tableentradas.getColumnModel().getColumn(6).setResizable(false);
+        tableentradas.getColumnModel().getColumn(7).setResizable(false);
+        tableentradas.getColumnModel().getColumn(8).setResizable(false);
         tableentradas.getTableHeader().setReorderingAllowed(false);
-        tableentradas.getTableHeader().setResizingAllowed(false);
         
         modelodptofecha.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Entrega Departamento</h3></html>",
                                                 "<html><h3 style=font-family:Verdana;>Fecha Requisición</h3></html>"});

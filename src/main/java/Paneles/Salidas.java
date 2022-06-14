@@ -72,7 +72,13 @@ public class Salidas extends javax.swing.JPanel {
             "<html><h3 style=font-family:Verdana;>Cant.</h3></html>","<html><h3 style=font-family:Verdana;>Descripción / Uso</h3></html>"});
         tamanocolumnassalidas(tablesalidas); 
         modelosalida.setRowCount(0);
-        tablesalidas.getTableHeader().setResizingAllowed(false);
+        tablesalidas.getColumnModel().getColumn(0).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(1).setResizable(true);
+        tablesalidas.getColumnModel().getColumn(2).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(3).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(4).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(5).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(6).setResizable(false);
         tablesalidas.getTableHeader().setReorderingAllowed(false);
         
         modelodptofecha.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Entrega Departamento</h3></html>",

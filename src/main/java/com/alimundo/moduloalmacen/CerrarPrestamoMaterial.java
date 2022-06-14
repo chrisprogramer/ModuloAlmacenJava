@@ -5,12 +5,14 @@
 package com.alimundo.moduloalmacen;
 
 import Reportes.ReportesDB;
+import static com.sun.tools.javac.tree.TreeInfo.types;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +31,7 @@ import net.sf.jasperreports.engine.JRException;
 public class CerrarPrestamoMaterial extends javax.swing.JDialog {
 
     TableColumnModel columnModel;
+    static Class[] types = new Class [] {java.lang.String.class, java.lang.String.class,java.lang.Integer.class,java.lang.Integer.class,java.lang.Object.class};
     public static DefaultTableModel modeloprestamo = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int filas, int columnas){
@@ -36,21 +39,28 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                 return false;
             }else return true;
         }
+        public Class getColumnClass(int columnIndex) {
+            return types [columnIndex];
+        };
     };
     
     public void tamanocolumnasprestamo(JTable table){
         columnModel = table.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(150);
-        columnModel.getColumn(1).setPreferredWidth(600);
+        columnModel.getColumn(1).setPreferredWidth(500);
         columnModel.getColumn(2).setPreferredWidth(150);
+        columnModel.getColumn(3).setPreferredWidth(200);
+        columnModel.getColumn(4).setPreferredWidth(500);
     }
     
     int numregdev;
+    double resta;
     String error;
     String fechadevpreststr;
     String fechaformat = "dd/MM/yyyy";
     String seleccion;
     String valida;
+    boolean bandera = false;
     Date fechahoy;
     Date fechadevprest;
     Conexion con = new Conexion();
@@ -58,19 +68,27 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     JTextFieldDateEditor editor;
     DefaultTableModel modelo;
     ReportesDB reportesalmacen = new ReportesDB();
+    CargarComponentes componentes = new CargarComponentes();
     
-    public CerrarPrestamoMaterial() {
+    public CerrarPrestamoMaterial(){
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         setModal(true);
         modeloprestamo.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
-            "<html><h3 style=font-family:Verdana;>Cant.</h3></html>"});
+                                            "<html><h3 style=font-family:Verdana;>Cant.</h3></html>","<html><h3 style=font-family:Verdana;>Cant. Ret.</h3></html>",
+                                            "<html><h3 style=font-family:Verdana;>Devuelve</h3></html>"});
+        
         tamanocolumnasprestamo(tabledevolucionprestamo); 
         modeloprestamo.setRowCount(0);
-        tabledevolucionprestamo.getTableHeader().setResizingAllowed(false);
+        tabledevolucionprestamo.getColumnModel().getColumn(0).setResizable(false);
+        tabledevolucionprestamo.getColumnModel().getColumn(1).setResizable(true);
+        tabledevolucionprestamo.getColumnModel().getColumn(2).setResizable(false);
+        tabledevolucionprestamo.getColumnModel().getColumn(3).setResizable(false);
+        tabledevolucionprestamo.getColumnModel().getColumn(4).setResizable(false);
         tabledevolucionprestamo.getTableHeader().setReorderingAllowed(false);
-        
+
+        componentes.addComboBox(4, tabledevolucionprestamo, "SELECT nom_responsable FROM ResponsablesPrestamos ORDER BY nom_responsable");
         fechahoy = new Date();
         this.date.setDateFormatString(fechaformat);
         this.date.setDate(fechahoy);
@@ -106,8 +124,6 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelcerrar = new javax.swing.JLabel();
         labeltitulo1 = new javax.swing.JLabel();
         labelfecha = new javax.swing.JLabel();
-        labeldevuelve = new javax.swing.JLabel();
-        textfieldevuelve = new javax.swing.JTextField();
         labeldepartamento = new javax.swing.JLabel();
         textfieldpto = new javax.swing.JTextField();
         date = new com.toedter.calendar.JDateChooser();
@@ -148,16 +164,6 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
-        labeldevuelve.setBackground(new java.awt.Color(255, 255, 255));
-        labeldevuelve.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labeldevuelve.setText("Devuelve:");
-        labeldevuelve.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        labeldevuelve.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(labeldevuelve, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-
-        textfieldevuelve.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(textfieldevuelve, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 115, 260, 30));
-
         labeldepartamento.setBackground(new java.awt.Color(255, 255, 255));
         labeldepartamento.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeldepartamento.setText("Departamento");
@@ -195,14 +201,14 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                 botonaceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 412, 60, 60));
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 403, 60, 60));
 
         tabledevolucionprestamo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tabledevolucionprestamo.setModel(modeloprestamo);
         tabledevolucionprestamo.setShowGrid(true);
         jScrollPane.setViewportView(tabledevolucionprestamo);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 700, 260));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 700, 260));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -214,7 +220,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void labelcerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelcerrarMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         this.dispose();
@@ -223,7 +229,8 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        int cant;
+        double cant;
+        double cantdev;
         int iddevp;
         int idnotadevprest = 0;
         String codmaterial;
@@ -232,23 +239,27 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         numregdev = this.tabledevolucionprestamo.getRowCount();
         fechadevprest = this.date.getDate();
         fechadevpreststr = dateformat.format(fechadevprest);
-        devuelve = this.textfieldevuelve.getText();
         DetalleDevPrestamos arraydevprestamos; 
         ArrayList<DetalleDevPrestamos> devprestamos;
         devprestamos = new ArrayList<>();
         devprestamos.clear();
-
-        if (this.textfieldevuelve.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Especificar quien Devuelve el Prestamo del Material</h3></html>", 
-                     null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
-        }else {
+        
+        for (int i = 0; i < devprestamos.size(); i++) {
+            cant = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+            cantdev = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 3)));
+            resta = cant-cantdev;
+            if (resta < 0) {
+                bandera = true;
+            }
+        }
+        
+        if (bandera == false){
             try{
                 PreparedStatement ps = null;
                 ResultSet rs = null;
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?,?");
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?");
                 ps.setString(1, fechadevpreststr);
                 ps.setString(2, this.textfieldpto.getText());
-                ps.setString(3, devuelve);
                 rs = ps.executeQuery();
                 if(rs.next()){
                     iddevp = rs.getInt(1);
@@ -256,11 +267,15 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                         codmaterial = (String) modeloprestamo.getValueAt(i,0);
                         nommaterial = (String) modeloprestamo.getValueAt(i, 1);
                         cant = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+                        cantdev = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 3)));
+                        devuelve = modeloprestamo.getValueAt(i, 4).toString();
                         arraydevprestamos = new DetalleDevPrestamos() ;
                         arraydevprestamos.setiddevprestamo(iddevp);
                         arraydevprestamos.setcodmaterial(codmaterial);
                         arraydevprestamos.setnommaterial(nommaterial);
                         arraydevprestamos.setcant(cant);
+                        arraydevprestamos.setcantdev(cant);
+                        arraydevprestamos.setdevuelve(devuelve);
                         devprestamos.add(arraydevprestamos);
                     }
                     try {
@@ -268,7 +283,6 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                         ps.setString(1, fechadevpreststr);
                         ps.setString(2, this.textfieldpto.getText());
                         ps.setInt(3, iddevp);
-                        ps.setString(4, devuelve);
                         rs = ps.executeQuery();
                         while (rs.next()) {
                             idnotadevprest = rs.getInt(1);
@@ -279,11 +293,13 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                     }
                     for (int i = 0; i < devprestamos.size(); i++) {
                         try {
-                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetalledevprestamomaterial ?,?,?,?");
+                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetalledevprestamomaterial ?,?,?,?,?,?");
                             ps.setInt(1, devprestamos.get(i).getiddevprestamo());
                             ps.setString(2, devprestamos.get(i).getcodmaterial());
                             ps.setString(3, devprestamos.get(i).getnommaterial());
                             ps.setDouble(4, devprestamos.get(i).getcant());
+                            ps.setDouble(5, devprestamos.get(i).getcantdev());
+                            ps.setString(6, devprestamos.get(i).getdevuelve());
                             rs = ps.executeQuery();
                             while (rs.next()) {
                                 //       
@@ -295,9 +311,11 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                     }
                     for (int i = 0; i < devprestamos.size(); i++) {
                         try {
-                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotadevprestamo ?,?");
+                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotadevprestamo ?,?,?,?");
                             ps.setString(1, devprestamos.get(i).getcodmaterial());
                             ps.setDouble(2, devprestamos.get(i).getcant());
+                            ps.setDouble(3, devprestamos.get(i).getcantdev());
+                            ps.setString(4, devprestamos.get(i).getdevuelve());
                             rs = ps.executeQuery();
                             while (rs.next()) {
                                 //       
@@ -326,9 +344,12 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
             } catch (SQLException ex) {
                 Logger.getLogger(CerrarPrestamoMaterial.class.getName()).log(Level.SEVERE, null, ex);
             }
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>La Cantidad Retornada no Puede ser mayor a la Cantidad Prestada </h3></html>",
+                                null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
         }
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        this.dispose();
     }//GEN-LAST:event_botonaceptarActionPerformed
 
     /**
@@ -372,7 +393,6 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labeldepartamento;
-    private javax.swing.JLabel labeldevuelve;
     private javax.swing.JLabel labelfecha;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labelid;
@@ -380,7 +400,6 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labeltitulo1;
     private javax.swing.JPanel panelopciones;
     public javax.swing.JTable tabledevolucionprestamo;
-    private javax.swing.JTextField textfieldevuelve;
     private javax.swing.JTextField textfieldpto;
     // End of variables declaration//GEN-END:variables
 }

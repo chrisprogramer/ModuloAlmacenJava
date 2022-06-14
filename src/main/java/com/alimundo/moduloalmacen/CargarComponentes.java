@@ -9,9 +9,11 @@ import java.awt.Choice;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -97,6 +99,16 @@ public class CargarComponentes {
         tc.setCellRenderer(table.getDefaultRenderer(JComboBox.class));
         combobox.setSelectedIndex(0);
     }
+    
+    public void addJFormatTextField(int column, JTable table) throws ParseException
+    {
+        JFormattedTextField textfield = new JFormattedTextField();
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(new DefaultCellEditor(textfield));
+        tc.setCellRenderer(table.getDefaultRenderer(JFormattedTextField.class));
+        textfield.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#"))));
+    }
+    
     public void addTextField(JLabel etiqueta, String sql){
        Conexion con = new Conexion();
        String error;

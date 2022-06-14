@@ -95,7 +95,7 @@ public class Consultas extends javax.swing.JDialog {
             tablebuscarmaterial.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Material</h3></html>");
             tablebuscarmaterial.getColumnModel().getColumn(1).setPreferredWidth(900);
             tablebuscarmaterial.getColumnModel().getColumn(1).setMaxWidth(900);
-            tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
+            tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(true);
             tablebuscarmaterial.getColumnModel().getColumn(2).setHeaderValue("<html><h3 style=font-family:Medida;>Medida</h3></html>");
             tablebuscarmaterial.getColumnModel().getColumn(2).setPreferredWidth(300);
             tablebuscarmaterial.getColumnModel().getColumn(2).setMaxWidth(300);
@@ -128,7 +128,7 @@ public class Consultas extends javax.swing.JDialog {
             tablemovimientos.getColumnModel().getColumn(3).setHeaderValue("<html><h3 style=font-family:Verdana;>Material</h3></html>");
             tablemovimientos.getColumnModel().getColumn(3).setPreferredWidth(650);
             tablemovimientos.getColumnModel().getColumn(3).setMaxWidth(650);
-            tablemovimientos.getColumnModel().getColumn(3).setResizable(false);
+            tablemovimientos.getColumnModel().getColumn(3).setResizable(true);
             tablemovimientos.getColumnModel().getColumn(4).setHeaderValue("<html><h3 style=font-family:Verdana;>Cant.</h3></html>");
             tablemovimientos.getColumnModel().getColumn(4).setPreferredWidth(150);
             tablemovimientos.getColumnModel().getColumn(4).setMaxWidth(150);
@@ -184,11 +184,9 @@ public class Consultas extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1349, 665));
         setMinimumSize(new java.awt.Dimension(1349, 665));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1349, 665));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N

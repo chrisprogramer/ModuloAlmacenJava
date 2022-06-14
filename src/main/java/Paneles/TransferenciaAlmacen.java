@@ -63,7 +63,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
             tablebuscarmaterial.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>");
             tablebuscarmaterial.getColumnModel().getColumn(1).setPreferredWidth(400);
             tablebuscarmaterial.getColumnModel().getColumn(1).setMaxWidth(400);
-            tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
+            tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(true);
         }
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
 
@@ -76,7 +76,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
                 tablatransferencia.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>");
                 tablatransferencia.getColumnModel().getColumn(1).setPreferredWidth(500);
                 tablatransferencia.getColumnModel().getColumn(1).setMaxWidth(500);
-                tablatransferencia.getColumnModel().getColumn(1).setResizable(false);
+                tablatransferencia.getColumnModel().getColumn(1).setResizable(true);
                 tablatransferencia.getColumnModel().getColumn(2).setHeaderValue("<html><h3 style=font-family:Verdana;>Origen</h3></html>");
                 tablatransferencia.getColumnModel().getColumn(2).setPreferredWidth(350);
                 tablatransferencia.getColumnModel().getColumn(2).setMaxWidth(350);
@@ -185,7 +185,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
                 textfieldbuscarKeyReleased(evt);
             }
         });
-        add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 360, 30));
+        add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 410, 30));
 
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -198,7 +198,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 360, 290));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 410, 290));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 420));

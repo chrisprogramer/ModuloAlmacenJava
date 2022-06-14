@@ -43,7 +43,8 @@ public class MaterialTransito extends javax.swing.JDialog {
         columnModel = table.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(150);
         columnModel.getColumn(1).setPreferredWidth(600);
-        columnModel.getColumn(2).setPreferredWidth(150);
+        columnModel.getColumn(2).setPreferredWidth(600);
+        columnModel.getColumn(3).setPreferredWidth(150);
     }
     
     public MaterialTransito() {
@@ -52,11 +53,14 @@ public class MaterialTransito extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setModal(true);
         modeloprestamo.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
-                                                         "<html><h3 style=font-family:Verdana;>Total</h3></html>"});
+                                                         "<html><h3 style=font-family:Verdana;>Responsable</h3></html>","<html><h3 style=font-family:Verdana;>Total</h3></html>"});
         this.tamanocolumnasprestamo(tableprestamo);
         modeloprestamo.setRowCount(0);
+        tableprestamo.getTableHeader().getColumnModel().getColumn(0).setResizable(false);
+        tableprestamo.getTableHeader().getColumnModel().getColumn(1).setResizable(true);
+        tableprestamo.getTableHeader().getColumnModel().getColumn(2).setResizable(false);
+        tableprestamo.getTableHeader().getColumnModel().getColumn(3).setResizable(false);
         tableprestamo.getTableHeader().setReorderingAllowed(false);
-        tableprestamo.getTableHeader().setResizingAllowed(false);
         
          try{
             PreparedStatement ps = null;
@@ -64,7 +68,7 @@ public class MaterialTransito extends javax.swing.JDialog {
             ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo");
             rs = ps.executeQuery();
             while(rs.next()){
-                 modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getInt(3)});
+                 modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4)});
             }
         }catch(SQLException ex){
             error = ex.getMessage();
@@ -85,9 +89,11 @@ public class MaterialTransito extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(501, 307));
+        setMaximumSize(new java.awt.Dimension(745, 387));
+        setMinimumSize(new java.awt.Dimension(745, 387));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(745, 387));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -96,7 +102,7 @@ public class MaterialTransito extends javax.swing.JDialog {
                 labelcerrarMouseClicked(evt);
             }
         });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 4, -1, -1));
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 4, -1, -1));
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -104,18 +110,18 @@ public class MaterialTransito extends javax.swing.JDialog {
         labeltitulo.setText("MATERIAL EN PRESTAMO ");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 501, 40));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 745, 40));
 
         tableprestamo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tableprestamo.setModel(modeloprestamo);
         tableprestamo.setShowGrid(true);
         jScrollPane.setViewportView(tableprestamo);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 500, 190));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, 260));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 270));
+        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 350));
 
         botonaceptar.setBackground(new java.awt.Color(255, 255, 255));
         botonaceptar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -128,14 +134,14 @@ public class MaterialTransito extends javax.swing.JDialog {
                 botonaceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 243, 60, 60));
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 318, 60, 60));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labelfondo.setMaximumSize(new java.awt.Dimension(501, 302));
         labelfondo.setMinimumSize(new java.awt.Dimension(501, 302));
         labelfondo.setPreferredSize(new java.awt.Dimension(501, 302));
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 501, 310));
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 745, 388));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
