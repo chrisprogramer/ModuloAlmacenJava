@@ -5,14 +5,12 @@
 package com.alimundo.moduloalmacen;
 
 import Reportes.ReportesDB;
-import static com.sun.tools.javac.tree.TreeInfo.types;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +29,7 @@ import net.sf.jasperreports.engine.JRException;
 public class CerrarPrestamoMaterial extends javax.swing.JDialog {
 
     TableColumnModel columnModel;
-    static Class[] types = new Class [] {java.lang.String.class, java.lang.String.class,java.lang.Integer.class,java.lang.Integer.class,java.lang.Object.class};
+    static Class[] types = new Class [] {java.lang.String.class, java.lang.String.class,java.lang.Double.class,java.lang.Double.class,java.lang.Object.class};
     public static DefaultTableModel modeloprestamo = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int filas, int columnas){
@@ -54,7 +52,6 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     }
     
     int numregdev;
-    double resta;
     String error;
     String fechadevpreststr;
     String fechaformat = "dd/MM/yyyy";
@@ -244,16 +241,15 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         devprestamos = new ArrayList<>();
         devprestamos.clear();
         
-        for (int i = 0; i < devprestamos.size(); i++) {
-            cant = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 2)));
-            cantdev = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 3)));
-            resta = cant-cantdev;
-            if (resta < 0) {
+        for (int i = 0; i < modeloprestamo.getRowCount(); i++) {
+            cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+            cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
+            if (cantdev > cant) {
                 bandera = true;
             }
         }
         
-        if (bandera == false){
+        if (!bandera){
             try{
                 PreparedStatement ps = null;
                 ResultSet rs = null;
@@ -266,20 +262,20 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                     for (int i = 0; i < numregdev; i++) {
                         codmaterial = (String) modeloprestamo.getValueAt(i,0);
                         nommaterial = (String) modeloprestamo.getValueAt(i, 1);
-                        cant = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 2)));
-                        cantdev = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(i, 3)));
-                        devuelve = modeloprestamo.getValueAt(i, 4).toString();
+                        cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+                        cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
+                        devuelve = (String) modeloprestamo.getValueAt(i, 4);
                         arraydevprestamos = new DetalleDevPrestamos() ;
                         arraydevprestamos.setiddevprestamo(iddevp);
                         arraydevprestamos.setcodmaterial(codmaterial);
                         arraydevprestamos.setnommaterial(nommaterial);
                         arraydevprestamos.setcant(cant);
-                        arraydevprestamos.setcantdev(cant);
+                        arraydevprestamos.setcantdev(cantdev);
                         arraydevprestamos.setdevuelve(devuelve);
                         devprestamos.add(arraydevprestamos);
                     }
                     try {
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?,?");
+                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?");
                         ps.setString(1, fechadevpreststr);
                         ps.setString(2, this.textfieldpto.getText());
                         ps.setInt(3, iddevp);
@@ -325,31 +321,32 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
                     }
-                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
+                   /* ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
                     ps.setInt(1,Integer.parseInt(this.labelnid.getText()));
                     rs = ps.executeQuery();
                     while(rs.next()){
                         JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Cerrado con Exito </h3></html>",
                                 null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                    }
+                    }*/
                 }
             }catch(SQLException ex){
                 error = ex.getMessage();
                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
             }
-            try {
+           /* try {
                 reportesalmacen.ReporteNotaDevPrestamo(idnotadevprest , idnotadevprest);
             } catch (JRException | IOException ex) {
                 Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(CerrarPrestamoMaterial.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>La Cantidad Retornada no Puede ser mayor a la Cantidad Prestada </h3></html>",
                                 null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
         }
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonaceptarActionPerformed
 
     /**
