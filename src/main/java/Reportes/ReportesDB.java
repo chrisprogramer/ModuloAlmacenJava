@@ -66,7 +66,6 @@ public class ReportesDB {
     public void ExportarPDF(JasperPrint reporte, String nombrerpt, int numnota) throws JRException{
         String rutafinal = null;
         rutafinal = this.RetornaRuta();
-        System.out.println(rutafinal);
         File directorio = new File(rutafinal);
         
         if (directorio.isDirectory()){

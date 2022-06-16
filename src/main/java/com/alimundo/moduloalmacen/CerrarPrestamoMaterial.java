@@ -7,20 +7,16 @@ package com.alimundo.moduloalmacen;
 import Reportes.ReportesDB;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -57,7 +53,8 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     String fechaformat = "dd/MM/yyyy";
     String seleccion;
     String valida;
-    boolean bandera = false;
+    boolean banderanum = false;
+    boolean banderatext = false;
     Date fechahoy;
     Date fechadevprest;
     Conexion con = new Conexion();
@@ -106,7 +103,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
            ps.setInt(1,PrincipalForm.idprest);
            rs = ps.executeQuery();
            while(rs.next()){
-                this.modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getInt(3)});
+                this.modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getDouble(3)});
            }
         }catch(SQLException ex){
            error = ex.getMessage();
@@ -233,6 +230,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         String codmaterial;
         String nommaterial;
         String devuelve;
+        String devuelvetext;
         numregdev = this.tabledevolucionprestamo.getRowCount();
         fechadevprest = this.date.getDate();
         fechadevpreststr = dateformat.format(fechadevprest);
@@ -241,111 +239,169 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         devprestamos = new ArrayList<>();
         devprestamos.clear();
         
-        for (int i = 0; i < modeloprestamo.getRowCount(); i++) {
-            cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
-            cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
-            if (cantdev > cant) {
-                bandera = true;
+        try{
+            for (int i = 0; i < modeloprestamo.getRowCount(); i++) {
+                cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+                cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
+                if (cantdev > cant) {
+                    banderanum = true;
+                }
             }
-        }
-        
-        if (!bandera){
-            try{
-                PreparedStatement ps = null;
-                ResultSet rs = null;
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?");
-                ps.setString(1, fechadevpreststr);
-                ps.setString(2, this.textfieldpto.getText());
-                rs = ps.executeQuery();
-                if(rs.next()){
-                    iddevp = rs.getInt(1);
-                    for (int i = 0; i < numregdev; i++) {
-                        codmaterial = (String) modeloprestamo.getValueAt(i,0);
-                        nommaterial = (String) modeloprestamo.getValueAt(i, 1);
-                        cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
-                        cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
-                        devuelve = (String) modeloprestamo.getValueAt(i, 4);
-                        arraydevprestamos = new DetalleDevPrestamos() ;
-                        arraydevprestamos.setiddevprestamo(iddevp);
-                        arraydevprestamos.setcodmaterial(codmaterial);
-                        arraydevprestamos.setnommaterial(nommaterial);
-                        arraydevprestamos.setcant(cant);
-                        arraydevprestamos.setcantdev(cantdev);
-                        arraydevprestamos.setdevuelve(devuelve);
-                        devprestamos.add(arraydevprestamos);
-                    }
-                    try {
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?");
-                        ps.setString(1, fechadevpreststr);
-                        ps.setString(2, this.textfieldpto.getText());
-                        ps.setInt(3, iddevp);
+            for (int i = 0; i < modeloprestamo.getRowCount(); i++) {
+                devuelvetext = (String.valueOf(modeloprestamo.getValueAt(i, 4)));
+                if (devuelvetext == "null") {
+                    banderatext = true;
+                }
+            }
+            if (!banderanum){
+                if (!banderatext){
+                    try{
+                        PreparedStatement ps = null;
+                        ResultSet rs = null;
+                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?,?");
+                        ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+                        ps.setString(2, fechadevpreststr);
+                        ps.setString(3, this.textfieldpto.getText());
                         rs = ps.executeQuery();
-                        while (rs.next()) {
-                            idnotadevprest = rs.getInt(1);
+                        if(rs.next()){
+                            iddevp = rs.getInt(1);
+                            for (int i = 0; i < numregdev; i++) {
+                                codmaterial = (String) modeloprestamo.getValueAt(i,0);
+                                nommaterial = (String) modeloprestamo.getValueAt(i, 1);
+                                cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+                                cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
+                                devuelve = (String) modeloprestamo.getValueAt(i, 4);
+                                arraydevprestamos = new DetalleDevPrestamos() ;
+                                arraydevprestamos.setiddevprestamo(iddevp);
+                                arraydevprestamos.setcodmaterial(codmaterial);
+                                arraydevprestamos.setnommaterial(nommaterial);
+                                arraydevprestamos.setcant(cant);
+                                arraydevprestamos.setcantdev(cantdev);
+                                arraydevprestamos.setdevuelve(devuelve);
+                                devprestamos.add(arraydevprestamos);
+                            }
+                            try {
+                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?");
+                                ps.setString(1, fechadevpreststr);
+                                ps.setString(2, this.textfieldpto.getText());
+                                ps.setInt(3, iddevp);
+                                rs = ps.executeQuery();
+                                while (rs.next()) {
+                                    idnotadevprest = rs.getInt(1);
+                                }
+                            } catch (java.sql.SQLException ex) {
+                                error = ex.getMessage();
+                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                            }
+                            for (int i = 0; i < devprestamos.size(); i++) {
+                                try {
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalledevprestamomaterial ?,?,?,?,?,?,?");
+                                    ps.setInt(1, devprestamos.get(i).getiddevprestamo());
+                                    ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                    ps.setString(3, devprestamos.get(i).getnommaterial());
+                                    ps.setDouble(4, devprestamos.get(i).getcant());
+                                    ps.setDouble(5, devprestamos.get(i).getcantdev());
+                                    ps.setString(6, devprestamos.get(i).getdevuelve());
+                                    ps.setInt(7, 0);
+                                    rs = ps.executeQuery();
+                                    while (rs.next()) {
+                                       if(devprestamos.get(i).getcant() > devprestamos.get(i).getcantdev()){
+                                          ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalledevprestamomaterial ?,?,?,?,?,?,?");
+                                          ps.setInt(1, devprestamos.get(i).getiddevprestamo());
+                                          ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                          ps.setString(3, devprestamos.get(i).getnommaterial());
+                                          ps.setDouble(4, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev ());
+                                          ps.setDouble(5, 0);
+                                          ps.setString(6, devprestamos.get(i).getdevuelve());
+                                          ps.setInt(7, 1);
+                                          rs = ps.executeQuery();
+                                          while (rs.next()) {
+                                              ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
+                                              ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+                                              ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                              ps.setDouble(3, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev());
+                                              rs = ps.executeQuery();
+                                              while (rs.next()) {
+                                                  //
+                                              }
+                                          }
+                                       }else if(devprestamos.get(i).getcant() == devprestamos.get(i).getcantdev()){
+                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
+                                            ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+                                            ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                            ps.setDouble(3,0);
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                  //
+                                            }
+                                       }
+                                    }
+                                } catch (SQLException ex) {
+                                    error = ex.getMessage();
+                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                }
+                            }
+                            for (int i = 0; i < devprestamos.size(); i++) {
+                                try {
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotadevprestamo ?,?,?,?");
+                                    ps.setString(1, devprestamos.get(i).getcodmaterial());
+                                    ps.setDouble(2, devprestamos.get(i).getcant());
+                                    ps.setDouble(3, devprestamos.get(i).getcantdev());
+                                    ps.setString(4, devprestamos.get(i).getdevuelve());
+                                    rs = ps.executeQuery();
+                                    while (rs.next()) {
+                                        //
+                                    }
+                                } catch (SQLException ex) {
+                                    error = ex.getMessage();
+                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                }
+                            }
+                            try{
+                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadetallesprestamomaterial ?");
+                                ps.setInt(1,PrincipalForm.idprest);
+                                rs = ps.executeQuery();
+                                if(rs.next()){
+                                    //
+                                }else{
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
+                                    ps.setInt(1,Integer.parseInt(this.labelnid.getText()));
+                                    rs = ps.executeQuery();
+                                    while(rs.next()){
+                                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Cerrado con Exito </h3></html>",
+                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                                    }
+                                }
+                            }catch(SQLException ex){
+                                error = ex.getMessage();
+                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                            }
                         }
-                    } catch (java.sql.SQLException ex) {
+                    }catch(SQLException ex){
                         error = ex.getMessage();
                         JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                     }
-                    for (int i = 0; i < devprestamos.size(); i++) {
-                        try {
-                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetalledevprestamomaterial ?,?,?,?,?,?");
-                            ps.setInt(1, devprestamos.get(i).getiddevprestamo());
-                            ps.setString(2, devprestamos.get(i).getcodmaterial());
-                            ps.setString(3, devprestamos.get(i).getnommaterial());
-                            ps.setDouble(4, devprestamos.get(i).getcant());
-                            ps.setDouble(5, devprestamos.get(i).getcantdev());
-                            ps.setString(6, devprestamos.get(i).getdevuelve());
-                            rs = ps.executeQuery();
-                            while (rs.next()) {
-                                //       
-                            }
-                        } catch (SQLException ex) {
-                            error = ex.getMessage();
-                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                        }
-                    }
-                    for (int i = 0; i < devprestamos.size(); i++) {
-                        try {
-                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotadevprestamo ?,?,?,?");
-                            ps.setString(1, devprestamos.get(i).getcodmaterial());
-                            ps.setDouble(2, devprestamos.get(i).getcant());
-                            ps.setDouble(3, devprestamos.get(i).getcantdev());
-                            ps.setString(4, devprestamos.get(i).getdevuelve());
-                            rs = ps.executeQuery();
-                            while (rs.next()) {
-                                //       
-                            }
-                        } catch (SQLException ex) {
-                            error = ex.getMessage();
-                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                        }
-                    }
-                   /* ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
-                    ps.setInt(1,Integer.parseInt(this.labelnid.getText()));
-                    rs = ps.executeQuery();
-                    while(rs.next()){
-                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Cerrado con Exito </h3></html>",
-                                null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                    /* try {
+                    reportesalmacen.ReporteNotaDevPrestamo(idnotadevprest , idnotadevprest);
+                    } catch (JRException | IOException ex) {
+                    Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                    Logger.getLogger(CerrarPrestamoMaterial.class.getName()).log(Level.SEVERE, null, ex);
                     }*/
+                    this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    this.dispose();    
+                }else{
+                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Especifique Quien Devuelve </h3></html>",
+                            null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                 }
-            }catch(SQLException ex){
-                error = ex.getMessage();
-                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+            }else{
+                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>La Cantidad Retornada no Puede ser mayor a la Cantidad Prestada </h3></html>",
+                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
             }
-           /* try {
-                reportesalmacen.ReporteNotaDevPrestamo(idnotadevprest , idnotadevprest);
-            } catch (JRException | IOException ex) {
-                Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(CerrarPrestamoMaterial.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
-            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>La Cantidad Retornada no Puede ser mayor a la Cantidad Prestada </h3></html>",
-                                null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-        }
+        }catch(java.lang.NumberFormatException ex){
+           JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Especifique la Cantidad de Material Retornado </h3></html>",
+                            null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion); 
+        }    
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonaceptarActionPerformed
 
