@@ -442,7 +442,7 @@ public class Consultas extends javax.swing.JDialog {
         this.tablebuscarmaterial.setEnabled(false);
         this.botonbuscar.setEnabled(false);
         this.botonxmaterial.setEnabled(false);
-        this.choicetiporpt.select(0);
+        //this.choicetiporpt.select(0);
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_radiobotonconsolidadoMouseClicked
 
