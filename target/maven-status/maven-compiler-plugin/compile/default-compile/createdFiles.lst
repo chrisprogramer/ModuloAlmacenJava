@@ -34,6 +34,7 @@ com\alimundo\moduloalmacen\Alertas.class
 com\alimundo\moduloalmacen\RequisicionesEntradas$2.class
 com\alimundo\moduloalmacen\EntradaManual$6.class
 Paneles\Salidas$5.class
+com\alimundo\moduloalmacen\Consultas$15.class
 Paneles\EntradaMaterial$3.class
 com\alimundo\moduloalmacen\PrincipalForm$3.class
 com\alimundo\moduloalmacen\Reportes.class
@@ -59,6 +60,7 @@ com\alimundo\moduloalmacen\Ayuda.class
 com\alimundo\moduloalmacen\Busqueda$4.class
 com\alimundo\moduloalmacen\PrincipalForm$2.class
 com\alimundo\moduloalmacen\Reloj.class
+com\alimundo\moduloalmacen\Consultas$16.class
 com\alimundo\moduloalmacen\SalidaManual$7.class
 com\alimundo\moduloalmacen\RequisicionesSalidas$4.class
 com\alimundo\moduloalmacen\MaterialTransito$2.class
@@ -89,6 +91,7 @@ com\alimundo\moduloalmacen\EditarPrestamo$2.class
 com\alimundo\moduloalmacen\Alertas$2.class
 com\alimundo\moduloalmacen\PrincipalForm$4.class
 com\alimundo\moduloalmacen\Ayuda$2.class
+com\alimundo\moduloalmacen\NuevoMaterial$6.class
 com\alimundo\moduloalmacen\Consultas.class
 com\alimundo\moduloalmacen\Busqueda$2.class
 com\alimundo\moduloalmacen\Consultas$14.class

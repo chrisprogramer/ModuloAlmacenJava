@@ -202,7 +202,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
 
         textfieldtopemin.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         textfieldtopemin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textfieldtopemin.setText("0");
+        textfieldtopemin.setText("1");
         textfieldtopemin.setToolTipText("");
         getContentPane().add(textfieldtopemin);
         textfieldtopemin.setBounds(170, 290, 80, 30);
@@ -305,7 +305,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
             if (validar.vacio(this.textfieldcodigo.getText(), this.texfieldnombre.getText())) {
                     if (ValidarDatos.isNumeric(this.textfieldtopemin.getText()) || this.textfieldtopemin.getText().equals('0')) {
                         try {
-                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardanvomaterial1 ?,?,?,?,?,?,?,?");
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardanvomaterial ?,?,?,?,?,?,?,?");
                             ps.setString(1, this.textfieldcodigo.getText());
                             ps.setString(2, this.texfieldnombre.getText());
                             ps.setString(3, this.choicecategorias.getSelectedItem());

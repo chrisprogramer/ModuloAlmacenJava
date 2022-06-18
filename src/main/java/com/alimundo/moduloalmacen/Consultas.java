@@ -5,9 +5,12 @@
 package com.alimundo.moduloalmacen;
 
 import Reportes.ReportesDB;
+import com.sun.glass.events.KeyEvent;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
+import java.awt.Image;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -57,6 +62,30 @@ public class Consultas extends javax.swing.JDialog {
             }
         }
     };
+    
+    public ImageIcon GetFoto(String codigo){
+        int ancho = this.labelfotografia.getWidth();
+        int largo = this.labelfotografia.getHeight();
+        ImageIcon imagen = null;
+        InputStream dato = null;
+
+        try{
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornafotomaterial ?");
+            ps.setString(1, codigo);
+            rs = ps.executeQuery();
+            while (rs.next()){
+               dato = rs.getBinaryStream(1);
+               Image leerimagen = ImageIO.read(dato).getScaledInstance(ancho,largo,Image.SCALE_DEFAULT);
+               imagen = new ImageIcon(leerimagen);  
+            }
+        }catch(SQLException | IOException ex){
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null,error,"ERROR",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
+        }    
+        return imagen;
+    }
 
     public Consultas() {
         initComponents();
@@ -181,6 +210,7 @@ public class Consultas extends javax.swing.JDialog {
         labeldptos = new javax.swing.JLabel();
         labelborde1 = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
+        labelfotografia = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -313,6 +343,11 @@ public class Consultas extends javax.swing.JDialog {
         tablebuscarmaterial.setModel(modelobusqueda);
         tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablebuscarmaterial.setShowGrid(true);
+        tablebuscarmaterial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tablebuscarmaterialKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 590, 300));
@@ -367,6 +402,19 @@ public class Consultas extends javax.swing.JDialog {
         panelopciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 620));
+
+        labelfotografia.setBackground(new java.awt.Color(255, 255, 255));
+        labelfotografia.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        labelfotografia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelfotografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs96X96/foto.png"))); // NOI18N
+        labelfotografia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelfotografia.setOpaque(true);
+        labelfotografia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelfotografiaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(labelfotografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 160, 140));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -930,6 +978,52 @@ public class Consultas extends javax.swing.JDialog {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botongastosActionPerformed
 
+    private void tablebuscarmaterialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablebuscarmaterialKeyReleased
+        modelo = (DefaultTableModel) tablebuscarmaterial.getModel();
+        String codigo;
+        if(evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP){
+           codigo = String.valueOf(modelo.getValueAt(this.tablebuscarmaterial.getSelectedRow(), 0));
+           ImageIcon foto = GetFoto(codigo);
+           this.labelfotografia.setIcon(foto);
+       }
+    }//GEN-LAST:event_tablebuscarmaterialKeyReleased
+
+    private void labelfotografiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelfotografiaMouseClicked
+        /*this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException | ClassNotFoundException ex) {
+            Logger.getLogger(NuevoMaterial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JFileChooser PanelFoto = new JFileChooser();
+        PanelFoto.setDialogTitle("Seleccione la Foto del Material");
+        PanelFoto.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int n = PanelFoto.showOpenDialog(null);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PrincipalForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        if (n == JFileChooser.APPROVE_OPTION){
+            try{
+                foto = new FileInputStream(PanelFoto.getSelectedFile());
+                this.LongitudBytes = (int) PanelFoto.getSelectedFile().length();
+                Image icono = ImageIO.read(PanelFoto.getSelectedFile()).getScaledInstance(this.labelfotografia.getWidth(), this.labelfotografia.getHeight(), Image.SCALE_DEFAULT);
+                this.labelfotografia.setIcon(new ImageIcon(icono));
+                this.labelfotografia.updateUI();
+            }catch(IOException | java.lang.NullPointerException ex){
+                JOptionPane.showMessageDialog(null,"<html><h3 style=font-family:Verdana;>El Achivo no es una Imagen</h3></html> " ,
+                    null,JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
+            }
+        }
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));*/
+    }//GEN-LAST:event_labelfotografiaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -988,6 +1082,7 @@ public class Consultas extends javax.swing.JDialog {
     private javax.swing.JLabel labeldesde;
     private javax.swing.JLabel labeldptos;
     private javax.swing.JLabel labelfondo;
+    public javax.swing.JLabel labelfotografia;
     private javax.swing.JLabel labelhasta;
     private javax.swing.JLabel labeltitulo;
     private javax.swing.JPanel panelopciones;
