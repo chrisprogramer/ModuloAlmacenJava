@@ -95,13 +95,22 @@ public class EntradaManual extends javax.swing.JDialog {
                                             ,"<html><h3 style=font-family:Verdana;>N° Factura</h3></html>"});
         this.tamanocolumnasentradas(tableentradas);
         modeloentrada.setRowCount(0);
+        tableentradas.getColumnModel().getColumn(0).setResizable(false);
+        tableentradas.getColumnModel().getColumn(1).setResizable(true);
+        tableentradas.getColumnModel().getColumn(2).setResizable(false);
+        tableentradas.getColumnModel().getColumn(3).setResizable(false);
+        tableentradas.getColumnModel().getColumn(4).setResizable(false);
+        tableentradas.getColumnModel().getColumn(5).setResizable(false);
+        tableentradas.getColumnModel().getColumn(6).setResizable(false);
+        tableentradas.getColumnModel().getColumn(7).setResizable(false);
+        tableentradas.getColumnModel().getColumn(8).setResizable(false);
         tableentradas.getTableHeader().setReorderingAllowed(false);
-        tableentradas.getTableHeader().setResizingAllowed(false);
         modelobusqueda.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>",
                                                         "<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>"});
         tamanocolumnasbuscar(tablebuscarmaterial); 
         modelobusqueda.setRowCount(0);
-        tablebuscarmaterial.getTableHeader().setResizingAllowed(false);
+        tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(true);
+        tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
         new CargarComponentes().llenarcombobox(jComboBoxdpto, "SELECT nom_departamento FROM Departamentos");
         fechahoy = new Date();
@@ -217,10 +226,10 @@ public class EntradaManual extends javax.swing.JDialog {
                 textfieldbuscarKeyReleased(evt);
             }
         });
-        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 452, 30));
+        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 490, 30));
 
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         tablebuscarmaterial.setModel(modelobusqueda);
         tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablebuscarmaterial.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,7 +239,7 @@ public class EntradaManual extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 490, 100));
 
         tableentradas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tableentradas.setModel(modeloentrada);

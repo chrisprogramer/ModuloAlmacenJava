@@ -45,7 +45,7 @@ public class Consultas extends javax.swing.JDialog {
     DefaultTableModel modelobusqueda = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int filas, int columnas) {
-            if (columnas == 5) {
+            if (columnas == 4) {
                 return true;
             } else {
                 return false;

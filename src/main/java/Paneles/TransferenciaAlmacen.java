@@ -59,11 +59,11 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
             tablebuscarmaterial.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>Codigo</h3></html>");
             tablebuscarmaterial.getColumnModel().getColumn(0).setPreferredWidth(150);
             tablebuscarmaterial.getColumnModel().getColumn(0).setMaxWidth(150);
-            tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(false);
+            tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(true);
             tablebuscarmaterial.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>");
             tablebuscarmaterial.getColumnModel().getColumn(1).setPreferredWidth(400);
             tablebuscarmaterial.getColumnModel().getColumn(1).setMaxWidth(400);
-            tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(true);
+            tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
         }
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
 
@@ -188,7 +188,7 @@ public class TransferenciaAlmacen extends javax.swing.JPanel {
         add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 410, 30));
 
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         tablebuscarmaterial.setModel(modelobusqueda);
         tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablebuscarmaterial.addMouseListener(new java.awt.event.MouseAdapter() {

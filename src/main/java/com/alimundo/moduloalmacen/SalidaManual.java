@@ -83,14 +83,21 @@ public class SalidaManual extends javax.swing.JDialog {
                                                         "<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>"});
         tamanocolumnasbuscar(tablebuscarmaterial); 
         modelobusqueda.setRowCount(0);
-        tablebuscarmaterial.getTableHeader().setResizingAllowed(false);
+        tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(true);
+        tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
-         modelosalida.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
+        modelosalida.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
             "<html><h3 style=font-family:Verdana;>Categoria</h3></html>","<html><h3 style=font-family:Verdana;>Medida</h3></html>","<html><h3 style=font-family:Verdana;>Almacén</h3></html>",
             "<html><h3 style=font-family:Verdana;>Cant.</h3></html>","<html><h3 style=font-family:Verdana;>Descripción / Uso</h3></html>"});
         tamanocolumnassalidas(tablesalidas); 
         modelosalida.setRowCount(0);
-        tablesalidas.getTableHeader().setResizingAllowed(false);
+        tablesalidas.getColumnModel().getColumn(0).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(1).setResizable(true);
+        tablesalidas.getColumnModel().getColumn(2).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(3).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(4).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(5).setResizable(false);
+        tablesalidas.getColumnModel().getColumn(6).setResizable(false);
         tablesalidas.getTableHeader().setReorderingAllowed(false);
         new CargarComponentes().llenarcombobox(jComboBoxdpto, "SELECT nom_departamento FROM Departamentos");
         fechahoy = new Date();
@@ -128,11 +135,9 @@ public class SalidaManual extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1230, 579));
         setMinimumSize(new java.awt.Dimension(1230, 579));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1230, 579));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -164,10 +169,10 @@ public class SalidaManual extends javax.swing.JDialog {
                 textfieldbuscarKeyReleased(evt);
             }
         });
-        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 452, 30));
+        getContentPane().add(textfieldbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 490, 30));
 
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         tablebuscarmaterial.setModel(modelobusqueda);
         tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablebuscarmaterial.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,7 +182,7 @@ public class SalidaManual extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 490, 100));
 
         labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N

@@ -81,8 +81,8 @@ public class PrestamoMaterial extends javax.swing.JPanel {
         modelobusqueda.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>"});
         tamanocolumnasbuscar(tablebuscarmaterial); 
         modelobusqueda.setRowCount(0);
-        tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(false);
-        tableprestamo.getColumnModel().getColumn(1).setResizable(true);
+        tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(true);
+        tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
         
         new CargarComponentes().llenarcombobox(jComboBoxdpto, "SELECT nom_departamento FROM Departamentos");

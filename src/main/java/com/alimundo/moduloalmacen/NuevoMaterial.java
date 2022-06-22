@@ -327,9 +327,9 @@ public class NuevoMaterial extends javax.swing.JDialog {
                             while (rs.next()) {
                                 JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Material Guardado con Exito </h3></html>",
                                         null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                                this.textfieldcodigo.setText(" ");
-                                this.texfieldnombre.setText(" ");
-                                this.textfielddescripcion.setText(" ");
+                                this.textfieldcodigo.setText("");
+                                this.texfieldnombre.setText("");
+                                this.textfielddescripcion.setText("");
                                 this.labelfotografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs96X96/manssilhouette_83703.png")));
                             }
                             ps.close();

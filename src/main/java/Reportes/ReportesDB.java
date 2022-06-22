@@ -181,7 +181,7 @@ public class ReportesDB {
             rutacompleta = ruta + nombrearch + " " + numnota + ".pdf";
             this.AbrirPDF(rutacompleta);
         } catch (JRException ex) {
-             error = ex.getMessage();
+            error = ex.getMessage();
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
