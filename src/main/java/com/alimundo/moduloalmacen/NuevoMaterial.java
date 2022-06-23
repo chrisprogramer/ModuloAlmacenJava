@@ -5,12 +5,10 @@
 package com.alimundo.moduloalmacen;
 
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
