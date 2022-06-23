@@ -330,7 +330,7 @@ public class NuevoMaterial extends javax.swing.JDialog {
                                 this.textfieldcodigo.setText("");
                                 this.texfieldnombre.setText("");
                                 this.textfielddescripcion.setText("");
-                                this.labelfotografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs96X96/manssilhouette_83703.png")));
+                                this.labelfotografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs96X96/foto.png")));
                             }
                             ps.close();
                         } catch (SQLException ex) {
