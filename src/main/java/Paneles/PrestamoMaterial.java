@@ -47,8 +47,7 @@ public class PrestamoMaterial extends javax.swing.JPanel {
         columnModel.getColumn(0).setPreferredWidth(150);
         columnModel.getColumn(1).setPreferredWidth(600);
         columnModel.getColumn(2).setPreferredWidth(150);
-        columnModel.getColumn(3).setPreferredWidth(550);
-        columnModel.getColumn(4).setPreferredWidth(550);
+        columnModel.getColumn(3).setPreferredWidth(700);
     } 
     public void tamanocolumnasbuscar(JTable table){
         columnModel = table.getColumnModel();
@@ -67,15 +66,13 @@ public class PrestamoMaterial extends javax.swing.JPanel {
     public PrestamoMaterial() {
         initComponents();
         modeloprestamo.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
-            "<html><h3 style=font-family:Verdana;>Cant.</h3></html>","<html><h3 style=font-family:Verdana;>Motivo</h3></html>",
-            "<html><h3 style=font-family:Verdana;>Responsable</h3></html>"});
+            "<html><h3 style=font-family:Verdana;>Cant.</h3></html>","<html><h3 style=font-family:Verdana;>Motivo</h3></html>"});
         tamanocolumnasprestamo(tableprestamo); 
         modeloprestamo.setRowCount(0);
         tableprestamo.getColumnModel().getColumn(0).setResizable(false);
         tableprestamo.getColumnModel().getColumn(1).setResizable(true);
         tableprestamo.getColumnModel().getColumn(2).setResizable(false);
         tableprestamo.getColumnModel().getColumn(3).setResizable(false);
-        tableprestamo.getColumnModel().getColumn(4).setResizable(false);
         tableprestamo.getTableHeader().setReorderingAllowed(false);
         
         modelobusqueda.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>"});
@@ -86,7 +83,8 @@ public class PrestamoMaterial extends javax.swing.JPanel {
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
         
         new CargarComponentes().llenarcombobox(jComboBoxdpto, "SELECT nom_departamento FROM Departamentos");
-        new CargarComponentes().addComboBox(4, tableprestamo, "SELECT nom_responsable FROM ResponsablesPrestamos ORDER BY nom_responsable");
+        new CargarComponentes().llenarcombobox(jComboBoxresponsable, "SELECT nom_responsable FROM ResponsablesPrestamos ORDER BY nom_responsable");
+        //new CargarComponentes().addComboBox(4, tableprestamo, "SELECT nom_responsable FROM ResponsablesPrestamos ORDER BY nom_responsable");
         fechahoy = new Date();
         this.date.setDateFormatString(fechaformat);
         this.date.setDate(fechahoy);
@@ -106,6 +104,8 @@ public class PrestamoMaterial extends javax.swing.JPanel {
         date = new com.toedter.calendar.JDateChooser();
         labeldepartamento = new javax.swing.JLabel();
         jComboBoxdpto = new javax.swing.JComboBox<>();
+        labelresponsable = new javax.swing.JLabel();
+        jComboBoxresponsable = new javax.swing.JComboBox<>();
         labelbuscar = new javax.swing.JLabel();
         textfieldbuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -156,10 +156,20 @@ public class PrestamoMaterial extends javax.swing.JPanel {
         labeldepartamento.setText("Solicita");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, -1, -1));
+        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, -1, -1));
 
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 85, 260, 30));
+        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 85, 260, 30));
+
+        labelresponsable.setBackground(new java.awt.Color(255, 255, 255));
+        labelresponsable.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labelresponsable.setText("Responsable");
+        labelresponsable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        labelresponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        add(labelresponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 60, -1, -1));
+
+        jComboBoxresponsable.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        add(jComboBoxresponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 85, 260, 30));
 
         labelbuscar.setBackground(new java.awt.Color(255, 255, 255));
         labelbuscar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -199,7 +209,7 @@ public class PrestamoMaterial extends javax.swing.JPanel {
         });
         jScrollPane.setViewportView(tableprestamo);
 
-        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 780, 290));
+        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 690, 290));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -6, 1210, 430));
@@ -279,6 +289,7 @@ public class PrestamoMaterial extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public com.toedter.calendar.JDateChooser date;
     public javax.swing.JComboBox<String> jComboBoxdpto;
+    public javax.swing.JComboBox<String> jComboBoxresponsable;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelbuscar;
@@ -287,6 +298,7 @@ public class PrestamoMaterial extends javax.swing.JPanel {
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labelid;
     public javax.swing.JLabel labelnid;
+    private javax.swing.JLabel labelresponsable;
     private javax.swing.JLabel labeltitulo;
     public javax.swing.JTable tablebuscarmaterial;
     public javax.swing.JTable tableprestamo;

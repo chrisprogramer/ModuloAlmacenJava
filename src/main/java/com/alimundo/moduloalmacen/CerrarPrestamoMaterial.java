@@ -98,6 +98,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
            while(rs.next()){
                 this.labelnid.setText(rs.getString(1));
                 this.textfieldpto.setText(rs.getString(2));
+                this.textfieldresponsable.setText(rs.getString(3));
             }
            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadetallesprestamomaterial ?");
            ps.setInt(1,PrincipalForm.idprest);
@@ -120,6 +121,8 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelfecha = new javax.swing.JLabel();
         labeldepartamento = new javax.swing.JLabel();
         textfieldpto = new javax.swing.JTextField();
+        labelresponsable = new javax.swing.JLabel();
+        textfieldresponsable = new javax.swing.JTextField();
         date = new com.toedter.calendar.JDateChooser();
         labelid = new javax.swing.JLabel();
         labelnid = new javax.swing.JLabel();
@@ -130,9 +133,11 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(720, 477));
+        setMaximumSize(new java.awt.Dimension(761, 477));
+        setMinimumSize(new java.awt.Dimension(761, 477));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(761, 477));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -141,7 +146,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                 labelcerrarMouseClicked(evt);
             }
         });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 4, -1, -1));
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 4, -1, -1));
 
         labeltitulo1.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo1.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -149,7 +154,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labeltitulo1.setText("CERRAR PRESTAMO DE MATERIAL");
         labeltitulo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo1.setOpaque(true);
-        getContentPane().add(labeltitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 40));
+        getContentPane().add(labeltitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 40));
 
         labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -163,11 +168,22 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labeldepartamento.setText("Departamento");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+        getContentPane().add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
 
         textfieldpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfieldpto.setEnabled(false);
-        getContentPane().add(textfieldpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 210, 30));
+        getContentPane().add(textfieldpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 210, 30));
+
+        labelresponsable.setBackground(new java.awt.Color(255, 255, 255));
+        labelresponsable.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labelresponsable.setText("Responsable");
+        labelresponsable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        labelresponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(labelresponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
+
+        textfieldresponsable.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        textfieldresponsable.setEnabled(false);
+        getContentPane().add(textfieldresponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 210, 30));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         date.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -178,7 +194,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelid.setText("ID Prestamo");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, -1, -1));
+        getContentPane().add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, -1, -1));
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
         labelnid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -187,7 +203,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         labelnid.setEnabled(false);
         labelnid.setFocusable(false);
         labelnid.setOpaque(true);
-        getContentPane().add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 50, 40));
+        getContentPane().add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 50, 40));
 
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,14 +211,14 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                 botonaceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 403, 60, 60));
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 60, 60));
 
         tabledevolucionprestamo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tabledevolucionprestamo.setModel(modeloprestamo);
         tabledevolucionprestamo.setShowGrid(true);
         jScrollPane.setViewportView(tabledevolucionprestamo);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 700, 260));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 700, 260));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -210,7 +226,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 477));
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 477));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -450,9 +466,11 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labelid;
     public javax.swing.JLabel labelnid;
+    private javax.swing.JLabel labelresponsable;
     private javax.swing.JLabel labeltitulo1;
     private javax.swing.JPanel panelopciones;
     public javax.swing.JTable tabledevolucionprestamo;
     private javax.swing.JTextField textfieldpto;
+    private javax.swing.JTextField textfieldresponsable;
     // End of variables declaration//GEN-END:variables
 }
