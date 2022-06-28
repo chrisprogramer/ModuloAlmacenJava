@@ -64,6 +64,28 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     ReportesDB reportesalmacen = new ReportesDB();
     CargarComponentes componentes = new CargarComponentes();
     
+    private int ConsultadevPrestamo(){
+        int iddev = 0;
+        try {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("EXEC spu_consultadevprestamo ?");
+            ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+            rs = ps.executeQuery();
+            if (rs.next()) {
+              iddev = rs.getInt(1);
+            }
+        }catch(SQLException ex){
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+        return iddev;
+    }
+    
+    private void GuardadevPrestamo(int cantreg){
+        
+    } 
+    
     public CerrarPrestamoMaterial(){
         initComponents();
         setResizable(false);
@@ -99,7 +121,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                 this.labelnid.setText(rs.getString(1));
                 this.textfieldpto.setText(rs.getString(2));
                 this.textfieldresponsable.setText(rs.getString(3));
-            }
+           }
            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadetallesprestamomaterial ?");
            ps.setInt(1,PrincipalForm.idprest);
            rs = ps.executeQuery();
@@ -269,101 +291,116 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                     banderatext = true;
                 }
             }
+            iddevp = ConsultadevPrestamo();
             if (!banderanum){
                 if (!banderatext){
                     try{
-                        PreparedStatement ps = null;
-                        ResultSet rs = null;
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?,?");
-                        ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
-                        ps.setString(2, fechadevpreststr);
-                        ps.setString(3, this.textfieldpto.getText());
-                        rs = ps.executeQuery();
-                        if(rs.next()){
-                            iddevp = rs.getInt(1);
-                            for (int i = 0; i < numregdev; i++) {
-                                codmaterial = (String) modeloprestamo.getValueAt(i,0);
-                                nommaterial = (String) modeloprestamo.getValueAt(i, 1);
-                                cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
-                                cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
-                                devuelve = (String) modeloprestamo.getValueAt(i, 4);
-                                arraydevprestamos = new DetalleDevPrestamos() ;
-                                arraydevprestamos.setiddevprestamo(iddevp);
-                                arraydevprestamos.setcodmaterial(codmaterial);
-                                arraydevprestamos.setnommaterial(nommaterial);
-                                arraydevprestamos.setcant(cant);
-                                arraydevprestamos.setcantdev(cantdev);
-                                arraydevprestamos.setdevuelve(devuelve);
-                                devprestamos.add(arraydevprestamos);
+                        if(iddevp == 0){
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?,?,?");
+                            ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+                            ps.setString(2, fechadevpreststr);
+                            ps.setString(3, this.textfieldpto.getText());
+                            ps.setString(4, this.textfieldresponsable.getText());
+                            rs = ps.executeQuery();
+                            if(rs.next()){
+                                //
                             }
+                        }    
+                        for (int i = 0; i < numregdev; i++) {
+                            codmaterial = (String) modeloprestamo.getValueAt(i,0);
+                            nommaterial = (String) modeloprestamo.getValueAt(i, 1);
+                            cant = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 2)));
+                            cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
+                            devuelve = (String) modeloprestamo.getValueAt(i, 4);
+                            arraydevprestamos = new DetalleDevPrestamos() ;
+                            arraydevprestamos.setiddevprestamo(iddevp);
+                            arraydevprestamos.setcodmaterial(codmaterial);
+                            arraydevprestamos.setnommaterial(nommaterial);
+                            arraydevprestamos.setcant(cant);
+                            arraydevprestamos.setcantdev(cantdev);
+                            arraydevprestamos.setdevuelve(devuelve);
+                            devprestamos.add(arraydevprestamos);
+                        }
+                        try {
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?,?");
+                            ps.setString(1, fechadevpreststr);
+                            ps.setString(2, this.textfieldpto.getText());
+                            ps.setInt(3, iddevp);
+                            ps.setString(4, this.textfieldresponsable.getText());
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                idnotadevprest = rs.getInt(1);
+                            }
+                        } catch (java.sql.SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                        }
+                        for (int i = 0; i < devprestamos.size(); i++) {
                             try {
-                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?");
-                                ps.setString(1, fechadevpreststr);
-                                ps.setString(2, this.textfieldpto.getText());
-                                ps.setInt(3, iddevp);
+                                PreparedStatement ps = null;
+                                ResultSet rs = null;
+                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalledevprestamomaterial ?,?,?,?,?,?,?,?");
+                                ps.setInt(1, devprestamos.get(i).getiddevprestamo());
+                                ps.setString(2,fechadevpreststr);
+                                ps.setString(3, devprestamos.get(i).getcodmaterial());
+                                ps.setString(4, devprestamos.get(i).getnommaterial());
+                                ps.setDouble(5, devprestamos.get(i).getcant());
+                                ps.setDouble(6, devprestamos.get(i).getcantdev());
+                                ps.setString(7, devprestamos.get(i).getdevuelve());
+                                ps.setInt(8, 0);
                                 rs = ps.executeQuery();
                                 while (rs.next()) {
-                                    idnotadevprest = rs.getInt(1);
+                                   if(devprestamos.get(i).getcant() > devprestamos.get(i).getcantdev()){
+                                      ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalledevprestamomaterial ?,?,?,?,?,?,?,?");
+                                      ps.setInt(1, devprestamos.get(i).getiddevprestamo());
+                                      ps.setString(2,fechadevpreststr);
+                                      ps.setString(3, devprestamos.get(i).getcodmaterial());
+                                      ps.setString(4, devprestamos.get(i).getnommaterial());
+                                      ps.setDouble(5, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev ());
+                                      ps.setDouble(6, 0);
+                                      ps.setString(7, devprestamos.get(i).getdevuelve());
+                                      ps.setInt(8, 1);
+                                      rs = ps.executeQuery();
+                                      while (rs.next()) {
+                                          ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
+                                          ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+                                          ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                          ps.setDouble(3, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev());
+                                          rs = ps.executeQuery();
+                                          while (rs.next()) {
+                                              //
+                                          }
+                                      }
+                                   }else if(devprestamos.get(i).getcant() == devprestamos.get(i).getcantdev()){
+                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
+                                        ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+                                        ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                        ps.setDouble(3,0);
+                                        rs = ps.executeQuery();
+                                        while (rs.next()) {
+                                              //
+                                        }
+                                   }
                                 }
-                            } catch (java.sql.SQLException ex) {
+                            } catch (SQLException ex) {
                                 error = ex.getMessage();
                                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                             }
+                        }
                             for (int i = 0; i < devprestamos.size(); i++) {
                                 try {
-                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalledevprestamomaterial ?,?,?,?,?,?,?");
-                                    ps.setInt(1, devprestamos.get(i).getiddevprestamo());
+                                    PreparedStatement ps = null;
+                                    ResultSet rs = null;
+                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotadevprestamo ?,?,?,?,?");
+                                    ps.setString(1,fechadevpreststr);
                                     ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                    ps.setString(3, devprestamos.get(i).getnommaterial());
-                                    ps.setDouble(4, devprestamos.get(i).getcant());
-                                    ps.setDouble(5, devprestamos.get(i).getcantdev());
-                                    ps.setString(6, devprestamos.get(i).getdevuelve());
-                                    ps.setInt(7, 0);
-                                    rs = ps.executeQuery();
-                                    while (rs.next()) {
-                                       if(devprestamos.get(i).getcant() > devprestamos.get(i).getcantdev()){
-                                          ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalledevprestamomaterial ?,?,?,?,?,?,?");
-                                          ps.setInt(1, devprestamos.get(i).getiddevprestamo());
-                                          ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                          ps.setString(3, devprestamos.get(i).getnommaterial());
-                                          ps.setDouble(4, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev ());
-                                          ps.setDouble(5, 0);
-                                          ps.setString(6, devprestamos.get(i).getdevuelve());
-                                          ps.setInt(7, 1);
-                                          rs = ps.executeQuery();
-                                          while (rs.next()) {
-                                              ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
-                                              ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
-                                              ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                              ps.setDouble(3, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev());
-                                              rs = ps.executeQuery();
-                                              while (rs.next()) {
-                                                  //
-                                              }
-                                          }
-                                       }else if(devprestamos.get(i).getcant() == devprestamos.get(i).getcantdev()){
-                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
-                                            ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
-                                            ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                            ps.setDouble(3,0);
-                                            rs = ps.executeQuery();
-                                            while (rs.next()) {
-                                                  //
-                                            }
-                                       }
-                                    }
-                                } catch (SQLException ex) {
-                                    error = ex.getMessage();
-                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                                }
-                            }
-                            for (int i = 0; i < devprestamos.size(); i++) {
-                                try {
-                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotadevprestamo ?,?,?,?");
-                                    ps.setString(1, devprestamos.get(i).getcodmaterial());
-                                    ps.setDouble(2, devprestamos.get(i).getcant());
-                                    ps.setDouble(3, devprestamos.get(i).getcantdev());
-                                    ps.setString(4, devprestamos.get(i).getdevuelve());
+                                    ps.setDouble(3, devprestamos.get(i).getcant());
+                                    ps.setDouble(4, devprestamos.get(i).getcantdev());
+                                    ps.setString(5, devprestamos.get(i).getdevuelve());
                                     rs = ps.executeQuery();
                                     while (rs.next()) {
                                         //
@@ -373,7 +410,11 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                                     JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                                 }
                             }
+                            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Devolución Ejecutada con Exito </h3></html>",
+                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                             try{
+                                PreparedStatement ps = null;
+                                ResultSet rs = null;
                                 ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadetallesprestamomaterial ?");
                                 ps.setInt(1,PrincipalForm.idprest);
                                 rs = ps.executeQuery();
@@ -392,7 +433,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                                 error = ex.getMessage();
                                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                             }
-                        }
+                        
                     }catch(SQLException ex){
                         error = ex.getMessage();
                         JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
