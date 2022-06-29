@@ -64,7 +64,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
     ReportesDB reportesalmacen = new ReportesDB();
     CargarComponentes componentes = new CargarComponentes();
     
-    private int ConsultadevPrestamo(){
+    private int ConsultaiddevPrestamo(){
         int iddev = 0;
         try {
             PreparedStatement ps = null;
@@ -111,7 +111,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         editor = (JTextFieldDateEditor) date.getDateEditor();
         editor.setEnabled(false);
         
-         try{
+        try{
            PreparedStatement ps = null;
            ResultSet rs = null;
            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosencabezadoprestamomaterial ?");
@@ -264,6 +264,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         double cant;
         double cantdev;
         int iddevp;
+        int ciddevp;
         int idnotadevprest = 0;
         String codmaterial;
         String nommaterial;
@@ -291,15 +292,16 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                     banderatext = true;
                 }
             }
-            iddevp = ConsultadevPrestamo();
+            ciddevp = ConsultaiddevPrestamo();
+            iddevp = Integer.parseInt(this.labelnid.getText());
             if (!banderanum){
                 if (!banderatext){
                     try{
-                        if(iddevp == 0){
+                        if(ciddevp == 0){
                             PreparedStatement ps = null;
                             ResultSet rs = null;
                             ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?,?,?");
-                            ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
+                            ps.setInt(1, iddevp);
                             ps.setString(2, fechadevpreststr);
                             ps.setString(3, this.textfieldpto.getText());
                             ps.setString(4, this.textfieldresponsable.getText());
@@ -351,31 +353,28 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                                 ps.setDouble(5, devprestamos.get(i).getcant());
                                 ps.setDouble(6, devprestamos.get(i).getcantdev());
                                 ps.setString(7, devprestamos.get(i).getdevuelve());
-                                ps.setInt(8, 0);
+                                ps.setInt(8, 1);
                                 rs = ps.executeQuery();
                                 while (rs.next()) {
-                                   if(devprestamos.get(i).getcant() > devprestamos.get(i).getcantdev()){
-                                      ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetalledevprestamomaterial ?,?,?,?,?,?,?,?");
+                                    if(devprestamos.get(i).getcant() > devprestamos.get(i).getcantdev()){
+                                      ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodetalledevprestamo ?,?,?,?,?");
                                       ps.setInt(1, devprestamos.get(i).getiddevprestamo());
                                       ps.setString(2,fechadevpreststr);
                                       ps.setString(3, devprestamos.get(i).getcodmaterial());
                                       ps.setString(4, devprestamos.get(i).getnommaterial());
                                       ps.setDouble(5, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev ());
-                                      ps.setDouble(6, 0);
-                                      ps.setString(7, devprestamos.get(i).getdevuelve());
-                                      ps.setInt(8, 1);
                                       rs = ps.executeQuery();
                                       while (rs.next()) {
-                                          ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
+                                          /*ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
                                           ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
                                           ps.setString(2, devprestamos.get(i).getcodmaterial());
                                           ps.setDouble(3, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev());
                                           rs = ps.executeQuery();
                                           while (rs.next()) {
                                               //
-                                          }
+                                          }*/
                                       }
-                                   }else if(devprestamos.get(i).getcant() == devprestamos.get(i).getcantdev()){
+                                    }else if(devprestamos.get(i).getcant() == devprestamos.get(i).getcantdev()){
                                         ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
                                         ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
                                         ps.setString(2, devprestamos.get(i).getcodmaterial());
@@ -391,25 +390,25 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                             }
                         }
-                            for (int i = 0; i < devprestamos.size(); i++) {
-                                try {
-                                    PreparedStatement ps = null;
-                                    ResultSet rs = null;
-                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotadevprestamo ?,?,?,?,?");
-                                    ps.setString(1,fechadevpreststr);
-                                    ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                    ps.setDouble(3, devprestamos.get(i).getcant());
-                                    ps.setDouble(4, devprestamos.get(i).getcantdev());
-                                    ps.setString(5, devprestamos.get(i).getdevuelve());
-                                    rs = ps.executeQuery();
-                                    while (rs.next()) {
-                                        //
-                                    }
-                                } catch (SQLException ex) {
-                                    error = ex.getMessage();
-                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                        for (int i = 0; i < devprestamos.size(); i++) {
+                            try {
+                                PreparedStatement ps = null;
+                                ResultSet rs = null;
+                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotadevprestamo ?,?,?,?,?");
+                                ps.setString(1,fechadevpreststr);
+                                ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                ps.setDouble(3, devprestamos.get(i).getcant());
+                                ps.setDouble(4, devprestamos.get(i).getcantdev());
+                                ps.setString(5, devprestamos.get(i).getdevuelve());
+                                rs = ps.executeQuery();
+                                while (rs.next()) {
+                                    //
                                 }
+                            } catch (SQLException ex) {
+                                error = ex.getMessage();
+                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                             }
+                        }
                             JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Devolución Ejecutada con Exito </h3></html>",
                                         null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                             try{
