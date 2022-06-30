@@ -7,16 +7,20 @@ package com.alimundo.moduloalmacen;
 import Reportes.ReportesDB;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -365,23 +369,14 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                                       ps.setDouble(5, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev ());
                                       rs = ps.executeQuery();
                                       while (rs.next()) {
-                                          /*ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
-                                          ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
-                                          ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                          ps.setDouble(3, devprestamos.get(i).getcant() - devprestamos.get(i).getcantdev());
-                                          rs = ps.executeQuery();
-                                          while (rs.next()) {
-                                              //
-                                          }*/
+                                            //
                                       }
                                     }else if(devprestamos.get(i).getcant() == devprestamos.get(i).getcantdev()){
-                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_actualizacantprestamomaterial ?,?,?");
+                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
                                         ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
-                                        ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                        ps.setDouble(3,0);
                                         rs = ps.executeQuery();
                                         while (rs.next()) {
-                                              //
+                                            //
                                         }
                                    }
                                 }
@@ -390,60 +385,19 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                             }
                         }
-                        for (int i = 0; i < devprestamos.size(); i++) {
-                            try {
-                                PreparedStatement ps = null;
-                                ResultSet rs = null;
-                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotadevprestamo ?,?,?,?,?");
-                                ps.setString(1,fechadevpreststr);
-                                ps.setString(2, devprestamos.get(i).getcodmaterial());
-                                ps.setDouble(3, devprestamos.get(i).getcant());
-                                ps.setDouble(4, devprestamos.get(i).getcantdev());
-                                ps.setString(5, devprestamos.get(i).getdevuelve());
-                                rs = ps.executeQuery();
-                                while (rs.next()) {
-                                    //
-                                }
-                            } catch (SQLException ex) {
-                                error = ex.getMessage();
-                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                            }
-                        }
-                            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Devolución Ejecutada con Exito </h3></html>",
+                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Devolución Ejecutada con Exito </h3></html>",
                                         null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                            try{
-                                PreparedStatement ps = null;
-                                ResultSet rs = null;
-                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadetallesprestamomaterial ?");
-                                ps.setInt(1,PrincipalForm.idprest);
-                                rs = ps.executeQuery();
-                                if(rs.next()){
-                                    //
-                                }else{
-                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_cierraprestamomaterial ?");
-                                    ps.setInt(1,Integer.parseInt(this.labelnid.getText()));
-                                    rs = ps.executeQuery();
-                                    while(rs.next()){
-                                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Prestamo Cerrado con Exito </h3></html>",
-                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                                    }
-                                }
-                            }catch(SQLException ex){
-                                error = ex.getMessage();
-                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                            }
-                        
                     }catch(SQLException ex){
                         error = ex.getMessage();
                         JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                     }
-                    /* try {
+                    try {
                     reportesalmacen.ReporteNotaDevPrestamo(idnotadevprest , idnotadevprest);
                     } catch (JRException | IOException ex) {
                     Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                    Logger.getLogger(CerrarPrestamoMaterial.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
+                        Logger.getLogger(CerrarPrestamoMaterial.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                     this.dispose();    
                 }else{

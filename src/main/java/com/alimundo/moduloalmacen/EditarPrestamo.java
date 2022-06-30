@@ -142,11 +142,17 @@ public class EditarPrestamo extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        seleccion = this.tableprestamo.getSelectedRow();
-        PrincipalForm.idprest = (int) modeloprestamo.getValueAt(seleccion, 0);
-        new CerrarPrestamoMaterial().setVisible(true);
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        this.dispose();
+        try{
+            seleccion = this.tableprestamo.getSelectedRow();
+            PrincipalForm.idprest = (int) modeloprestamo.getValueAt(seleccion, 0);
+            new CerrarPrestamoMaterial().setVisible(true);
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            this.dispose();
+        }catch(java.lang.ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Seleccionar un Prestamo </h3></html>",
+                                                    null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
     }//GEN-LAST:event_botonaceptarActionPerformed
 
     /**
