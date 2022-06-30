@@ -387,6 +387,25 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                         }
                         JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Devolución Ejecutada con Exito </h3></html>",
                                         null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                        for (int i = 0; i < devprestamos.size(); i++) {
+                            try {
+                                PreparedStatement ps = null;
+                                ResultSet rs = null;
+                                ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotadevprestamo ?,?,?,?,?");
+                                ps.setString(1, fechadevpreststr);
+                                ps.setString(2, devprestamos.get(i).getcodmaterial());
+                                ps.setDouble(3, devprestamos.get(i).getcant());
+                                ps.setDouble(4, devprestamos.get(i).getcantdev());
+                                ps.setString(5, devprestamos.get(i).getdevuelve());
+                                rs = ps.executeQuery();
+                                while (rs.next()) {
+                                    //
+                                }
+                            } catch (SQLException ex) {
+                                error = ex.getMessage();
+                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                            }
+                        }
                     }catch(SQLException ex){
                         error = ex.getMessage();
                         JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
