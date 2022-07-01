@@ -7,6 +7,8 @@ package com.alimundo.moduloalmacen;
 import Reportes.ReportesDB;
 import java.awt.Cursor;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,6 +63,7 @@ public class MaterialTransito extends javax.swing.JDialog {
         tableprestamo.getTableHeader().getColumnModel().getColumn(3).setResizable(false);
         tableprestamo.getTableHeader().setReorderingAllowed(false);
         
+        this.botonaceptar.setEnabled(false);
         /*try{
             PreparedStatement ps = null;
             ResultSet rs = null;
@@ -121,12 +124,22 @@ public class MaterialTransito extends javax.swing.JDialog {
         radiobuttonabierto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         radiobuttonabierto.setText("Abiertos");
         radiobuttonabierto.setOpaque(false);
+        radiobuttonabierto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radiobuttonabiertoMouseClicked(evt);
+            }
+        });
         getContentPane().add(radiobuttonabierto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 47, -1, -1));
 
         buttongroupestado.add(radiobuttoncerrado);
         radiobuttoncerrado.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         radiobuttoncerrado.setText("Cerrados");
         radiobuttoncerrado.setOpaque(false);
+        radiobuttoncerrado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radiobuttoncerradoMouseClicked(evt);
+            }
+        });
         getContentPane().add(radiobuttoncerrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 77, -1, -1));
 
         tableprestamo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -175,16 +188,42 @@ public class MaterialTransito extends javax.swing.JDialog {
         switch (seleccionradio) {
             case ("Abiertos"):
                 try {
+                PreparedStatement ps = null;
+                ResultSet rs = null;
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo ?");
+                ps.setInt(1, 1);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
+                }
+            } catch (SQLException ex) {
+                error = ex.getMessage();
+                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+            }
+             
+                /*try {
                 reportesalmacen.ReporteConsolidadoAlmacen();
                 } catch (JRException | IOException ex) {
                     Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));*/
                 break;
             case ("Cerrados"):
-                
+                try {
+                    PreparedStatement ps = null;
+                    ResultSet rs = null;
+                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo ?");
+                    ps.setInt(1, 0);
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
+                        modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
+                    }
+                } catch (SQLException ex) {
+                    error = ex.getMessage();
+                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                }
                 
                 break;
         }
@@ -203,6 +242,39 @@ public class MaterialTransito extends javax.swing.JDialog {
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonaceptarActionPerformed
+
+    private void radiobuttonabiertoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobuttonabiertoMouseClicked
+        modeloprestamo.setRowCount(0);
+        try {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo ?");
+            ps.setInt(1, 1);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
+            }
+        } catch (SQLException ex) {
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }//GEN-LAST:event_radiobuttonabiertoMouseClicked
+
+    private void radiobuttoncerradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobuttoncerradoMouseClicked
+        try {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo ?");
+            ps.setInt(1, 0);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
+            }
+        } catch (SQLException ex) {
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }//GEN-LAST:event_radiobuttoncerradoMouseClicked
 
     /**
      * @param args the command line arguments
