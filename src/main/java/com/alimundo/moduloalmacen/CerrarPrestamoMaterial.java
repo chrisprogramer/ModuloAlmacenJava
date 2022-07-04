@@ -267,7 +267,8 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         double cant;
         double cantdev;
-        int iddevp;
+        int idprestamo;
+        int iddevprestamo = 0;
         int ciddevp;
         int idnotadevprest = 0;
         String codmaterial;
@@ -297,7 +298,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                 }
             }
             ciddevp = ConsultaiddevPrestamo();
-            iddevp = Integer.parseInt(this.labelnid.getText());
+            idprestamo = Integer.parseInt(this.labelnid.getText());
             if (!banderanum){
                 if (!banderatext){
                     try{
@@ -305,13 +306,13 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                             PreparedStatement ps = null;
                             ResultSet rs = null;
                             ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevodevprestamomaterial ?,?,?,?");
-                            ps.setInt(1, iddevp);
+                            ps.setInt(1, idprestamo);
                             ps.setString(2, fechadevpreststr);
                             ps.setString(3, this.textfieldpto.getText());
                             ps.setString(4, this.textfieldresponsable.getText());
                             rs = ps.executeQuery();
                             if(rs.next()){
-                                //
+                                iddevprestamo = rs.getInt(1);
                             }
                         }    
                         for (int i = 0; i < numregdev; i++) {
@@ -321,7 +322,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                             cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
                             devuelve = (String) modeloprestamo.getValueAt(i, 4);
                             arraydevprestamos = new DetalleDevPrestamos() ;
-                            arraydevprestamos.setiddevprestamo(iddevp);
+                            arraydevprestamos.setiddevprestamo(iddevprestamo);
                             arraydevprestamos.setcodmaterial(codmaterial);
                             arraydevprestamos.setnommaterial(nommaterial);
                             arraydevprestamos.setcant(cant);
@@ -335,7 +336,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                             ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotadevprestamo ?,?,?,?");
                             ps.setString(1, fechadevpreststr);
                             ps.setString(2, this.textfieldpto.getText());
-                            ps.setInt(3, iddevp);
+                            ps.setInt(3, iddevprestamo);
                             ps.setString(4, this.textfieldresponsable.getText());
                             rs = ps.executeQuery();
                             while (rs.next()) {
