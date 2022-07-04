@@ -68,18 +68,6 @@ public class MaterialTransito extends javax.swing.JDialog {
         tableprestamo.getTableHeader().setReorderingAllowed(false);
         
         this.botonaceptar.setEnabled(false);
-        /*try{
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo");
-            rs = ps.executeQuery();
-            while(rs.next()){
-                 modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4)});
-            }
-        }catch(SQLException ex){
-            error = ex.getMessage();
-            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-        }*/
     }
 
     @SuppressWarnings("unchecked")
@@ -188,17 +176,23 @@ public class MaterialTransito extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        seleccionfila = this.tableprestamo.getSelectedRow();
-        seleccionid = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(seleccionfila, 0)));
-        seleccioncod = (String) modeloprestamo.getValueAt(seleccionfila, 1);
-       
-        try {
-              reportesalmacen.ReporteHistorialDevoluciones(seleccionid,seleccioncod);
+        try{
+            seleccionfila = this.tableprestamo.getSelectedRow();
+            seleccionid = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(seleccionfila, 0)));
+            seleccioncod = (String) modeloprestamo.getValueAt(seleccionfila, 1);
+
+            try {
+                reportesalmacen.ReporteHistorialDevoluciones(seleccionid,seleccioncod);
             } catch (JRException | IOException ex) {
                 Logger.getLogger(MaterialTransito.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 error = ex.getMessage();
                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+            } 
+
+        }catch(java.lang.ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Dede Seleccionar un Registro</h3></html>",
+                        "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_botonaceptarActionPerformed
