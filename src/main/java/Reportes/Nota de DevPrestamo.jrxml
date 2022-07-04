@@ -15,7 +15,8 @@
 	<field name="id_nota" class="java.lang.Integer"/>
 	<field name="Codigo" class="java.lang.String"/>
 	<field name="Material" class="java.lang.String"/>
-	<field name="Cantidad" class="java.lang.Integer"/>
+	<field name="Cantidad" class="java.math.BigDecimal"/>
+	<field name="Devuelve" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -80,7 +81,7 @@
 				<text><![CDATA[Cod.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="93" y="0" width="413" height="32" uuid="a1174d01-90e6-4a76-8bb8-a6140262ed6d"/>
+				<reportElement x="93" y="0" width="260" height="32" uuid="a1174d01-90e6-4a76-8bb8-a6140262ed6d"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -94,7 +95,7 @@
 				<text><![CDATA[Material]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="506" y="0" width="46" height="32" uuid="a81b3517-9c7d-4a7f-a1a3-2ea20622f93f"/>
+				<reportElement x="353" y="0" width="46" height="32" uuid="a81b3517-9c7d-4a7f-a1a3-2ea20622f93f"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -106,6 +107,20 @@
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cant.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="0" width="153" height="32" uuid="08eed241-4a02-4256-8ddd-fc59e3992c49"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Devuelve]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -126,7 +141,7 @@
 				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00">
-				<reportElement x="506" y="0" width="46" height="16" uuid="974d2518-2f4f-4967-8a18-cd6ddf3bfb02"/>
+				<reportElement x="353" y="0" width="46" height="16" uuid="974d2518-2f4f-4967-8a18-cd6ddf3bfb02"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -140,7 +155,7 @@
 				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="93" y="0" width="413" height="16" uuid="7b31c115-496d-4e73-94a8-8bb5e12629cc"/>
+				<reportElement x="93" y="0" width="260" height="16" uuid="7b31c115-496d-4e73-94a8-8bb5e12629cc"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -152,6 +167,20 @@
 					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Material}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="0" width="153" height="16" uuid="2459f298-689f-4925-8dd1-6d1e172d772c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Devuelve}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

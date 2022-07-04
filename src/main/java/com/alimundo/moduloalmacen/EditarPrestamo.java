@@ -36,6 +36,7 @@ public class EditarPrestamo extends javax.swing.JDialog {
         columnModel.getColumn(0).setPreferredWidth(150);
         columnModel.getColumn(1).setPreferredWidth(250);
         columnModel.getColumn(2).setPreferredWidth(500);
+        columnModel.getColumn(3).setPreferredWidth(500);
     }
     
     public EditarPrestamo() {
@@ -44,12 +45,13 @@ public class EditarPrestamo extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setModal(true);
         modeloprestamo.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Id.</h3></html>","<html><h3 style=font-family:Verdana;>Fecha</h3></html>",
-                                            "<html><h3 style=font-family:Verdana;>Departamento</h3></html>"});
+                                            "<html><h3 style=font-family:Verdana;>Departamento</h3></html>","<html><h3 style=font-family:Verdana;>Responsable</h3></html>"});
         this.tamanocolumnasprestamo(tableprestamo);
         modeloprestamo.setRowCount(0);
         tableprestamo.getColumnModel().getColumn(0).setResizable(false);
         tableprestamo.getColumnModel().getColumn(1).setResizable(false);
         tableprestamo.getColumnModel().getColumn(2).setResizable(false);
+        tableprestamo.getColumnModel().getColumn(3).setResizable(false);
         tableprestamo.getTableHeader().setReorderingAllowed(false);
                 
          try{
@@ -58,7 +60,7 @@ public class EditarPrestamo extends javax.swing.JDialog {
             ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosprestamos");
             rs = ps.executeQuery();
             while(rs.next()){
-                 modeloprestamo.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3)});
+                 modeloprestamo.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)});
             }
         }catch(SQLException ex){
             error = ex.getMessage();
@@ -80,9 +82,11 @@ public class EditarPrestamo extends javax.swing.JDialog {
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(501, 250));
+        setMaximumSize(new java.awt.Dimension(625, 309));
+        setMinimumSize(new java.awt.Dimension(625, 309));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(625, 309));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -91,7 +95,7 @@ public class EditarPrestamo extends javax.swing.JDialog {
                 labelcerrarMouseClicked(evt);
             }
         });
-        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 4, -1, -1));
+        getContentPane().add(labelcerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 4, -1, -1));
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -99,14 +103,14 @@ public class EditarPrestamo extends javax.swing.JDialog {
         labeltitulo.setText(" SELECCIONAR PRESTAMO");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
-        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 501, 40));
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 625, 40));
 
         tableprestamo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tableprestamo.setModel(modeloprestamo);
         tableprestamo.setShowGrid(true);
         jScrollPane.setViewportView(tableprestamo);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 500, 190));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 620, 190));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,14 +122,14 @@ public class EditarPrestamo extends javax.swing.JDialog {
                 botonaceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 243, 60, 60));
+        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 243, 60, 60));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labelfondo.setMaximumSize(new java.awt.Dimension(501, 302));
         labelfondo.setMinimumSize(new java.awt.Dimension(501, 302));
         labelfondo.setPreferredSize(new java.awt.Dimension(501, 302));
-        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 501, 310));
+        getContentPane().add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 625, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,11 +142,17 @@ public class EditarPrestamo extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        seleccion = this.tableprestamo.getSelectedRow();
-        PrincipalForm.idprest = (int) modeloprestamo.getValueAt(seleccion, 0);
-        new CerrarPrestamoMaterial().setVisible(true);
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        this.dispose();
+        try{
+            seleccion = this.tableprestamo.getSelectedRow();
+            PrincipalForm.idprest = (int) modeloprestamo.getValueAt(seleccion, 0);
+            new CerrarPrestamoMaterial().setVisible(true);
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            this.dispose();
+        }catch(java.lang.ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Debe Seleccionar un Prestamo </h3></html>",
+                                                    null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
     }//GEN-LAST:event_botonaceptarActionPerformed
 
     /**
