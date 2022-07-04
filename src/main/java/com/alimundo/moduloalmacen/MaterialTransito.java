@@ -23,7 +23,9 @@ public class MaterialTransito extends javax.swing.JDialog {
     String error;
     String seleccionradio;
     int cantregprest;
-    int seleccion;
+    int seleccionfila;
+    int seleccionid;
+    String seleccioncod;
     TableColumnModel columnModel;
     Conexion con = new Conexion();
     ReportesDB reportesalmacen = new ReportesDB();
@@ -42,10 +44,11 @@ public class MaterialTransito extends javax.swing.JDialog {
    
     public final void tamanocolumnasprestamo(JTable table){
         columnModel = table.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(150);
-        columnModel.getColumn(1).setPreferredWidth(600);
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(150);
         columnModel.getColumn(2).setPreferredWidth(600);
-        columnModel.getColumn(3).setPreferredWidth(150);
+        columnModel.getColumn(3).setPreferredWidth(600);
+        columnModel.getColumn(4).setPreferredWidth(150);
     }
     
     public MaterialTransito() {
@@ -53,14 +56,15 @@ public class MaterialTransito extends javax.swing.JDialog {
         setResizable(false);
         setLocationRelativeTo(null);
         setModal(true);
-        modeloprestamo.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
+        modeloprestamo.setColumnIdentifiers(new Object[]{"<html><h3 style=font-family:Verdana;>Id</h3></html>","<html><h3 style=font-family:Verdana;>Codigo</h3></html>","<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>",
                                                          "<html><h3 style=font-family:Verdana;>Responsable</h3></html>","<html><h3 style=font-family:Verdana;>Total</h3></html>"});
         this.tamanocolumnasprestamo(tableprestamo);
         modeloprestamo.setRowCount(0);
         tableprestamo.getTableHeader().getColumnModel().getColumn(0).setResizable(false);
-        tableprestamo.getTableHeader().getColumnModel().getColumn(1).setResizable(true);
-        tableprestamo.getTableHeader().getColumnModel().getColumn(2).setResizable(false);
+        tableprestamo.getTableHeader().getColumnModel().getColumn(1).setResizable(false);
+        tableprestamo.getTableHeader().getColumnModel().getColumn(2).setResizable(true);
         tableprestamo.getTableHeader().getColumnModel().getColumn(3).setResizable(false);
+        tableprestamo.getTableHeader().getColumnModel().getColumn(4).setResizable(false);
         tableprestamo.getTableHeader().setReorderingAllowed(false);
         
         this.botonaceptar.setEnabled(false);
@@ -184,56 +188,12 @@ public class MaterialTransito extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        seleccionradio = validardatos.getSelectedButtonText(buttongroupestado);
-        switch (seleccionradio) {
-            case ("Abiertos"):
-                try {
-                PreparedStatement ps = null;
-                ResultSet rs = null;
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo ?");
-                ps.setInt(1, 1);
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
-                }
-            } catch (SQLException ex) {
-                error = ex.getMessage();
-                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-            }
-             
-                /*try {
-                reportesalmacen.ReporteConsolidadoAlmacen();
-                } catch (JRException | IOException ex) {
-                    Logger.getLogger(MovimientosAlmacen.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));*/
-                break;
-            case ("Cerrados"):
-                try {
-                    PreparedStatement ps = null;
-                    ResultSet rs = null;
-                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornamaterialenprestamo ?");
-                    ps.setInt(1, 0);
-                    rs = ps.executeQuery();
-                    while (rs.next()) {
-                        modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
-                    }
-                } catch (SQLException ex) {
-                    error = ex.getMessage();
-                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                }
-                
-                break;
-        }
-                
-        
-        
-        
-        
+        seleccionfila = this.tableprestamo.getSelectedRow();
+        seleccionid = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(seleccionfila, 0)));
+        seleccioncod = (String) modeloprestamo.getValueAt(seleccionfila, 1);
+       
         try {
-              reportesalmacen.ReporteMaterialenPrestamo();
+              reportesalmacen.ReporteHistorialDevoluciones(seleccionid,seleccioncod);
             } catch (JRException | IOException ex) {
                 Logger.getLogger(MaterialTransito.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -252,7 +212,10 @@ public class MaterialTransito extends javax.swing.JDialog {
             ps.setInt(1, 1);
             rs = ps.executeQuery();
             while (rs.next()) {
-                modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
+                modeloprestamo.addRow(new Object[]{rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)});
+            }
+            if(modeloprestamo.getRowCount() > 0){
+                this.botonaceptar.setEnabled(true);
             }
         } catch (SQLException ex) {
             error = ex.getMessage();
@@ -261,6 +224,7 @@ public class MaterialTransito extends javax.swing.JDialog {
     }//GEN-LAST:event_radiobuttonabiertoMouseClicked
 
     private void radiobuttoncerradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobuttoncerradoMouseClicked
+        modeloprestamo.setRowCount(0);
         try {
             PreparedStatement ps = null;
             ResultSet rs = null;
@@ -268,7 +232,10 @@ public class MaterialTransito extends javax.swing.JDialog {
             ps.setInt(1, 0);
             rs = ps.executeQuery();
             while (rs.next()) {
-                modeloprestamo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)});
+                modeloprestamo.addRow(new Object[]{rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)});
+            }
+            if (modeloprestamo.getRowCount() > 0) {
+                this.botonaceptar.setEnabled(true);
             }
         } catch (SQLException ex) {
             error = ex.getMessage();
