@@ -3,7 +3,7 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
   <jar>C:\Users\AdminSrv\Documents\NetBeansProjects\ModuloAlmacen\target\ModuloAlmacen-1.0-SNAPSHOT.jar</jar>
-  <outfile>C:\Users\AdminSrv\Documents\NetBeansProjects\ModuloAlmacen\target\ModuloControldeAlmacen.exe</outfile>
+  <outfile>C:\Users\AdminSrv\Documents\NetBeansProjects\ModuloAlmacen\target\ModuloControlAlmacen.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>

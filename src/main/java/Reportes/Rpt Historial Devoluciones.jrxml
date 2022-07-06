@@ -49,8 +49,8 @@
 	<pageHeader>
 		<band height="27">
 			<subreport>
-				<reportElement x="0" y="0" width="552" height="26" uuid="8997d7d5-8b9e-4123-abc4-ee35e6aa6d39"/>
-				<subreportParameter name="iddevprestamo">
+				<reportElement x="0" y="0" width="572" height="27" uuid="845accbf-1a47-4823-865e-da4e5bd47fda"/>
+				<subreportParameter name="idprestamo">
 					<subreportParameterExpression><![CDATA[$P{idprestamo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>

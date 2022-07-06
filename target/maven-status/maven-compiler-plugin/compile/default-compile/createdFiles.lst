@@ -55,6 +55,7 @@ com\alimundo\moduloalmacen\Alertas$4.class
 Paneles\PrestamoMaterial$5.class
 com\alimundo\moduloalmacen\EntradaManual.class
 Paneles\TransferenciaAlmacen$2.class
+com\alimundo\moduloalmacen\MaterialTransito$6.class
 com\alimundo\moduloalmacen\MovimientosAlmacen$6.class
 com\alimundo\moduloalmacen\Ayuda.class
 com\alimundo\moduloalmacen\Busqueda$4.class
@@ -74,6 +75,7 @@ com\alimundo\moduloalmacen\CargarComponentes.class
 com\alimundo\moduloalmacen\MovimientosAlmacen$2.class
 com\alimundo\moduloalmacen\CerrarPrestamoMaterial$1.class
 com\alimundo\moduloalmacen\CerrarPrestamoMaterial.class
+com\alimundo\moduloalmacen\MaterialTransito$5.class
 com\alimundo\moduloalmacen\PrincipalForm$1.class
 com\alimundo\moduloalmacen\Consultas$2.class
 Paneles\EntradaMaterial$2.class

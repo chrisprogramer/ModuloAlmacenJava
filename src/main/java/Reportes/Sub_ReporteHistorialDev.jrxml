@@ -3,11 +3,11 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="iddevprestamo" class="java.lang.Integer">
+	<parameter name="idprestamo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[EXEC spu_retornaresponsable $P{iddevprestamo}]]>
+		<![CDATA[EXEC spu_retornaresponsable $P{idprestamo}]]>
 	</queryString>
 	<field name="nom_responsable" class="java.lang.String"/>
 	<background>

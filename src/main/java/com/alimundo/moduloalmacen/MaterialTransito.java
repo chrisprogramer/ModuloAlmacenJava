@@ -180,7 +180,6 @@ public class MaterialTransito extends javax.swing.JDialog {
             seleccionfila = this.tableprestamo.getSelectedRow();
             seleccionid = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(seleccionfila, 0)));
             seleccioncod = (String) modeloprestamo.getValueAt(seleccionfila, 1);
-
             try {
                 reportesalmacen.ReporteHistorialDevoluciones(seleccionid,seleccioncod);
             } catch (JRException | IOException ex) {
