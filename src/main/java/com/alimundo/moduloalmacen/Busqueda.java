@@ -6,7 +6,6 @@ package com.alimundo.moduloalmacen;
 
 import java.awt.Cursor;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.PreparedStatement;

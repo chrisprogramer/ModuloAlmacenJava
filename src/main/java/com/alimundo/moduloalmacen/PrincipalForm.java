@@ -31,6 +31,8 @@ public class PrincipalForm extends javax.swing.JFrame {
     JMenuBar mainmenu;
     public static int codreqent;
     public static int idprest;
+    public static int idprestamostc;
+    public static String codmaterialstc;
        
     public PrincipalForm() {
         //this.BarMenu = new Menus();

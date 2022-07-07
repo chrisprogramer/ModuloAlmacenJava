@@ -331,7 +331,7 @@ public class CerrarPrestamoMaterial extends javax.swing.JDialog {
                             cantdev = Double.parseDouble(String.valueOf(modeloprestamo.getValueAt(i, 3)));
                             devuelve = (String) modeloprestamo.getValueAt(i, 4);
                             arraydevprestamos = new DetalleDevPrestamos() ;
-                            arraydevprestamos.setiddevprestamo(iddevprestamo);/*arreglar que iddevprestamo = 0*/
+                            arraydevprestamos.setiddevprestamo(iddevprestamo);
                             arraydevprestamos.setcodmaterial(codmaterial);
                             arraydevprestamos.setnommaterial(nommaterial);
                             arraydevprestamos.setcant(cant);

@@ -67,7 +67,7 @@ public class MaterialTransito extends javax.swing.JDialog {
         tableprestamo.getTableHeader().getColumnModel().getColumn(4).setResizable(false);
         tableprestamo.getTableHeader().setReorderingAllowed(false);
         
-        this.botonaceptar.setEnabled(false);
+        this.botonhistorial.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -83,7 +83,7 @@ public class MaterialTransito extends javax.swing.JDialog {
         jScrollPane = new javax.swing.JScrollPane();
         tableprestamo = new javax.swing.JTable();
         panelopciones = new javax.swing.JPanel();
-        botonaceptar = new javax.swing.JButton();
+        botonhistorial = new javax.swing.JButton();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -145,18 +145,16 @@ public class MaterialTransito extends javax.swing.JDialog {
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 410));
 
-        botonaceptar.setBackground(new java.awt.Color(255, 255, 255));
-        botonaceptar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        botonaceptar.setForeground(new java.awt.Color(255, 255, 255));
-        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/file_pdf_icon_188248.png"))); // NOI18N
-        botonaceptar.setToolTipText("");
-        botonaceptar.setBorder(null);
-        botonaceptar.addActionListener(new java.awt.event.ActionListener() {
+        botonhistorial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        botonhistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/search_look_for_seek_magnifying_glass_lens_icon_141967.png"))); // NOI18N
+        botonhistorial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonhistorial.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        botonhistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonaceptarActionPerformed(evt);
+                botonhistorialActionPerformed(evt);
             }
         });
-        getContentPane().add(botonaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, 60, 60));
+        getContentPane().add(botonhistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, 60, 60));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -174,28 +172,6 @@ public class MaterialTransito extends javax.swing.JDialog {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_labelcerrarMouseClicked
 
-    private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
-        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        try{
-            seleccionfila = this.tableprestamo.getSelectedRow();
-            seleccionid = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(seleccionfila, 0)));
-            seleccioncod = (String) modeloprestamo.getValueAt(seleccionfila, 1);
-            try {
-                reportesalmacen.ReporteHistorialDevoluciones(seleccionid,seleccioncod);
-            } catch (JRException | IOException ex) {
-                Logger.getLogger(MaterialTransito.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                error = ex.getMessage();
-                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-            } 
-
-        }catch(java.lang.ArrayIndexOutOfBoundsException ex){
-            JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Dede Seleccionar un Registro</h3></html>",
-                        "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-        }
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_botonaceptarActionPerformed
-
     private void radiobuttonabiertoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobuttonabiertoMouseClicked
         modeloprestamo.setRowCount(0);
         try {
@@ -208,7 +184,7 @@ public class MaterialTransito extends javax.swing.JDialog {
                 modeloprestamo.addRow(new Object[]{rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)});
             }
             if(modeloprestamo.getRowCount() > 0){
-                this.botonaceptar.setEnabled(true);
+                this.botonhistorial.setEnabled(true);
             }
         } catch (SQLException ex) {
             error = ex.getMessage();
@@ -228,13 +204,22 @@ public class MaterialTransito extends javax.swing.JDialog {
                 modeloprestamo.addRow(new Object[]{rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)});
             }
             if (modeloprestamo.getRowCount() > 0) {
-                this.botonaceptar.setEnabled(true);
+                this.botonhistorial.setEnabled(true);
             }
         } catch (SQLException ex) {
             error = ex.getMessage();
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }//GEN-LAST:event_radiobuttoncerradoMouseClicked
+
+    private void botonhistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonhistorialActionPerformed
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        seleccionfila = this.tableprestamo.getSelectedRow();
+        PrincipalForm.idprestamostc = Integer.parseInt(String.valueOf(modeloprestamo.getValueAt(seleccionfila, 0)));
+        PrincipalForm.codmaterialstc = (String) modeloprestamo.getValueAt(seleccionfila, 1);
+        new HistorialDevPrestamo(PrincipalForm.idprestamostc,PrincipalForm.codmaterialstc).setVisible(true);
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonhistorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,7 +260,7 @@ public class MaterialTransito extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonaceptar;
+    private javax.swing.JButton botonhistorial;
     private javax.swing.ButtonGroup buttongroupestado;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel labelcerrar;
