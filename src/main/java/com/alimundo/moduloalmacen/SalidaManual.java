@@ -30,7 +30,6 @@ public class SalidaManual extends javax.swing.JDialog {
     String seleccion;
     String fechasalida;
     String valida;
-    int contvalida;
     boolean nulo;
     Date fechahoy;
     Conexion con = new Conexion();
@@ -306,13 +305,14 @@ public class SalidaManual extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         int idsalida = 0;
+        int contvalida = 0;
+        int contvalidares = 0;
         String codmaterial;
         String nommaterial;
         String categoria;
         String medida;
         String almacen;
         String descripcion;
-        int contvalidares = 0;
         double cant = 0;
         double restaexist = 0;
         double cantstock = 0;
@@ -368,7 +368,7 @@ public class SalidaManual extends javax.swing.JDialog {
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                 }
-                if (contvalida == numregesal && !nulo) {
+                if (contvalida == numregesal && !nulo) { //arreglar esto contvalida
                     if(contvalidares == numregesal){
                         try{
                             PreparedStatement ps = null;

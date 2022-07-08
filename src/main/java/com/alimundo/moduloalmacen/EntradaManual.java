@@ -34,8 +34,6 @@ public class EntradaManual extends javax.swing.JDialog {
     String valida;
     Date fechahoy;
     String fechaentrada;
-    int contvalida;
-
     Conexion con = new Conexion();
     TableColumnModel columnModel;
     DefaultTableModel modelo;
@@ -339,6 +337,7 @@ public class EntradaManual extends javax.swing.JDialog {
 
     private void botonaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarActionPerformed
         int identrada;
+        int contvalida = 0;
         String codmaterial;
         String nommaterial;
         String categoria;
